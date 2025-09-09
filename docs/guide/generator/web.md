@@ -1,15 +1,15 @@
-# 127.0.0.1拒绝连接
+# 127.0.0.1 Connection Refused
 
 :::warning
-不建议线上使用
+Not recommended for production use
 :::
 
 ![image-20201026171737491](/generator/image-20201026171737491.png)
 
-- 出现这种情况,
-  - 旧版本 请到 `web/src/view/systemTools/formCreate/index.vue` 找到 `127.0.0.1` 替换为本机或服务器ip
-  - 新版本 请前往相对应的环境变量中修改 制定参数
+- When this happens,
+  - Old version: Go to `web/src/view/systemTools/formCreate/index.vue` and replace `127.0.0.1` with local machine or server IP
+  - New version: Go to the corresponding environment variables to modify the specified parameters
   `path : VITE_BASE_PATH` `port :VITE_SERVER_PORT `
 
-- server项目默认端口是 `8888` ,如果你修改,那也要把 `127.0.0.1:8888` 相应的端口修改 `ip:自定义端口`
+- The default port for server project is `8888`, if you modify it, you also need to change `127.0.0.1:8888` to the corresponding port `ip:custom_port`
 

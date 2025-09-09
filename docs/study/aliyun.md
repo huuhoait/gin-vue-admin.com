@@ -1,55 +1,55 @@
-# 阿里云对象存储
+# Alibaba Cloud Object Storage
 
-1. 获取 `Bucket`、`Domain`、`Endpoint` 信息
+1. Get `Bucket`, `Domain`, `Endpoint` information
 
-- [创建Bucket](https://oss.console.aliyun.com/bucket)
+- [Create Bucket](https://oss.console.aliyun.com/bucket)
   ![img.png](/study/aliyun/create_bucket.png)
 
-- 创建Bucket成功
-![创建Bucket成功](/study/aliyun/create_bucket_success.png)
+- Bucket created successfully
+![Bucket created successfully](/study/aliyun/create_bucket_success.png)
 
-- 点击 `sliver-horn` 进入,点击 概览
-![Bucket概览](/study/aliyun/bucket.png)
+- Click `sliver-horn` to enter, click Overview
+![Bucket Overview](/study/aliyun/bucket.png)
 
-2.[RAM 访问控制](https://ram.console.aliyun.com/users/new) 获取 `AccessKeyId` 和 `AccessKeySecret`
+2. [RAM Access Control](https://ram.console.aliyun.com/users/new) Get `AccessKeyId` and `AccessKeySecret`
 
-- 创建用户
-![创建用户](/study/aliyun/user_new.png)
+- Create user
+![Create user](/study/aliyun/user_new.png)
 
-- 创建用户成功
-![创建用户成功](/study/aliyun/user_new_succes.png)
+- User created successfully
+![User created successfully](/study/aliyun/user_new_succes.png)
 
-- 添加权限 
-![添加权限](/study/aliyun/assign_permissions.png)
+- Add permissions 
+![Add permissions](/study/aliyun/assign_permissions.png)
 
-- 添加权限成功
-![添加权限成功](/study/aliyun/assign_permissions_success.png)
+- Permissions added successfully
+![Permissions added successfully](/study/aliyun/assign_permissions_success.png)
 
-- 进入[用户界面](https://ram.console.aliyun.com/users) 
-![进入用户界面](/study/aliyun/user.png)
+- Enter [User Interface](https://ram.console.aliyun.com/users) 
+![Enter user interface](/study/aliyun/user.png)
 
-- 创建AccessKey
-![创建AccessKey](/study/aliyun/user_create_access_key.png)
+- Create AccessKey
+![Create AccessKey](/study/aliyun/user_create_access_key.png)
 
-- 创建AccessKey成功
-![创建AccessKey成功](/study/aliyun/user_create_access_key_success.png)
+- AccessKey created successfully
+![AccessKey created successfully](/study/aliyun/user_create_access_key_success.png)
 
-4. 根据上诉操作得到配置文件
+4. Get configuration file based on the above operations
 ```yaml
 # aliyun oss configuration
 AliyunOss:
-  # Path 文件存储文件夹
+  # Path file storage folder
   Path: 'gva'
-  # Prefix 自定义文件名前缀, 可以不写为空了
+  # Prefix custom filename prefix, can be left empty
   Prefix: 'oss_'
-  # Bucket 存储桶名称
+  # Bucket storage bucket name
   Bucket: 'sliver-horn'
-  # Domain 访问域名
+  # Domain access domain
   Domain: 'https://sliver-horn.oss-cn-shenzhen.aliyuncs.com'
-  # Endpoint 地域节点
+  # Endpoint region node
   Endpoint: 'oss-cn-shenzhen.aliyuncs.com'
-  # AccessKeyId 访问密钥 Id
+  # AccessKeyId access key Id
   AccessKeyId: 'LTAI5t7dSHRh2MHhaAo3gSGR'
-  # AccessKeySecret 访问密钥 Secret
+  # AccessKeySecret access key Secret
   AccessKeySecret: 'V4dc2lXiaJhGi40e7FcdiaLDDGtQ35'
 ```

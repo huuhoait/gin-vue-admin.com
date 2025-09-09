@@ -1,50 +1,50 @@
-# Docker 快速开发
+# Docker Quick Development
 
-## Docker   &   Docker-compose 环境
+## Docker & Docker-compose Environment
 
-1. 前往 [Docker Desktop for Windows by Docker | Docker Hub](https://hub.docker.com/editions/community/docker-ce-desktop-windows/)下载最新版本 Docker
-2. 前往 [Release v2.3.3 · docker/compose (github.com)](https://github.com/docker/compose/releases/tag/v2.3.3)下载最新版本 Docker-Compose
+1. Go to [Docker Desktop for Windows by Docker | Docker Hub](https://hub.docker.com/editions/community/docker-ce-desktop-windows/) to download the latest version of Docker
+2. Go to [Release v2.3.3 · docker/compose (github.com)](https://github.com/docker/compose/releases/tag/v2.3.3) to download the latest version of Docker-Compose
 
-## 一、要使用docker快速开发，需要进行两处项目文件修改
+## 1. To use docker for quick development, you need to modify two project files
 
-1. 打开前端目录下的文件  web/vite.config.js，大约第57行。
+1. Open the file `web/vite.config.js` in the frontend directory, around line 57.
 
    ```
       server: {
-         // 如果使用docker-compose开发模式，设置为false
+         // If using docker-compose development mode, set to false
          open: false,
          port: process.env.VITE_CLI_PORT,
    ```
 
    
 
-2. 打开前端目录下的文件  web/.env.development，大约第6行。
+2. Open the file `web/.env.development` in the frontend directory, around line 6.
 
    ```
    ENV = 'development'
    VITE_CLI_PORT = 8080
    VITE_SERVER_PORT = 8888
    VITE_BASE_API = /api
-   // VITE_BASE_PATH = http://127.0.0.1         //同时注销这一行
-   // 如果使用docker-compose开发模式，设置为下面的地址，或者物理机IP
+   // VITE_BASE_PATH = http://127.0.0.1         // Also comment out this line
+   // If using docker-compose development mode, set to the address below, or physical machine IP
    VITE_BASE_PATH = http://177.7.0.12             
    ```
 
    
 
 
-### 二、一键启动
+### 2. One-click Start
 
-1. 进入项目目录，指定 docker-compose 开发配置文件 docker-compose-dev.yaml 启动
+1. Enter the project directory, specify the docker-compose development configuration file docker-compose-dev.yaml to start
 
    ```
-   // 启动, 第一次启动可能会稍微慢一点
+   // Start, the first startup may be slightly slower
    docker-compose -f deploy/docker-compose/docker-compose-dev.yaml  up
    
-   // 后台启动
+   // Background start
    docker-compose -f deploy/docker-compose/docker-compose-dev.yaml  up  -d
    
-   // 停止
+   // Stop
    docker-compose -f deploy/docker-compose/docker-compose-dev.yaml  stop
    ```
 

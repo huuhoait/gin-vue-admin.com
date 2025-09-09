@@ -1,10 +1,10 @@
-# 侧边栏样式自定义
+# Sidebar Style Customization
 
-## 自定义样式
+## Custom Styles
 
-v2.6.4版本支持通过config.json进行页面配置
+v2.6.4 version supports page configuration through config.json
 
-配置文件为 /web/src/config.json
+Configuration file is /web/src/config.json
 
 ```json
 
@@ -23,8 +23,8 @@ v2.6.4版本支持通过config.json进行页面配置
 
 ```
 
-本json文件可以通过页面中可视化调整获得
+This json file can be obtained through visual adjustment in the page
 
-![进入配置](/btn/four.png)
+![Enter Configuration](/btn/four.png)
 
-![可视化配置json](/btn/five.png)
+![Visual Configuration json](/btn/five.png)

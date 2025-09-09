@@ -1,51 +1,51 @@
 
-# 环境准备
+# Environment Setup
 
-本指南将帮助您从零开始搭建 Gin-Vue-Admin 项目的开发环境。如果您已经具备相关环境，可以跳过对应部分。
+This guide will help you set up the development environment for the Gin-Vue-Admin project from scratch. If you already have the relevant environment, you can skip the corresponding sections.
 
-## 🚀 快速检查清单
+## 🚀 Quick Checklist
 
-在开始之前，请确保您的系统满足以下要求：
+Before starting, please ensure your system meets the following requirements:
 
-::: warning 📋 环境要求
-- **Git**: 用于代码版本管理
-- **Node.js**: >= 18.16.2 (推荐使用 LTS 版本)
-- **Go**: >= 1.22 (推荐使用最新稳定版)
-- **MySQL**: >= 8.0，存储引擎必须为 <span class="bg-red-600 text-white rounded font-medium dark:bg-red-500 px-1">InnoDB</span>
-- **Redis**: >= 6.0 (可选，用于缓存)
+::: warning 📋 Environment Requirements
+- **Git**: For code version management
+- **Node.js**: >= 18.16.2 (recommended to use LTS version)
+- **Go**: >= 1.22 (recommended to use latest stable version)
+- **MySQL**: >= 8.0, storage engine must be <span class="bg-red-600 text-white rounded font-medium dark:bg-red-500 px-1">InnoDB</span>
+- **Redis**: >= 6.0 (optional, for caching)
 :::
 
-## 📦 Node.js 环境安装
+## 📦 Node.js Environment Installation
 
-### 1. 下载安装 Node.js
+### 1. Download and Install Node.js
 
-访问 [Node.js 官网](https://nodejs.org/zh-cn/) 下载并安装 LTS 版本。
+Visit the [Node.js official website](https://nodejs.org/zh-cn/) to download and install the LTS version.
 
-**推荐版本**: Node.js 18.x 或更高版本
+**Recommended version**: Node.js 18.x or higher
 
-### 2. 验证安装
+### 2. Verify Installation
 
-打开终端或命令提示符，运行以下命令验证安装：
+Open terminal or command prompt and run the following commands to verify installation:
 
 ```bash
-# 检查 Node.js 版本
+# Check Node.js version
 node -v
-# 输出示例: v18.17.0
+# Output example: v18.17.0
 
-# 检查 npm 版本
+# Check npm version
 npm -v
-# 输出示例: 9.6.7
+# Output example: 9.6.7
 ```
 
-### 3. 配置 npm 镜像源（可选）
+### 3. Configure npm Mirror Source (Optional)
 
-为了提高国内下载速度，建议配置淘宝镜像源：
+To improve download speed in China, it's recommended to configure Taobao mirror source:
 
 ```bash
-# 设置淘宝镜像源
+# Set Taobao mirror source
 npm config set registry https://registry.npmmirror.com
 
-# 验证配置
+# Verify configuration
 npm config get registry
 ```
 

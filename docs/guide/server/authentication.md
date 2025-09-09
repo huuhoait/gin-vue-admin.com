@@ -1,77 +1,77 @@
-# 🔐 认证系统
+# 🔐 Authentication System
 
-Gin-Vue-Admin 采用 JWT (JSON Web Token) 作为主要的身份认证机制，提供无状态、安全、高效的用户认证解决方案。
+Gin-Vue-Admin uses JWT (JSON Web Token) as the primary identity authentication mechanism, providing a stateless, secure, and efficient user authentication solution.
 
-## 🎯 认证机制概述
+## 🎯 Authentication Mechanism Overview
 
-### JWT 认证流程
+### JWT Authentication Flow
 
 ```mermaid
 sequenceDiagram
-    participant C as 客户端
-    participant S as 服务器
-    participant DB as 数据库
+    participant C as Client
+    participant S as Server
+    participant DB as Database
     
-    C->>S: 1. 登录请求 (用户名/密码)
-    S->>DB: 2. 验证用户凭据
-    DB-->>S: 3. 返回用户信息
-    S->>S: 4. 生成 JWT Token
-    S-->>C: 5. 返回 Token
+    C->>S: 1. Login Request (username/password)
+    S->>DB: 2. Verify User Credentials
+    DB-->>S: 3. Return User Information
+    S->>S: 4. Generate JWT Token
+    S-->>C: 5. Return Token
     
-    Note over C: 客户端存储 Token
+    Note over C: Client stores Token
     
-    C->>S: 6. API 请求 + Authorization Header
-    S->>S: 7. 验证 Token
-    S-->>C: 8. 返回数据或拒绝访问
+    C->>S: 6. API Request + Authorization Header
+    S->>S: 7. Verify Token
+    S-->>C: 8. Return Data or Deny Access
 ```
 
-## 🔧 JWT 配置
+## 🔧 JWT Configuration
 
-### 配置文件设置
+### Configuration File Settings
 
-在 `config.yaml` 中配置 JWT 相关参数：
+Configure JWT-related parameters in `config.yaml`:
 
 ```yaml
 jwt:
-  signing-key: 'qmPlus'           # JWT 签名密钥
-  expires-time: 604800s           # Token 过期时间 (7天)
-  buffer-time: 86400s             # Token 缓冲时间 (1天)
-  issuer: 'qmPlus'               # 签发者
+  signing-key: 'qmPlus'           # JWT signing key
+  expires-time: 604800s           # Token expiration time (7 days)
+  buffer-time: 86400s             # Token buffer time (1 day)
+  issuer: 'qmPlus'               # Issuer
 ```
 
-### 配置参数说明
+### Configuration Parameters Description
 
-| 参数 | 类型 | 说明 | 默认值 |
+| Parameter | Type | Description | Default Value |
 |------|------|------|--------|
-| `signing-key` | string | JWT 签名密钥，用于生成和验证 Token | qmPlus |
-| `expires-time` | duration | Token 有效期，过期后需要重新登录 | 604800s (7天) |
-| `buffer-time` | duration | Token 缓冲时间，在此时间内可以刷新 Token | 86400s (1天) |
-| `issuer` | string | Token 签发者标识 | qmPlus |
+| `signing-key` | string | JWT signing key for generating and verifying tokens | qmPlus |
+| `expires-time` | duration | Token validity period, requires re-login after expiration | 604800s (7 days) |
+| `buffer-time` | duration | Token buffer time, can refresh token within this time | 86400s (1 day) |
+| `issuer` | string | Token issuer identifier | qmPlus |
 
-## 🛠️ 核心组件
+## 🛠️ Core Components
 
-### JWT 中间件
+### JWT Middleware
 
-位置：`server/middleware/jwt.go`
+Location: `server/middleware/jwt.go`
 
 ```go
-// JWTAuth JWT认证中间件
+// JWTAuth JWT authentication middleware
 func JWTAuth() gin.HandlerFunc {
     return func(c *gin.Context) {
-        // 从请求头获取 Token
+        // Get token from request header
         token := c.Request.Header.Get("x-token")
         if token == "" {
-            response.FailWithDetailed(gin.H{"reload": true}, "未登录或非法访问", c)
+            response.FailWithDetailed(gin.H{"reload": true}, "Not logged in or illegal access", c)
             c.Abort()
             return
         }
         
-        // 验证 Token
+        // Verify token
         j := utils.NewJWT()
         claims, err := j.ParseToken(token)
         if err != nil {
             if err == utils.TokenExpired {
-                response.FailWithDetailed(gin.H{"reload": true}, "授权已过期", c)
+                response.FailWithDetailed(gin.H{"reload": true}, "Authorization expired", c)
                 c.Abort()
                 return
             }
@@ -80,16 +80,16 @@ func JWTAuth() gin.HandlerFunc {
             return
         }
         
-        // 将用户信息存储到上下文
+        // Store user information in context
         c.Set("claims", claims)
         c.Next()
     }
 }
 ```
 
-### JWT 工具类
+### JWT Utility Class
 
-位置：`server/utils/jwt.go`
+Location: `server/utils/jwt.go`
 
 ```go
 type JWT struct {
@@ -110,13 +110,13 @@ type BaseClaims struct {
     AuthorityId string
 }
 
-// CreateToken 创建Token
+// CreateToken Create Token
 func (j *JWT) CreateToken(claims CustomClaims) (string, error) {
     token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
     return token.SignedString(j.SigningKey)
 }
 
-// ParseToken 解析Token
+// ParseToken Parse Token
 func (j *JWT) ParseToken(tokenString string) (*CustomClaims, error) {
     token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
         return j.SigningKey, nil
@@ -143,14 +143,14 @@ func (j *JWT) ParseToken(tokenString string) (*CustomClaims, error) {
 }
 ```
 
-## 🔑 登录实现
+## 🔑 Login Implementation
 
-### 登录 API
+### Login API
 
-位置：`server/api/v1/sys_user.go`
+Location: `server/api/v1/sys_user.go`
 
 ```go
-// Login 用户登录
+// Login User login
 func (b *BaseApi) Login(c *gin.Context) {
     var l systemReq.Login
     err := c.ShouldBindJSON(&l)
@@ -159,25 +159,25 @@ func (b *BaseApi) Login(c *gin.Context) {
         return
     }
     
-    // 验证码校验
+    // Captcha verification
     if store.Verify(l.CaptchaId, l.Captcha, true) {
-        // 验证用户凭据
+        // Verify user credentials
         u := &system.SysUser{Username: l.Username, Password: l.Password}
         user, err := userService.Login(u)
         if err != nil {
-            global.GVA_LOG.Error("登陆失败! 用户名不存在或者密码错误!", zap.Error(err))
-            response.FailWithMessage("用户名不存在或者密码错误", c)
+            global.GVA_LOG.Error("Login failed! Username does not exist or password is incorrect!", zap.Error(err))
+            response.FailWithMessage("Username does not exist or password is incorrect", c)
             return
         }
         
-        // 生成 JWT Token
+        // Generate JWT Token
         b.tokenNext(c, *user)
     } else {
-        response.FailWithMessage("验证码错误", c)
+        response.FailWithMessage("Captcha error", c)
     }
 }
 
-// tokenNext 生成Token并返回
+// tokenNext Generate Token and return
 func (b *BaseApi) tokenNext(c *gin.Context, user system.SysUser) {
     j := &utils.JWT{SigningKey: []byte(global.GVA_CONFIG.JWT.SigningKey)}
     claims := j.CreateClaims(utils.BaseClaims{
@@ -190,64 +190,64 @@ func (b *BaseApi) tokenNext(c *gin.Context, user system.SysUser) {
     
     token, err := j.CreateToken(claims)
     if err != nil {
-        global.GVA_LOG.Error("获取token失败!", zap.Error(err))
-        response.FailWithMessage("获取token失败", c)
+        global.GVA_LOG.Error("Failed to get token!", zap.Error(err))
+        response.FailWithMessage("Failed to get token", c)
         return
     }
     
-    // 多点登录控制
+    // Multi-point login control
     if !global.GVA_CONFIG.System.UseMultipoint {
         response.OkWithDetailed(systemRes.LoginResponse{
             User:      user,
             Token:     token,
             ExpiresAt: claims.StandardClaims.ExpiresAt * 1000,
-        }, "登录成功", c)
+        }, "Login successful", c)
         return
     }
     
-    // 单点登录处理
+    // Single sign-on processing
     if jwtStr, err := jwtService.GetRedisJWT(user.Username); err == redis.Nil {
         if err := jwtService.SetRedisJWT(token, user.Username); err != nil {
-            global.GVA_LOG.Error("设置登录状态失败!", zap.Error(err))
-            response.FailWithMessage("设置登录状态失败", c)
+            global.GVA_LOG.Error("Failed to set login status!", zap.Error(err))
+            response.FailWithMessage("Failed to set login status", c)
             return
         }
         response.OkWithDetailed(systemRes.LoginResponse{
             User:      user,
             Token:     token,
             ExpiresAt: claims.StandardClaims.ExpiresAt * 1000,
-        }, "登录成功", c)
+        }, "Login successful", c)
     } else if err != nil {
-        global.GVA_LOG.Error("设置登录状态失败!", zap.Error(err))
-        response.FailWithMessage("设置登录状态失败", c)
+        global.GVA_LOG.Error("Failed to set login status!", zap.Error(err))
+        response.FailWithMessage("Failed to set login status", c)
     } else {
         var blackJWT system.JwtBlacklist
         blackJWT.Jwt = jwtStr
         if err := jwtService.JsonInBlacklist(blackJWT); err != nil {
-            response.FailWithMessage("jwt作废失败", c)
+            response.FailWithMessage("JWT invalidation failed", c)
             return
         }
         if err := jwtService.SetRedisJWT(token, user.Username); err != nil {
-            response.FailWithMessage("设置登录状态失败", c)
+            response.FailWithMessage("Failed to set login status", c)
             return
         }
         response.OkWithDetailed(systemRes.LoginResponse{
             User:      user,
             Token:     token,
             ExpiresAt: claims.StandardClaims.ExpiresAt * 1000,
-        }, "登录成功", c)
+        }, "Login successful", c)
     }
 }
 ```
 
-## 🔄 Token 刷新机制
+## 🔄 Token Refresh Mechanism
 
-### 自动刷新
+### Automatic Refresh
 
-当 Token 即将过期时（在 buffer-time 时间内），系统会自动刷新 Token：
+When the token is about to expire (within the buffer-time), the system will automatically refresh the token:
 
 ```go
-// RefreshToken 刷新Token
+// RefreshToken Refresh Token
 func (j *JWT) RefreshToken(tokenString string) (string, error) {
     jwt.TimeFunc = func() time.Time {
         return time.Unix(0, 0)
@@ -270,20 +270,20 @@ func (j *JWT) RefreshToken(tokenString string) (string, error) {
 }
 ```
 
-## 🚫 Token 黑名单
+## 🚫 Token Blacklist
 
-### 黑名单机制
+### Blacklist Mechanism
 
-为了支持用户登出和 Token 撤销，系统实现了 JWT 黑名单机制：
+To support user logout and token revocation, the system implements a JWT blacklist mechanism:
 
 ```go
-// JwtBlacklist JWT黑名单结构体
+// JwtBlacklist JWT blacklist struct
 type JwtBlacklist struct {
     global.GVA_MODEL
     Jwt string `gorm:"type:text;comment:jwt"`
 }
 
-// JsonInBlacklist 拉黑jwt
+// JsonInBlacklist Blacklist jwt
 func (jwtService *JwtService) JsonInBlacklist(jwtList system.JwtBlacklist) (err error) {
     err = global.GVA_DB.Create(&jwtList).Error
     if err != nil {
@@ -293,52 +293,52 @@ func (jwtService *JwtService) JsonInBlacklist(jwtList system.JwtBlacklist) (err 
     return
 }
 
-// IsBlacklist 判断JWT是否在黑名单内部
+// IsBlacklist Check if JWT is in blacklist
 func (jwtService *JwtService) IsBlacklist(jwt string) bool {
     _, ok := global.BlackCache.Get(jwt)
     return ok
 }
 ```
 
-## 🔒 安全最佳实践
+## 🔒 Security Best Practices
 
-### 1. 密钥管理
-- 使用强随机密钥作为签名密钥
-- 定期轮换签名密钥
-- 将密钥存储在安全的配置文件中
+### 1. Key Management
+- Use strong random keys as signing keys
+- Regularly rotate signing keys
+- Store keys in secure configuration files
 
-### 2. Token 生命周期
-- 设置合理的过期时间（建议不超过24小时）
-- 实现 Token 刷新机制
-- 支持主动撤销 Token
+### 2. Token Lifecycle
+- Set reasonable expiration time (recommended not exceeding 24 hours)
+- Implement token refresh mechanism
+- Support active token revocation
 
-### 3. 传输安全
-- 始终使用 HTTPS 传输 Token
-- 在请求头中传递 Token，避免在 URL 中暴露
-- 客户端安全存储 Token
+### 3. Transmission Security
+- Always use HTTPS to transmit tokens
+- Pass tokens in request headers, avoid exposing in URLs
+- Securely store tokens on client side
 
-### 4. 多点登录控制
+### 4. Multi-point Login Control
 ```yaml
 system:
-  use-multipoint: true  # 启用单点登录限制
+  use-multipoint: true  # Enable single sign-on restrictions
 ```
 
-## 🐛 常见问题
+## 🐛 Common Issues
 
-### Q: Token 过期如何处理？
-A: 系统会返回特定的错误码，前端应该引导用户重新登录或自动刷新 Token。
+### Q: How to handle token expiration?
+A: The system will return specific error codes, and the frontend should guide users to re-login or automatically refresh the token.
 
-### Q: 如何实现记住登录状态？
-A: 可以设置较长的 Token 过期时间，或者实现 Refresh Token 机制。
+### Q: How to implement remember login status?
+A: You can set a longer token expiration time or implement a Refresh Token mechanism.
 
-### Q: 多设备登录如何控制？
-A: 通过配置 `use-multipoint: true` 启用单点登录，或者实现设备管理功能。
+### Q: How to control multi-device login?
+A: Enable single sign-on by configuring `use-multipoint: true`, or implement device management functionality.
 
-### Q: JWT 密钥泄露怎么办？
-A: 立即更换密钥，使所有现有 Token 失效，要求用户重新登录。
+### Q: What to do if JWT key is leaked?
+A: Immediately change the key, invalidate all existing tokens, and require users to re-login.
 
-## 📚 相关文档
+## 📚 Related Documentation
 
-- [权限系统](./authorization.md)
-- [配置管理](./config.md)
-- [部署配置](../deployment/index.md)
+- [Permission System](./authorization.md)
+- [Configuration Management](./config.md)
+- [Deployment Configuration](../deployment/index.md)

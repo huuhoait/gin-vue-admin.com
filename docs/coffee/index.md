@@ -1,7 +1,7 @@
-# GVA 捐赠列表
+# GVA Donation List
 
-::: info 🚦 为什么会有捐赠
-gin-vue-admin是一款非商业性的可快速开发基础架构，开箱即用，目前已经服务了上百家中小型公司，近万个人用户，服务器开支和社区维护依然在消耗大量资金，其唯一收入来源为用户捐赠以及付费服务，目前项目在各位捐赠用户的帮助下基本可以收支平衡，为了能够让gin-vue-admin可持续发展和维护，您的捐赠将会尤其重要！
+::: info 🚦 Why Donations Exist
+gin-vue-admin is a non-commercial rapid development foundation architecture that works out of the box. It currently serves hundreds of small and medium-sized companies and nearly ten thousand individual users. Server expenses and community maintenance still consume significant funds. The only source of income is user donations and paid services. Currently, with the help of all donating users, the project can basically achieve a balance of income and expenses. To enable sustainable development and maintenance of gin-vue-admin, your donations will be particularly important!
 :::
 
 <div style="display: flex; align-items: center">
@@ -9,8 +9,8 @@ gin-vue-admin是一款非商业性的可快速开发基础架构，开箱即用�
     <img class="py-img" src="/coffee/wechat-pay.png">
 </div>
 
-::: tip 🎉 致谢
-诚挚感谢曾经为GVA 发展添柴助力的老板们,下放列表非全部，仅做部分展示。望谅解~
+::: tip 🎉 Acknowledgments
+Sincere thanks to all the bosses who have contributed to the development of GVA. The list below is not complete, only a partial display. Please understand~
 :::
 
 <PluginRanking />

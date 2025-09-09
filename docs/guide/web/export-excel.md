@@ -1,52 +1,52 @@
-# 导出模板
+# Export Template
 <br/>
 <img src="/web/export-excel.png"/>
 
-## 名词解释
+## Terminology
 
-- 业务库：注：需要提前到db-list自行配置多数据库，如未配置需配置后重启服务方可使用。若无法选择，请到config.yaml中设置disabled:false，选择导入导出的目标库。
-- 模板名称: 模板的中文标记，主要用来用户助记。
-- 表名称: 需要导出数据的表，输入表名即可。
-- 模板标识: 模板的唯一标识，用来区分不同的模板。在使用导出组件时候作为 `templateId` 参数传入。
-- 关联条件: 此处可以添加多个关联，需要选择和写入的参数为，join方式[inner, left, right]，关联表，关联条件。
-- 模板信息: 此处接收一个json string，用来配置导出的表头，格式如下：
+- Business Database: Note: Need to configure multiple databases in db-list in advance. If not configured, need to configure and restart the service before use. If unable to select, please set disabled:false in config.yaml and select the target database for import/export.
+- Template Name: Chinese mark of the template, mainly used for user memory.
+- Table Name: The table that needs to export data, just enter the table name.
+- Template ID: Unique identifier of the template, used to distinguish different templates. Passed as `templateId` parameter when using export component.
+- Join Conditions: Multiple joins can be added here, parameters to select and write are: join method [inner, left, right], join table, join condition.
+- Template Information: Receives a json string here to configure the exported table headers, format as follows:
 
 ```json
     {
-        "表的列": "导出的中文名称列",
+        "table_column": "exported_chinese_name_column",
     }
 ```
 
-示例(xxx.xxx标识带json模式)
+Example (xxx.xxx indicates json mode)
 
 ```json
     {
         "id": "ID",
-        "name": "名称",
-        "age": "年龄",
-        "info.id": "用户信息组ID"
+        "name": "Name",
+        "age": "Age",
+        "info.id": "User Info Group ID"
     }
 ```
-- 默认导出条数: 默认导出的条数，如果不填写则默认为全量导出，实际使用中以ExportExcel的入参limit为准。
-- 默认排序条件: 默认的排序条件，如果不填写则默认为无排序，实际使用中以ExportExcel的入参order为准。
-- 导出条件：此处可以添加多条，每条需要填入的信息为 `json中输入的key`, `对应表的column`, `条件`。
+- Default Export Count: Default number of exported records, if not filled defaults to full export, actual use is subject to ExportExcel's limit parameter.
+- Default Sort Condition: Default sort condition, if not filled defaults to no sorting, actual use is subject to ExportExcel's order parameter.
+- Export Conditions: Multiple conditions can be added here, each needs to fill in: `key in json`, `corresponding table column`, `condition`.
 
 
-## 组件使用
+## Component Usage
 
-然后在你需要导出的页面`<script>`标签添加下方的组件
+Then add the following components in the `<script>` tag of the page you need to export
 
 ```javascript
-// 导出组件
+// Export component
 import ExportExcel from '@/components/exportExcel/exportExcel.vue'
-// 导入组件
+// Import component
 import ImportExcel from '@/components/exportExcel/importExcel.vue'
-// 导出模板组件
+// Export template component
 import ExportTemplate from '@/components/exportExcel/exportTemplate.vue'
 
 ```
 
-然后在`<template>`中使用即可
+Then use it in `<template>`
 
 ```html
 

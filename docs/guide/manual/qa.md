@@ -1,52 +1,52 @@
-# 常见问题
+# Common Questions
 
-本文档收集了 Gin-Vue-Admin 使用过程中的常见问题和解决方案，帮助您快速定位和解决问题。
+This document collects common problems and solutions during the use of Gin-Vue-Admin, helping you quickly locate and solve problems.
 
-## 快速导航
+## Quick Navigation
 
-- [系统初始化问题](#系统初始化问题)
-- [前端相关问题](#前端相关问题)
-- [后端相关问题](#后端相关问题)
-- [权限管理问题](#权限管理问题)
-- [部署相关问题](#部署相关问题)
-- [数据库相关问题](#数据库相关问题)
+- [System Initialization Issues](#system-initialization-issues)
+- [Frontend Related Issues](#frontend-related-issues)
+- [Backend Related Issues](#backend-related-issues)
+- [Permission Management Issues](#permission-management-issues)
+- [Deployment Related Issues](#deployment-related-issues)
+- [Database Related Issues](#database-related-issues)
 
-## 系统初始化问题
+## System Initialization Issues
 
-### 前端无验证码显示
+### Frontend No Captcha Display
 
-**问题描述：** 登录页面验证码图片无法显示或显示空白
+**Problem Description:** Captcha image on login page cannot be displayed or shows blank
 
-**解决方案：**
-1. **检查后端服务状态**
+**Solution:**
+1. **Check Backend Service Status**
    ```bash
-   # 确认后端服务是否正常启动
+   # Confirm if backend service is running normally
    curl http://localhost:8888/api/base/captcha
    ```
 
-2. **确认系统初始化**
-   - 确保已通过系统初始化页面完成数据库初始化
-   - 检查数据库连接是否正常
-   - 验证配置文件 `config.yaml` 中的数据库配置
+2. **Confirm System Initialization**
+   - Ensure database initialization is completed through system initialization page
+   - Check if database connection is normal
+   - Verify database configuration in `config.yaml` file
 
-3. **检查网络连接**
-   - 确认前后端网络连通性
-   - 检查防火墙设置
-   - 验证代理配置是否正确
+3. **Check Network Connection**
+   - Confirm frontend-backend network connectivity
+   - Check firewall settings
+   - Verify proxy configuration is correct
 
-### 初始化超时问题
+### Initialization Timeout Issues
 
-**问题描述：** 初始化过程中出现 `time-out` 等超时错误
+**Problem Description:** Timeout errors like `time-out` occur during initialization process
 
-**解决方案：**
-1. **调整前端超时设置**
+**Solution:**
+1. **Adjust Frontend Timeout Settings**
    ```javascript
-   // 在 requset.js 配置中增加超时时间
-   timeout = 30000; // 30秒
+   // Increase timeout time in requset.js configuration
+   timeout = 30000; // 30 seconds
    ```
 
-2. **调整后端超时设置**
- 在core/server.go配置时间
+2. **Adjust Backend Timeout Settings**
+ Configure time in core/server.go
 
 3. **检查数据库性能**
    - 确认数据库服务器性能

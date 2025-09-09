@@ -1,4 +1,4 @@
-# 配置文件
+# Configuration File
 
 ## JWT
 
@@ -16,21 +16,21 @@ jwt:
 
 ```go
 type JWT struct {
-	SigningKey  string `mapstructure:"signing-key" json:"signing-key" yaml:"signing-key"`    // jwt签名
-	ExpiresTime string `mapstructure:"expires-time" json:"expires-time" yaml:"expires-time"` // 过期时间
-	BufferTime  string `mapstructure:"buffer-time" json:"buffer-time" yaml:"buffer-time"`    // 缓冲时间
-	Issuer      string `mapstructure:"issuer" json:"issuer" yaml:"issuer"`                   // 签发者
+	SigningKey  string `mapstructure:"signing-key" json:"signing-key" yaml:"signing-key"`    // jwt signature
+	ExpiresTime string `mapstructure:"expires-time" json:"expires-time" yaml:"expires-time"` // expiration time
+	BufferTime  string `mapstructure:"buffer-time" json:"buffer-time" yaml:"buffer-time"`    // buffer time
+	Issuer      string `mapstructure:"issuer" json:"issuer" yaml:"issuer"`                   // issuer
 }
 ```
 
 ### description
 
-| 配置名      | 类型   | 说明      |
+| Configuration Name | Type   | Description      |
 | :---------- | :----- | :-------- |
-| signing-key | string | jwt的签名 |
-| expires-time | int64 | 过期时间 |
-| buffer-time | int64 | 缓冲时间（过期前这段时间内有过请求会刷新jwt续期） |
-| issuer | string | jwt签发者 |
+| signing-key | string | jwt signature |
+| expires-time | int64 | expiration time |
+| buffer-time | int64 | buffer time (requests within this time before expiration will refresh jwt renewal) |
+| issuer | string | jwt issuer |
 
 ## Zap
 

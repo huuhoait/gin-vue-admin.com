@@ -2,11 +2,11 @@
 
 gva-doc 
 
-**请自由修订文档**
+**Feel free to revise the documentation**
 
-### 修订方式
+### Revision Method
 
-本地修订文档需要 Node.js 环境，可安装 Node.js 后在项目根目录下执行以下命令启动项目：
+Local documentation revision requires a Node.js environment. After installing Node.js, you can start the project by executing the following commands in the project root directory:
 
 ```bash
     # install pnpm
@@ -20,12 +20,12 @@ gva-doc
     pnpm docs:dev
 ```
 
-如果不具备环境，请直接 Pull Request `.md` 文件，请按分类放置你的文件或者新开文件夹，但要保证他们在 `docs` 文件夹下，最后由 Organization Owner 整理即可。
+If you don't have the environment, please directly Pull Request `.md` files. Please place your files by category or create new folders, but make sure they are in the `docs` folder, and finally the Organization Owner will organize them.
 
-### 修订内容
+### Revision Content
 
-1. 补充新的介绍、教程、项目相关文档
+1. Add new introductions, tutorials, and project-related documentation
 
-2. 按照格式补充自己的项目，修订自己项目的描述
+2. Add your own projects according to the format and revise your project descriptions
 
-3. 调整优化样式和布局
+3. Adjust and optimize styles and layouts

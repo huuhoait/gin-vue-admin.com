@@ -1,10 +1,10 @@
-# 实用工具
+# Useful Tools
 
-合理的使用工具可以使你获得更好的开发体验
+Using tools properly can give you a better development experience
 
 ## [panel](https://github.com/opq-osc/panel)
 
-opqbot 面板
+OPQBot panel
 
 ## [MeowIOTConsole](https://github.com/opq-osc/MeowIOTConsole)
 
@@ -12,11 +12,11 @@ an EOC IOT Update Program :: Easy(ily) OpenSource CrossPlatfrom
 
 ## [IPTrackerServer](https://github.com/opq-osc/IPTrackerServer)
 
-用于窥屏检测的服务端
+Server for screen peeping detection
 
 ## [SkiaRenderServer](https://github.com/opq-osc/SkiaRenderServer)
 
-利用类似 xml 的标记语言生成图片，提供 HTTP 接口。
+Generate images using XML-like markup language, provides HTTP interface.
 
 ## [OPQBot-Docker](https://github.com/opq-osc/OPQBot-Docker)
 

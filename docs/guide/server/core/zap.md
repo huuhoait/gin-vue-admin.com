@@ -1,10 +1,10 @@
 # zap
 
-## 基于zap的扩展路由日志中间件
+## Extended route logging middleware based on zap
 
-> 添加文件, 代码来源于[李文周](https://www.liwenzhou.com/posts/Go/use_zap_in_gin/)
+> Add file, code source from [Li Wenzhou](https://www.liwenzhou.com/posts/Go/use_zap_in_gin/)
 
-在 `server/middleware` 目录新建一个 `logger.go` 文件,将以下代码复制粘贴进 `logger.go` 文件
+Create a new `logger.go` file in the `server/middleware` directory, copy and paste the following code into the `logger.go` file
 
 ```go
 package middleware
@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-// ZapLogger 接收gin框架的路由日志
+// ZapLogger receives gin framework route logs
 func ZapLogger() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		start := time.Now()
@@ -39,11 +39,11 @@ func ZapLogger() gin.HandlerFunc {
 }
 ```
 
-> 使用ZapLogger()中间件
+> Using ZapLogger() middleware
 
 ```go
 var Router = gin.Default()
-// 将上面的代码替换为
+// Replace the above code with
 var Router = gin.New()
 Router.Use(middleware.ZapLogger(), gin.Recovery())
 ```

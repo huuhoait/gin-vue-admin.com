@@ -1,6 +1,6 @@
-# 🎨 前端知识库
+# 🎨 Frontend Knowledge Base
 
-Gin-Vue-Admin 前端基于 Vue 3 + Vite 4 + Element Plus  构建，采用现代化的前端开发技术栈，提供高效的开发体验和优秀的用户界面。
+Gin-Vue-Admin frontend is built on Vue 3 + Vite 4 + Element Plus, using modern frontend development technology stack, providing efficient development experience and excellent user interface.
 
 ## 🚀 技术栈
 

@@ -1,25 +1,25 @@
 ---
 id: vscode
-title: VS Code 开发配置
+title: VS Code Development Configuration
 ---
 
-# VS Code 开发配置
+# VS Code Development Configuration
 
-VS Code 是一个轻量级但功能强大的代码编辑器，非常适合 Gin-Vue-Admin 项目的开发。本指南将详细介绍如何配置 VS Code 以获得最佳的开发体验。
+VS Code is a lightweight but powerful code editor, very suitable for Gin-Vue-Admin project development. This guide will detail how to configure VS Code for the best development experience.
 
-## 📋 前置要求
+## 📋 Prerequisites
 
-在开始配置之前，请确保您已经：
+Before starting configuration, please ensure you have:
 
-- ✅ 安装了 [VS Code](https://code.visualstudio.com/)
-- ✅ 完成了 [环境准备](/guide/start-quickly/env)
-- ✅ 克隆了项目代码到本地
+- ✅ Installed [VS Code](https://code.visualstudio.com/)
+- ✅ Completed [Environment Setup](/guide/start-quickly/env)
+- ✅ Cloned project code to local
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 1. 打开工作区
+### 1. Open Workspace
 
-推荐使用 VS Code 的工作区功能来管理整个项目：
+It is recommended to use VS Code's workspace feature to manage the entire project:
 
 ```bash
 # 进入项目根目录

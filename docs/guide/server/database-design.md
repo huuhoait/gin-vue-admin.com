@@ -1,46 +1,46 @@
-# 数据库设计文档
+# Database Design Documentation
 
-本文档详细介绍了 Gin-Vue-Admin 项目的数据库设计，包括表结构、关系设计、索引优化等内容。
+This document provides detailed information about the database design of the Gin-Vue-Admin project, including table structure, relationship design, index optimization, etc.
 
-## 📊 数据库架构概览
+## 📊 Database Architecture Overview
 
-### 1. 数据库选择
+### 1. Database Selection
 
-Gin-Vue-Admin 支持多种数据库：
+Gin-Vue-Admin supports multiple databases:
 
-- **MySQL 8.0+** (推荐)
+- **MySQL 8.0+** (Recommended)
 - **PostgreSQL 12+**
-- **SQLite 3** (开发环境)
+- **SQLite 3** (Development environment)
 - **SQL Server 2019+**
 
-### 2. 核心模块
+### 2. Core Modules
 
 ```
-数据库架构
-├── 系统管理模块
-│   ├── 用户管理 (sys_users)
-│   ├── 角色管理 (sys_authorities)
-│   ├── 菜单管理 (sys_base_menus)
-│   ├── API管理 (sys_apis)
-│   └── 权限规则 (casbin_rule)
-├── 基础功能模块
-│   ├── 字典管理 (sys_dictionaries)
-│   ├── 文件上传 (exa_file_upload_and_downloads)
-│   ├── 操作历史 (sys_operation_records)
-│   └── JWT黑名单 (jwt_blacklists)
-├── 代码生成模块
-│   ├── 自动代码 (sys_auto_codes)
-│   └── 代码历史 (sys_auto_code_histories)
-└── 示例模块
-    ├── 客户管理 (exa_customers)
-    └── 文件分片 (exa_file_chunks)
+Database Architecture
+├── System Management Module
+│   ├── User Management (sys_users)
+│   ├── Role Management (sys_authorities)
+│   ├── Menu Management (sys_base_menus)
+│   ├── API Management (sys_apis)
+│   └── Permission Rules (casbin_rule)
+├── Basic Function Module
+│   ├── Dictionary Management (sys_dictionaries)
+│   ├── File Upload (exa_file_upload_and_downloads)
+│   ├── Operation History (sys_operation_records)
+│   └── JWT Blacklist (jwt_blacklists)
+├── Code Generation Module
+│   ├── Auto Code (sys_auto_codes)
+│   └── Code History (sys_auto_code_histories)
+└── Example Module
+    ├── Customer Management (exa_customers)
+    └── File Chunks (exa_file_chunks)
 ```
 
-## 🗃️ 核心表结构
+## 🗃️ Core Table Structure
 
-### 1. 用户管理表
+### 1. User Management Tables
 
-#### sys_users (用户表)
+#### sys_users (User Table)
 
 ```sql
 CREATE TABLE `sys_users` (

@@ -1,53 +1,53 @@
-# 腾讯云对象存储
+# Tencent Cloud Object Storage
 
-1. 获取 `Bucket` 和 `Domain` 信息
-- [创建存储桶](https://console.cloud.tencent.com/cos/bucket)
-![创建存储桶](/study/tencent/create_bucket.png)
-- 填写存储桶基本信息
-![填写存储桶信息](/study/tencent/create_bucket_info.png)
-- 填写存储桶高级可选配置(自己根据自己需要自己选)
-![填写存储桶高级可选配置](/study/tencent/create_bucket_options.png)
-- 确认配置
-![确认配置](/study/tencent/create_bucket_confirm_configuration.png)
-- 创建存储桶成功
-![创建存储桶成功](/study/tencent/create_bucket_success.png)
-- 得到 `Bucket` 和 `Domain`
-![存储桶信息](/study/tencent/bucket.png)
+1. Get `Bucket` and `Domain` information
+- [Create Storage Bucket](https://console.cloud.tencent.com/cos/bucket)
+![Create Storage Bucket](/study/tencent/create_bucket.png)
+- Fill in basic bucket information
+![Fill in bucket information](/study/tencent/create_bucket_info.png)
+- Fill in advanced optional bucket configuration (choose according to your needs)
+![Fill in advanced optional bucket configuration](/study/tencent/create_bucket_options.png)
+- Confirm configuration
+![Confirm configuration](/study/tencent/create_bucket_confirm_configuration.png)
+- Storage bucket created successfully
+![Storage bucket created successfully](/study/tencent/create_bucket_success.png)
+- Get `Bucket` and `Domain`
+![Bucket information](/study/tencent/bucket.png)
 
-2. 获取 `SecretId` 和 `SecretKey`
+2. Get `SecretId` and `SecretKey`
 
-2.1 [进入用户列表](https://console.cloud.tencent.com/cam)
+2.1 [Enter User List](https://console.cloud.tencent.com/cam)
 
-2.2 新建用户
-- ![用户列表](/study/tencent/user.png)
+2.2 Create new user
+- ![User List](/study/tencent/user.png)
 
-2.3 快速创建
-![快速创建](/study/tencent/create_user_2_3.png)
-2.4 填写用户名, 编辑访问方式, 编辑用户权限
-![填写用户名, 编辑访问方式, 编辑用户权限](/study/tencent/create_user_2_4.png)
-2.4.1 勾选访问方式为编程访问,腾讯云控制台访问根据需求选择
-![勾选访问方式为编程访问,腾讯云控制台访问根据自身情况选择](/study/tencent/create_user_2_4_1.png)
-2.4.2 勾选用户权限,根据需求选择
-![勾选用户权限,根据需求选择](/study/tencent/create_user_2_4_2.png)
-2.4.3 完成用户名, 编辑访问方式, 编辑用户权限的选择
-![完成用户名, 编辑访问方式, 编辑用户权限的选择](/study/tencent/create_user_2_4_3.png)
-2.5 创建用户成功
+2.3 Quick create
+![Quick create](/study/tencent/create_user_2_3.png)
+2.4 Fill in username, edit access method, edit user permissions
+![Fill in username, edit access method, edit user permissions](/study/tencent/create_user_2_4.png)
+2.4.1 Check access method as programmatic access, Tencent Cloud console access choose according to needs
+![Check access method as programmatic access, Tencent Cloud console access choose according to your situation](/study/tencent/create_user_2_4_1.png)
+2.4.2 Check user permissions, choose according to needs
+![Check user permissions, choose according to needs](/study/tencent/create_user_2_4_2.png)
+2.4.3 Complete username, edit access method, edit user permissions selection
+![Complete username, edit access method, edit user permissions selection](/study/tencent/create_user_2_4_3.png)
+2.5 User created successfully
 ![img.png](/study/tencent/create_user_success.png)
 
-3. 根据上诉操作得到配置文件
+3. Get configuration file based on the above operations
 ```yaml
 # tencent cos configuration
 TencentCos:
-  # Path 文件存储文件夹
+  # Path file storage folder
   Path: 'gva'
-  # Prefix 自定义文件名前缀, 可以不写为空了
+  # Prefix custom filename prefix, can be left empty
   Prefix: 'oss_'
-  # Bucket 存储桶名称
+  # Bucket storage bucket name
   Bucket: 'gva-1304136212'
-  # Domain 访问域名
+  # Domain access domain
   Domain: 'https://gva-1304136212.cos.ap-guangzhou.myqcloud.com'
-  # SecretId 访问密钥 Id
+  # SecretId access key Id
   SecretId: 'AKIDCG6g3B2ez3qMbZGiz0kDQM1QZR5SaGiv'
-  # SecretKey 访问密钥 Secret
+  # SecretKey access key Secret
   SecretKey: '0kDPLnLhphKiqvqWTDj5FBuNZU8pJZbP'
 ```

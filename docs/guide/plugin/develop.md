@@ -1,53 +1,53 @@
-# 插件开发指南
+# Plugin Development Guide
 
-本指南将帮助您了解如何为 Gin-Vue-Admin 开发自定义插件，包括插件的目录结构、开发规范和最佳实践。
+This guide will help you understand how to develop custom plugins for Gin-Vue-Admin, including plugin directory structure, development standards and best practices.
 
-## 概述
+## Overview
 
-Gin-Vue-Admin 插件系统采用模块化设计，支持前后端分离的插件架构。每个插件都包含独立的前端（web）和后端（server）部分，可以无缝集成到主项目中。
+The Gin-Vue-Admin plugin system adopts a modular design, supporting frontend-backend separated plugin architecture. Each plugin contains independent frontend (web) and backend (server) parts, which can be seamlessly integrated into the main project.
 
-### 插件特性
+### Plugin Features
 
-- **模块化设计**：前后端分离，结构清晰
-- **热插拔**：支持动态加载和卸载
-- **标准化**：统一的目录结构和开发规范
-- **可扩展**：丰富的 API 和钩子函数
-- **易维护**：独立的配置和依赖管理
+- **Modular Design**: Frontend-backend separation, clear structure
+- **Hot Swappable**: Support dynamic loading and unloading
+- **Standardized**: Unified directory structure and development standards
+- **Extensible**: Rich APIs and hook functions
+- **Easy Maintenance**: Independent configuration and dependency management
 
-## 快速开始
+## Quick Start
 
-### 前置要求
+### Prerequisites
 
-- 熟悉 Vue 3 + TypeScript 前端开发
-- 熟悉 Go + Gin 后端开发
-- 了解 Gin-Vue-Admin 项目结构
-- 具备基本的插件开发概念
+- Familiar with Vue 3 + TypeScript frontend development
+- Familiar with Go + Gin backend development
+- Understand Gin-Vue-Admin project structure
+- Have basic plugin development concepts
 
-### 开发流程
+### Development Process
 
-1. **规划插件功能**：明确插件的功能需求和技术方案
-2. **创建插件结构**：按照标准目录结构创建插件文件
-3. **开发前端组件**：实现用户界面和交互逻辑
-4. **开发后端接口**：实现业务逻辑和数据处理
-5. **测试和调试**：确保插件功能正常运行
-6. **打包和发布**：生成插件包并发布到插件市场
+1. **Plan Plugin Functionality**: Clarify plugin functional requirements and technical solutions
+2. **Create Plugin Structure**: Create plugin files according to standard directory structure
+3. **Develop Frontend Components**: Implement user interface and interaction logic
+4. **Develop Backend Interfaces**: Implement business logic and data processing
+5. **Test and Debug**: Ensure plugin functionality works normally
+6. **Package and Release**: Generate plugin package and publish to plugin market
 
-## 标准化插件目录
+## Standardized Plugin Directory
 
-### 前端（Web）目录结构
+### Frontend (Web) Directory Structure
 
 ```
-插件名称/
+Plugin Name/
   └─ web/
     └─ plugin/
-      └─ 插件名称/                    # 插件根目录（必须）
-        ├─ api/                      # API 接口文件（可选）
-        ├─ view/                     # 页面组件（可选）
-        │  ├─ index.vue             # 主页面
-        │  └─ components/           # 页面子组件
-        ├─ components/               # 公共组件（可选）
-        │  ├─ PluginComponent.vue   # 插件组件
-        │  └─ index.ts              # 组件导出
+      └─ Plugin Name/                # Plugin root directory (required)
+        ├─ api/                      # API interface files (optional)
+        ├─ view/                     # Page components (optional)
+        │  ├─ index.vue             # Main page
+        │  └─ components/           # Page sub-components
+        ├─ components/               # Public components (optional)
+        │  ├─ PluginComponent.vue   # Plugin component
+        │  └─ index.ts              # Component export
         └─ utils/                    # 工具函数（可选）
            ├─ index.ts              # 工具函数
            └─ constants.ts          # 常量定义

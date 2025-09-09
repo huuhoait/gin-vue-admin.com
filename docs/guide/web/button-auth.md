@@ -1,15 +1,15 @@
-# 按钮权限
+# Button Permissions
 
-> 实现方式是采用 vue 原生的注册指令方式，
-> 实现代码
+> Implementation method uses Vue's native directive registration approach,
+> Implementation code
 ```js
-// 权限按钮展示指令
+// Permission button display directive
 import { useUserStore } from '@/pinia/modules/user'
 export default {
   install: (app) => {
     const userStore = useUserStore()
     app.directive('auth', {
-      // 当被绑定的元素插入到 DOM 中时……
+      // When the bound element is inserted into the DOM...
       mounted: function(el, binding) {
         const userInfo = userStore.userInfo
         let type = ''
@@ -45,32 +45,32 @@ export default {
 }
 ```
 
-## 创建按钮
+## Create Button
 
-进入`菜单管理`界面，点击新增或编辑，点击下方的`新增可控按钮`填入按钮名称（英文且不重复）和描述后点击确定
+Enter the `Menu Management` interface, click Add or Edit, click `Add Controllable Button` below, fill in the button name (English and unique) and description, then click OK
 
 ![one](/btn/one.png)
 
-进入`权限管理`，点击设置权限-->分配菜单，如果此菜单有可控按钮，则会显示`分配按钮权限`字样，点击进行分配
+Enter `Permission Management`, click Set Permissions → Assign Menu, if this menu has controllable buttons, it will display `Assign Button Permissions`, click to assign
 
 ![two](/btn/two.png)
 
 ![three](/btn/three.png)
 
-点击确定，完成分配。
+Click OK to complete the assignment.
 
-## 代码操作
+## Code Operations
 
-进入拥有可被控按钮菜单对应的前端页面，添加引入按钮控制组件,并在template中添加v-auth指令赋予需要被控制的按钮名称
+Enter the frontend page corresponding to the menu with controllable buttons, add the button control component, and add v-auth directive in template to assign the button name that needs to be controlled
 
 ```vue
 
 <template>
   <div>
-//   btnAuth为权限组件固定写法 .a  a为菜单管理中创建的按钮名称 配置过后即可实现对按钮的控制
-    <div v-auth="btnAuth.a">按钮1</div>
-    <div v-auth="btnAuth.b">按钮2</div>
-    <div v-auth="btnAuth.c">按钮3</div>
+//   btnAuth is the fixed syntax for permission component .a where a is the button name created in menu management, after configuration it can control the button
+    <div v-auth="btnAuth.a">Button 1</div>
+    <div v-auth="btnAuth.b">Button 2</div>
+    <div v-auth="btnAuth.c">Button 3</div>
   </div>
 </template>
 

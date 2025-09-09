@@ -1,9 +1,9 @@
 ---
 id: web-video
-title: web项目学习资料
+title: Web Project Learning Materials
 ---
 
-## Vue入门教学视频
+## Vue Beginner Tutorial Videos
 
-[手挽手带你学VUE，基础VUE入门](https://www.bilibili.com/video/BV1at411p7P3)
+[Hand in hand learning VUE, basic VUE introduction](https://www.bilibili.com/video/BV1at411p7P3)
 

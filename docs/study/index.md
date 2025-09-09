@@ -1,19 +1,19 @@
-# 相关站点
+# Related Sites
 
-## 技术学习 
-[go圈里最会写js的奇淼](https://space.bilibili.com/322210472) <Badge text="B站学习" type="warning"/>
+## Technical Learning 
+[Qi Miao - The best JS writer in Go community](https://space.bilibili.com/322210472) <Badge text="Bilibili Learning" type="warning"/>
 
-[知识库](https://www.yuque.com/flipped-aurora/)
-
-
-
-## 讨论区
-[在线交流](https://support.qq.com/products/371961) <Badge text="官方社区" type="warning"/>
+[Knowledge Base](https://www.yuque.com/flipped-aurora/)
 
 
-## 插件市场
-[插件市场](https://plugin.gin-vue-admin.com/#/layout/plugin) <Badge text="测试版本" type="warning"/>
 
-## 友情链接
+## Discussion Area
+[Online Communication](https://support.qq.com/products/371961) <Badge text="Official Community" type="warning"/>
 
-[golang 开发工具包，json、sql 转 struct](http://www.golangs.cn/)
+
+## Plugin Market
+[Plugin Market](https://plugin.gin-vue-admin.com/#/layout/plugin) <Badge text="Beta Version" type="warning"/>
+
+## Friendly Links
+
+[Golang development toolkit, json, sql to struct](http://www.golangs.cn/)

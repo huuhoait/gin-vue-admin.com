@@ -1,30 +1,30 @@
-# 字典功能
+# Dictionary Function
 
-> 字典是在后端数据库中存储的kv对，通过字典的value找到对应的文本展示内容
-> 字典管理中进行录入
+> Dictionary is a key-value pair stored in the backend database, finding the corresponding text display content through the dictionary's value
+> Enter data in dictionary management
 
-具体录入视频参考 https://www.bilibili.com/video/BV1kv4y1g7nT?p=12&vd_source=f2640257c21e3b547a790461ed94875e
+Specific entry video reference https://www.bilibili.com/video/BV1kv4y1g7nT?p=12&vd_source=f2640257c21e3b547a790461ed94875e
 
-## 字典方法
+## Dictionary Methods
 
 ```js
 
 import { getDict } from '@/utils/dictionary'
-// getDict 方法 可以根据在字典录入的字典的type找到对应的字典内容数组 从而在前端可以实现系列使用字典的操作
-// 例如：
+// getDict method can find the corresponding dictionary content array based on the dictionary type entered in the dictionary, enabling series of dictionary operations in the frontend
+// For example:
 
 const sexDict = await getDict("sex")
-// res即返回的字典数组 
-// [{value:0,lable:"男"},{value:1,lable:"女"}]
+// res is the returned dictionary array 
+// [{value:0,lable:"Male"},{value:1,lable:"Female"}]
 
 import { showDictLabel } from '@/utils/dictionary'
-// showDictLabel 方法 可以根据在字典录入的字典和传入的value值匹配出对应的字典label
-// 例如：
+// showDictLabel method can match the corresponding dictionary label based on the dictionary entered in the dictionary and the passed value
+// For example:
 
 const label = showDictLabel(sexDict,0)
-// label即返回的内容
-// 男
+// label is the returned content
+// Male
 
-// 或者在html部分直接使用 {{showDictLabel(sexDict,0)}} 获得文字 男
+// Or directly use {{showDictLabel(sexDict,0)}} in html part to get the text Male
 
 ```

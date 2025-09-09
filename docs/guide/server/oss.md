@@ -1,5 +1,5 @@
-# 对象存储 
-当前支持本地、阿里云、腾讯云、七牛云、AWS S3、华为云、Cloudflare R2 七种对象存储方式，可根据实际情况进行配置。
+# Object Storage
+Currently supports seven object storage methods: local, Alibaba Cloud, Tencent Cloud, Qiniu Cloud, AWS S3, Huawei Cloud, Cloudflare R2, which can be configured according to actual needs.
 
 ```yaml
 local:

@@ -1,10 +1,10 @@
-# docker
+# Docker
 
-## web前端项目单独打包
+## Web Frontend Project Standalone Packaging
 
-- 使用 `nginx` 镜像
+- Using `nginx` image
 
-`my.conf` 来源于 [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin) 的[my.conf](https://github.com/flipped-aurora/gin-vue-admin/blob/master/.docker-compose/nginx/conf.d/my.conf)
+`my.conf` source from [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin)'s [my.conf](https://github.com/flipped-aurora/gin-vue-admin/blob/master/.docker-compose/nginx/conf.d/my.conf)
 
  ```shell
 server {

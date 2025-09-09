@@ -1,6 +1,6 @@
-# Swagger API 文档
+# Swagger API Documentation
 
-Swagger 是一个强大的 API 文档生成工具，Gin-Vue-Admin 集成了 Swagger 来自动生成和维护 API 文档。本指南将介绍如何安装、配置和使用 Swagger。
+Swagger is a powerful API documentation generation tool, Gin-Vue-Admin integrates Swagger to automatically generate and maintain API documentation. This guide will introduce how to install, configure and use Swagger.
 
 ## 📋 什么是 Swagger
 

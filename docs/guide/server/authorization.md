@@ -1,30 +1,30 @@
-# 🛡️ 权限系统
+# 🛡️ Permission System
 
-Gin-Vue-Admin 采用 Casbin 实现基于角色的访问控制 (RBAC)，提供灵活、强大的权限管理机制，支持多层级权限控制。
+Gin-Vue-Admin uses Casbin to implement Role-Based Access Control (RBAC), providing a flexible and powerful permission management mechanism that supports multi-level permission control.
 
-## 🎯 权限模型概述
+## 🎯 Permission Model Overview
 
-### RBAC 权限模型
+### RBAC Permission Model
 
 ```
-用户 (User) ──┐
-              ├─→ 角色 (Role) ──→ 权限 (Permission) ──→ 资源 (Resource)
-用户组 (Group) ┘
+User ──┐
+       ├─→ Role ──→ Permission ──→ Resource
+Group ┘
 ```
 
-### 权限层级结构
+### Permission Hierarchy Structure
 
 ```mermaid
 graph TD
-    A[超级管理员] --> B[系统管理员]
-    A --> C[业务管理员]
-    B --> D[普通用户]
+    A[Super Admin] --> B[System Admin]
+    A --> C[Business Admin]
+    B --> D[Regular User]
     C --> D
     
-    B --> E[用户管理权限]
-    B --> F[系统配置权限]
-    C --> G[业务数据权限]
-    D --> H[基础查看权限]
+    B --> E[User Management Permission]
+    B --> F[System Configuration Permission]
+    C --> G[Business Data Permission]
+    D --> H[Basic View Permission]
     
     E --> I[API: /user/*]
     F --> J[API: /system/*]
@@ -32,11 +32,11 @@ graph TD
     H --> L[API: /base/*]
 ```
 
-## 🔧 Casbin 配置
+## 🔧 Casbin Configuration
 
-### 模型配置文件
+### Model Configuration File
 
-位置：`server/resource/rbac_model.conf`
+Location: `server/resource/rbac_model.conf`
 
 ```ini
 [request_definition]

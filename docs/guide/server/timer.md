@@ -1,34 +1,34 @@
-# 定时任务
+# Scheduled Tasks
 
-## 开放接口说明
-接口地址 : gin-vue-admin/server/utils/timer/Timer
+## Open Interface Description
+Interface address: gin-vue-admin/server/utils/timer/Timer
 ```go
 type Timer interface {
-	// 寻找所有Cron
+	// Find all Crons
 	FindCronList() map[string]*taskManager
-	// 添加Task 方法形式以秒的形式加入
-	AddTaskByFuncWithSecond(cronName string, spec string, fun func(), taskName string, option ...cron.Option) (cron.EntryID, error) // 添加Task Func以秒的形式加入
-	// 添加Task 接口形式以秒的形式加入
+	// Add Task method form in seconds
+	AddTaskByFuncWithSecond(cronName string, spec string, fun func(), taskName string, option ...cron.Option) (cron.EntryID, error) // Add Task Func in seconds
+	// Add Task interface form in seconds
 	AddTaskByJobWithSeconds(cronName string, spec string, job interface{ Run() }, taskName string, option ...cron.Option) (cron.EntryID, error)
-	// 通过函数的方法添加任务
+	// Add task through function method
 	AddTaskByFunc(cronName string, spec string, task func(), taskName string, option ...cron.Option) (cron.EntryID, error)
-	// 通过接口的方法添加任务 要实现一个带有 Run方法的接口触发
+	// Add task through interface method, need to implement an interface with Run method
 	AddTaskByJob(cronName string, spec string, job interface{ Run() }, taskName string, option ...cron.Option) (cron.EntryID, error)
-	// 获取对应taskName的cron 可能会为空
+	// Get cron corresponding to taskName, may be empty
 	FindCron(cronName string) (*taskManager, bool)
-	// 指定cron开始执行
+	// Start specified cron execution
 	StartCron(cronName string)
-	// 指定cron停止执行
+	// Stop specified cron execution
 	StopCron(cronName string)
-	// 查找指定cron下的指定task
+	// Find specified task under specified cron
 	FindTask(cronName string, taskName string) (*task, bool)
-	// 根据id删除指定cron下的指定task
+	// Remove specified task under specified cron by id
 	RemoveTask(cronName string, id int)
-	// 根据taskName删除指定cron下的指定task
+	// Remove specified task under specified cron by taskName
 	RemoveTaskByName(cronName string, taskName string)
-	// 清理掉指定cronName
+	// Clear specified cronName
 	Clear(cronName string)
-	// 停止所有的cron
+	// Stop all crons
 	Close()
 }
 ```

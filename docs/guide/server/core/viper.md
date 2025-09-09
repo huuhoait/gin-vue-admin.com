@@ -1,26 +1,26 @@
 # viper
 
-## 优先级说明
+## Priority Description
 
-1. path 可变参数是为了给单元测试留下一个口子，方便使用相对路径或者绝对路径指定config文件所在的位置
+1. The path variable parameter is to leave an opening for unit testing, convenient to use relative path or absolute path to specify the location of the config file
 
-2. 使用 `./server -c xxx/config.yaml` 使用命令行进行传递的值赋值给config变量
+2. Use `./server -c xxx/config.yaml` to pass values through command line and assign to config variable
 
-3. [ConfigEnv](https://github.com/flipped-aurora/gin-vue-admin/blob/main/server/core/internal/constant.go#L4) 是定义在server/core/internal/constant.go 的一个常量，可自行修改为自己想要的环境变量
+3. [ConfigEnv](https://github.com/flipped-aurora/gin-vue-admin/blob/main/server/core/internal/constant.go#L4) is a constant defined in server/core/internal/constant.go, you can modify it to your desired environment variable
 
-4. 最后会按照 Gin 框架自带的环境变量 `GIN_MODE` 进行匹配 `server/core/internal/constant.go` 文件中的定义。
+4. Finally, it will match the definition in `server/core/internal/constant.go` file according to the `GIN_MODE` environment variable that comes with the Gin framework.
 
-   :::danger 注意
+   :::danger Note
 
-   GIN_MODE 只能有三个值，debug、release、test， 其他值会panic的
+   GIN_MODE can only have three values: debug, release, test, other values will panic
    :::
 
-## `GIN_MODE` 使用场景说明
+## `GIN_MODE` Usage Scenario Description
 
-1. 有三个分支，开发分支 develop，测试分支 test ，生产分支 release
-2. 但是三个分支的链接的数据库，oss都是不同的，所以就会有三个配置文件，这个不可能用文档保存的
-3. 所以一般使用git的.gitattributes文件，每个分支都有属于自己的分支的配置文件以及Dockerfile
-4. 在Dockerfile文件里指定是以下的任意一行代码即可，这样就可以控制每种环境对应的配置文件
+1. There are three branches: development branch develop, test branch test, production branch release
+2. But the databases and OSS connected by the three branches are different, so there will be three configuration files, which cannot be saved in documents
+3. So generally use git's .gitattributes file, each branch has its own branch's configuration file and Dockerfile
+4. In the Dockerfile file, specify any of the following lines of code to control the configuration file corresponding to each environment
 
 ```
 ENV GIN_MODE=debug

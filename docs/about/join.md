@@ -1,75 +1,75 @@
 
 <div class="license-section">
 
-## 📋 开源许可协议
+## 📋 Open Source License Agreement
 
-> **Apache License 2.0** - 商业友好的开源许可证
+> **Apache License 2.0** - Business-friendly open source license
 
-### 🔓 使用条款说明
+### 🔓 Usage Terms Description
 
-**2.4.5版本之前：**
-- ✅ 闭源项目：无任何限制
-- ✅ 开源项目：需保留原始协议声明
-- ✅ 商业使用：无需额外授权
+**Before version 2.4.5:**
+- ✅ Closed source projects: No restrictions
+- ✅ Open source projects: Must retain original license statement
+- ✅ Commercial use: No additional authorization required
 
-**2.4.5版本及以后：**
-- ✅ 个人学习项目：完全免费
-- ✅ 企业内部系统（不对外开放，不接入公网）：完全免费
-- ⚠️ 外包项目/对外开放系统：必须获得商业授权
-- 💼 商业盈利项目：必须获得商业授权
+**Version 2.4.5 and later:**
+- ✅ Personal learning projects: Completely free
+- ✅ Internal enterprise systems (not open to public, not connected to public network): Completely free
+- ⚠️ Outsourcing projects/Public-facing systems: Must obtain commercial license
+- 💼 Commercial profit projects: Must obtain commercial license
 
 </div>
 
 <div class="contact-section">
 
-## 💬 技术交流社区
+## 💬 Technical Exchange Community
 
-### QQ技术交流群
+### QQ Technical Exchange Groups
 
-| 群组 | 群号 | 状态 |
+| Group | Group Number | Status |
 |------|------|------|
-| 技术交流1群 | `622360840` | 🔴 已满 |
-| 技术交流2群 | `650421081` | 🔴 已满 |
-| 技术交流3群 | `470239250` | 🔴 已满 |
-| 技术交流4群 | `971857775` | 🟢 可加入 |
+| Technical Exchange Group 1 | `622360840` | 🔴 Full |
+| Technical Exchange Group 2 | `650421081` | 🔴 Full |
+| Technical Exchange Group 3 | `470239250` | 🔴 Full |
+| Technical Exchange Group 4 | `971857775` | 🟢 Available |
 
-### 微信联系
+### WeChat Contact
 
-**项目负责人微信：** `shouzi_1994`
+**Project Leader WeChat:** `shouzi_1994`
 
-*欢迎技术交流与合作洽谈*
+*Welcome for technical exchange and cooperation discussions*
 
 </div>
 <div class="author-intro">
 
-## 👨‍💻 项目创始人
+## 👨‍💻 Project Founder
 
-### <span style="color:var(--vp-c-brand)">Mr.奇淼</span> - 全栈架构师
+### <span style="color:var(--vp-c-brand)">Mr. Qimiao</span> - Full-stack Architect
 
-**🏢 职业背景**
-- 现任北京知名科技企业前端技术负责人
-- 拥有丰富的企业级项目架构与管理经验
-- 专注于现代化Web应用开发与技术创新
+**🏢 Professional Background**
+- Currently serving as frontend technology leader at a well-known tech company in Beijing
+- Has rich experience in enterprise-level project architecture and management
+- Focuses on modern web application development and technological innovation
 
-**💡 项目起源**
+**💡 Project Origin**
 
-Gin-Vue-Admin诞生于2020年疫情期间，作为一个技术探索项目，凭借其优秀的架构设计和完善的功能体系，迅速在开源社区获得广泛认可，成为众多企业和开发者的首选开发框架。
+Gin-Vue-Admin was born during the 2020 pandemic as a technical exploration project. With its excellent architecture design and comprehensive functional system, it quickly gained widespread recognition in the open source community and became the preferred development framework for many enterprises and developers.
 
-**🛠 技术专长**
+**🛠 Technical Expertise**
 
-**前端技术栈：**
-- 现代化框架：`Vue.js` `React` `Angular`
-- 移动端开发：`Uni-app` `React Native` `Weex`
-- 工程化工具：`Vite` `Webpack` `TypeScript`
+**Frontend Technology Stack:**
+- Modern frameworks: `Vue.js` `React` `Angular`
+- Mobile development: `Uni-app` `React Native` `Weex`
+- Engineering tools: `Vite` `Webpack` `TypeScript`
 
-**后端技术栈：**
-- 服务端语言：`Golang` `Python` `Node.js`
-- 微服务架构：`Gin` `Kratos` `gRPC`
-- 数据库技术：`MySQL` `Redis` `MongoDB`
+**Backend Technology Stack:**
+- Server-side languages: `Golang` `Python` `Node.js`
+- Microservices architecture: `Gin` `Kratos` `gRPC`
+- Database technologies: `MySQL` `Redis` `MongoDB`
 
-**🌟 开源理念**
+**🌟 Open Source Philosophy**
 
-致力于构建高质量的开源生态，帮助开发者提升效率，推动技术社区发展。欢迎更多志同道合的技术伙伴加入Gin-Vue-Admin开源社区，共同打造更优秀的开发工具。
+Committed to building a high-quality open source ecosystem, helping developers improve efficiency and promoting the development of the technology community. Welcome more like-minded technical partners to join the Gin-Vue-Admin open source community and work together to create better development tools.
 
 </div>
 
@@ -77,7 +77,7 @@ Gin-Vue-Admin诞生于2020年疫情期间，作为一个技术探索项目，凭
 <VPTeamPage>
   <VPTeamPageTitle>
     <template #title>
-      核心开发小组
+      Core Development Team
     </template>
     <template #lead>
       The development of Gin-Vue-admin is guided by an international
@@ -86,7 +86,7 @@ Gin-Vue-Admin诞生于2020年疫情期间，作为一个技术探索项目，凭
   </VPTeamPageTitle>
   <VPTeamMembers size="small" :members="memberList"/>
     <VPTeamPageSection>
-        <template #title>鸣谢</template>
+        <template #title>Acknowledgments</template>
         <template #members>
           <VPTeamMembers size="small" :members="memberList2" />
         </template>

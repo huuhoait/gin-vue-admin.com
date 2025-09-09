@@ -1,16 +1,16 @@
-# 自定义图标【菜单以及直接使用】
+# Custom Icons [Menu and Direct Use]
 
-### 说明
-在2023/12/10后下载的版本即可使用，之前的版本请自行升级
+### Description
+Versions downloaded after 2023/12/10 can be used, please upgrade previous versions yourself
 
-### 使用
-我们以文件 `web/assets/icons/customer-gva.svg` 为例，
+### Usage
+Taking the file `web/assets/icons/customer-gva.svg` as an example,
 
-只需要把svg文件放入前端 web/assets/icons/ 目录下即可自动注册，然后在菜单配置中选择使用或者直接使用标签`<customer-gva></customer-gva>`即可使用
+Just put the svg file into the frontend web/assets/icons/ directory to automatically register, then select to use in menu configuration or directly use the tag `<customer-gva></customer-gva>` to use
 
-svg文件不可以有宽和高，如果需要自动适配颜色，需要在svg文件中添加`fill="currentColor"`属性，如果使用特定颜色svg自行填充fill即可
+SVG files cannot have width and height, if you need automatic color adaptation, add `fill="currentColor"` attribute in the svg file, if using specific color svg, fill the fill yourself
 
-> 实现代码
+> Implementation code
 > /web/core/global.js
 ```javascript
 

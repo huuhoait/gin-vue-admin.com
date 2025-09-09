@@ -1,52 +1,52 @@
-# 🚀 代码生成器
+# 🚀 Code Generator
 
-Gin-Vue-Admin 提供强大的代码生成器，支持根据数据库表结构自动生成完整的 CRUD 代码，包括后端 API、前端页面、路由配置等，大幅提升开发效率。
+Gin-Vue-Admin provides a powerful code generator that supports automatically generating complete CRUD code based on database table structure, including backend APIs, frontend pages, route configuration, etc., greatly improving development efficiency.
 
-## 🎯 功能概述
+## 🎯 Feature Overview
 
-### 生成内容
+### Generated Content
 
-- **后端代码**：Model、Service、API、Router
-- **前端代码**：Vue 页面、API 接口、路由配置
-- **数据库**：自动建表、字段验证
-- **权限配置**：API 权限、菜单权限
+- **Backend Code**: Model, Service, API, Router
+- **Frontend Code**: Vue pages, API interfaces, route configuration
+- **Database**: Auto table creation, field validation
+- **Permission Configuration**: API permissions, menu permissions
 
-### 支持特性
+### Supported Features
 
-- 🔄 **增删改查**：完整的 CRUD 操作
-- 🔍 **条件查询**：支持多字段条件筛选
-- 📄 **分页查询**：自动分页处理
-- 📁 **文件上传**：支持文件字段处理
-- 🔗 **关联查询**：支持表关联操作
-- 🎨 **自定义模板**：可自定义代码模板
+- 🔄 **CRUD Operations**: Complete CRUD operations
+- 🔍 **Conditional Queries**: Support multi-field condition filtering
+- 📄 **Pagination Queries**: Automatic pagination processing
+- 📁 **File Upload**: Support file field processing
+- 🔗 **Join Queries**: Support table join operations
+- 🎨 **Custom Templates**: Customizable code templates
 
-## 🛠️ 使用方式
+## 🛠️ Usage Methods
 
-### 1. Web 界面生成
+### 1. Web Interface Generation
 
-访问系统管理 → 代码生成器，通过可视化界面配置：
+Access System Management → Code Generator, configure through visual interface:
 
 ```
-系统工具 → 代码生成器 → 新增
+System Tools → Code Generator → Add New
 ```
 
-#### 配置步骤
+#### Configuration Steps
 
-1. **基础信息配置**
-   - 表名称
-   - 表描述
-   - 结构体名称
-   - 包名
-   - 文件名
+1. **Basic Information Configuration**
+   - Table name
+   - Table description
+   - Struct name
+   - Package name
+   - File name
 
-2. **字段配置**
-   - 字段名称
-   - 字段类型
-   - 数据库类型
-   - 字段描述
-   - 是否必填
-   - 查询条件
-   - 字典类型
+2. **Field Configuration**
+   - Field name
+   - Field type
+   - Database type
+   - Field description
+   - Required or not
+   - Query conditions
+   - Dictionary type
 
 3. **生成选项**
    - 生成模块

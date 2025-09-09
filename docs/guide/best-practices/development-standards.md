@@ -1,43 +1,43 @@
-# 开发规范指南
+# Development Standards Guide
 
-本文档定义了 Gin-Vue-Admin 项目的开发规范，包括代码规范、Git 工作流、团队协作等方面的最佳实践。
+This document defines the development standards for the Gin-Vue-Admin project, including code standards, Git workflow, team collaboration and other best practices.
 
-## 📝 代码规范
+## 📝 Code Standards
 
-### 1. Go 代码规范
+### 1. Go Code Standards
 
-#### 命名规范
+#### Naming Conventions
 
 ```go
-// 包名：小写，简短，有意义
+// Package names: lowercase, short, meaningful
 package user
 package system
 
-// 常量：大写，下划线分隔
+// Constants: uppercase, underscore separated
 const (
     MAX_RETRY_COUNT = 3
     DEFAULT_TIMEOUT = 30
     API_VERSION     = "v1"
 )
 
-// 变量：驼峰命名
+// Variables: camelCase naming
 var (
     userService    *UserService
     configFilePath string
     isDebugMode    bool
 )
 
-// 函数：大写开头（公开），小写开头（私有）
+// Functions: uppercase start (public), lowercase start (private)
 func GetUserList() []User {}
 func createUser() error {}
 
-// 结构体：大写开头，驼峰命名
+// Structs: uppercase start, camelCase naming
 type UserService struct {
     db    *gorm.DB
     redis *redis.Client
 }
 
-// 接口：以 -er 结尾或描述性名称
+// Interfaces: end with -er or descriptive names
 type UserRepository interface {
     Create(user *User) error
     GetByID(id uint) (*User, error)

@@ -1,53 +1,53 @@
-# 插件使用指南
+# Plugin Usage Guide
 
-本指南将帮助您了解如何在 Gin-Vue-Admin 项目中安装、配置和使用插件，让您能够快速扩展系统功能。
+This guide will help you understand how to install, configure and use plugins in the Gin-Vue-Admin project, allowing you to quickly extend system functionality.
 
-## 概述
+## Overview
 
-Gin-Vue-Admin 插件系统提供了丰富的功能扩展能力，支持多种安装方式，让您可以根据需要选择最适合的安装方法。
+The Gin-Vue-Admin plugin system provides rich functionality extension capabilities, supporting multiple installation methods, allowing you to choose the most suitable installation method according to your needs.
 
-### 插件类型
+### Plugin Types
 
-- **免费插件**：开源免费，可直接下载使用
-- **付费插件**：商业插件，需要购买授权
-- **自定义插件**：根据业务需求开发的专用插件
+- **Free Plugins**: Open source and free, can be downloaded and used directly
+- **Paid Plugins**: Commercial plugins, require purchase authorization
+- **Custom Plugins**: Dedicated plugins developed according to business needs
 
-### 支持的安装方式
+### Supported Installation Methods
 
-- **自动安装**：通过管理界面一键安装（推荐）
-- **手动安装**：手动部署插件文件
-- **一键安装**：命令行快速安装（开发中）
+- **Automatic Installation**: One-click installation through management interface (recommended)
+- **Manual Installation**: Manually deploy plugin files
+- **One-click Installation**: Command line quick installation (in development)
 
-## 前置要求
+## Prerequisites
 
-### 系统要求
+### System Requirements
 
-- Gin-Vue-Admin 版本 >= 2.5.3（自动安装功能）
-- Node.js 版本 >= 16.0.0
-- Go 版本 >= 1.19
-- 数据库支持（MySQL/PostgreSQL/SQLite）
+- Gin-Vue-Admin version >= 2.5.3 (automatic installation feature)
+- Node.js version >= 16.0.0
+- Go version >= 1.19
+- Database support (MySQL/PostgreSQL/SQLite)
 
-### 权限要求
+### Permission Requirements
 
-- 系统管理员权限
-- 插件管理权限
-- 文件读写权限
+- System administrator permissions
+- Plugin management permissions
+- File read/write permissions
 
-## 安装方式
+## Installation Methods
 
-### 自动安装（推荐）
+### Automatic Installation (Recommended)
 
-自动安装是最简单、最安全的安装方式，适合大多数用户使用。
+Automatic installation is the simplest and safest installation method, suitable for most users.
 
-#### 操作步骤
+#### Operation Steps
 
-1. **获取插件包**
-   - 访问 [插件市场](https://plugin.gin-vue-admin.com/)
-   - 选择需要的插件
-   - 下载免费插件或购买付费插件
-   - 获得插件 ZIP 压缩包
+1. **Get Plugin Package**
+   - Visit [Plugin Market](https://plugin.gin-vue-admin.com/)
+   - Select the required plugin
+   - Download free plugins or purchase paid plugins
+   - Get plugin ZIP package
 
-2. **登录管理后台**
+2. **Login to Management Backend**
    - 使用管理员账号登录系统
    - 确保具有插件管理权限
 

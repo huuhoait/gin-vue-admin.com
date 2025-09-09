@@ -1,11 +1,11 @@
-# 后端知识库
+# Backend Knowledge Base
 
-## 后端目录结构
+## Backend Directory Structure
 
 
-> **server文件夹为Golang后端项目,需要有Golang基础,Gin框架基础**
+> **server folder is a Golang backend project, requires Golang basics and Gin framework basics**
 
-## server项目结构
+## Server Project Structure
 
 ```shell
 ├── api

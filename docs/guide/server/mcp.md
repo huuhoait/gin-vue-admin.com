@@ -1,37 +1,37 @@
-# MCP AI助手集成
+# MCP AI Assistant Integration
 
-**革命性的AI开发体验！** 通过MCP（Model Context Protocol）让AI编辑工具深度理解GVA项目结构，实现智能化的代码生成和项目管理。
+**Revolutionary AI development experience!** Through MCP (Model Context Protocol), AI editing tools can deeply understand the GVA project structure, achieving intelligent code generation and project management.
 
-:::warning 版本要求
-使用MCP功能需要GVA版本 **≥ 2.8.4**，请确保您的项目版本满足要求。
+:::warning Version Requirements
+Using MCP functionality requires GVA version **≥ 2.8.4**, please ensure your project version meets the requirements.
 :::
 
-尽量使用 claude > gemini > gpt = kimi 模型 已达到更好效果
+Try to use claude > gemini > gpt = kimi models for better results
 
-## ✨ 核心特性
+## ✨ Core Features
 
-- 🚀 **智能代码生成**：AI自动创建完整的CRUD模板
-- 🔍 **智能文件搜索**：自动定位相关文件并提供精准修改建议  
-- 🎯 **自动化流程**：一键生成API接口和菜单配置
-- 🧠 **上下文理解**：AI深度理解项目架构，提供更准确的代码联动
+- 🚀 **Intelligent Code Generation**: AI automatically creates complete CRUD templates
+- 🔍 **Intelligent File Search**: Automatically locate related files and provide precise modification suggestions  
+- 🎯 **Automated Workflow**: One-click generation of API interfaces and menu configuration
+- 🧠 **Context Understanding**: AI deeply understands project architecture, providing more accurate code linkage
 
-## 🛠️ AI编辑工具配置
+## 🛠️ AI Editor Configuration
 
-### 支持的AI编辑工具
-- Trae （尽量使用 trae.ai 国外版）
+### Supported AI Editors
+- Trae (try to use trae.ai international version)
 - Cursor
 - Claude Code
 - Windsurf
 - Codebubby
-- 其他支持MCP协议的AI编辑器
+- Other AI editors that support MCP protocol
 
-### 配置步骤
+### Configuration Steps
 
-#### 第一步：启动GVA项目
-确保你的GVA项目正在运行，MCP服务会自动在 `http://127.0.0.1:8888/sse` 启动
+#### Step 1: Start GVA Project
+Ensure your GVA project is running, MCP service will automatically start at `http://127.0.0.1:8888/sse`
 
-#### 第二步：配置AI编辑器
-在你的AI编辑工具的配置文件中添加以下MCP配置：
+#### Step 2: Configure AI Editor
+Add the following MCP configuration in your AI editor's configuration file:
 
 ```json
 {

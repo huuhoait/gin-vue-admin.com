@@ -1,6 +1,6 @@
-# Gorm连接mysql和pgsql的配置和指南
+# GORM Configuration and Guide for MySQL and PostgreSQL
 
-> 需要重写!
+> Needs to be rewritten!
 
 
 ## mysql
@@ -13,16 +13,16 @@
 package config
 
 type Mysql struct {
-	Path         string `mapstructure:"path" json:"path" yaml:"path"`                             // 服务器地址
-	Port         string `mapstructure:"port" json:"port" yaml:"port"`                             // 端口
-	Config       string `mapstructure:"config" json:"config" yaml:"config"`                       // 高级配置
-	Dbname       string `mapstructure:"db-name" json:"dbname" yaml:"db-name"`                     // 数据库名
-	Username     string `mapstructure:"username" json:"username" yaml:"username"`                 // 数据库用户名
-	Password     string `mapstructure:"password" json:"password" yaml:"password"`                 // 数据库密码
-	MaxIdleConns int    `mapstructure:"max-idle-conns" json:"maxIdleConns" yaml:"max-idle-conns"` // 空闲中的最大连接数
-	MaxOpenConns int    `mapstructure:"max-open-conns" json:"maxOpenConns" yaml:"max-open-conns"` // 打开到数据库的最大连接数
-	LogMode      string `mapstructure:"log-mode" json:"logMode" yaml:"log-mode"`                  // 是否开启Gorm全局日志
-	LogZap       bool   `mapstructure:"log-zap" json:"logZap" yaml:"log-zap"`                     // 是否通过zap写入日志文件
+	Path         string `mapstructure:"path" json:"path" yaml:"path"`                             // Server address
+	Port         string `mapstructure:"port" json:"port" yaml:"port"`                             // Port
+	Config       string `mapstructure:"config" json:"config" yaml:"config"`                       // Advanced configuration
+	Dbname       string `mapstructure:"db-name" json:"dbname" yaml:"db-name"`                     // Database name
+	Username     string `mapstructure:"username" json:"username" yaml:"username"`                 // Database username
+	Password     string `mapstructure:"password" json:"password" yaml:"password"`                 // Database password
+	MaxIdleConns int    `mapstructure:"max-idle-conns" json:"maxIdleConns" yaml:"max-idle-conns"` // Maximum number of idle connections
+	MaxOpenConns int    `mapstructure:"max-open-conns" json:"maxOpenConns" yaml:"max-open-conns"` // Maximum number of open connections to database
+	LogMode      string `mapstructure:"log-mode" json:"logMode" yaml:"log-mode"`                  // Whether to enable GORM global logging
+	LogZap       bool   `mapstructure:"log-zap" json:"logZap" yaml:"log-zap"`                     // Whether to write logs to file through zap
 }
 ```
 
@@ -36,22 +36,22 @@ type Mysql struct {
 package config
 
 type Pgsql struct {
-	Path         string `mapstructure:"path" json:"path" yaml:"path"`                             // 服务器地址:端口
-	Port         string `mapstructure:"port" json:"port" yaml:"port"`                             //:端口
-	Config       string `mapstructure:"config" json:"config" yaml:"config"`                       // 高级配置
-	Dbname       string `mapstructure:"db-name" json:"dbname" yaml:"db-name"`                     // 数据库名
-	Username     string `mapstructure:"username" json:"username" yaml:"username"`                 // 数据库用户名
-	Password     string `mapstructure:"password" json:"password" yaml:"password"`                 // 数据库密码
-	MaxIdleConns int    `mapstructure:"max-idle-conns" json:"maxIdleConns" yaml:"max-idle-conns"` // 空闲中的最大连接数
-	MaxOpenConns int    `mapstructure:"max-open-conns" json:"maxOpenConns" yaml:"max-open-conns"` // 打开到数据库的最大连接数
-	LogMode      string `mapstructure:"log-mode" json:"logMode" yaml:"log-mode"`                  // 是否开启Gorm全局日志
-	LogZap       bool   `mapstructure:"log-zap" json:"logZap" yaml:"log-zap"`                     // 是否通过zap写入日志文件
+	Path         string `mapstructure:"path" json:"path" yaml:"path"`                             // Server address:port
+	Port         string `mapstructure:"port" json:"port" yaml:"port"`                             // :port
+	Config       string `mapstructure:"config" json:"config" yaml:"config"`                       // Advanced configuration
+	Dbname       string `mapstructure:"db-name" json:"dbname" yaml:"db-name"`                     // Database name
+	Username     string `mapstructure:"username" json:"username" yaml:"username"`                 // Database username
+	Password     string `mapstructure:"password" json:"password" yaml:"password"`                 // Database password
+	MaxIdleConns int    `mapstructure:"max-idle-conns" json:"maxIdleConns" yaml:"max-idle-conns"` // Maximum number of idle connections
+	MaxOpenConns int    `mapstructure:"max-open-conns" json:"maxOpenConns" yaml:"max-open-conns"` // Maximum number of open connections to database
+	LogMode      string `mapstructure:"log-mode" json:"logMode" yaml:"log-mode"`                  // Whether to enable GORM global logging
+	LogZap       bool   `mapstructure:"log-zap" json:"logZap" yaml:"log-zap"`                     // Whether to write logs to file through zap
 }
 ```
 
 ### server/config/config.go
 
-### 在system选项下 选择db-type为mysql或者pgsql
+### Under system options, choose db-type as mysql or pgsql
 
 ```yaml
 system:

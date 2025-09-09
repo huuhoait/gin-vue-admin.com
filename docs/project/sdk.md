@@ -1,14 +1,14 @@
 # SDK
 
-选择熟悉语言的 sdk 可以帮助你快速开发一个自己的机器人功能
+Choosing an SDK in a familiar language can help you quickly develop your own bot functionality
 
 ## [botoy](https://github.com/opq-osc/botoy) (Python)
 
-OPQ/IOTQQ/IOTBot 的一个 Python 开发助手 🐌
+A Python development assistant for OPQ/IOTQQ/IOTBot 🐌
 
 ## [OPQBot](https://github.com/opq-osc/OPQBot) (Go)
 
-完全异步，自带队列，而且可以编译出二进制文件的框架。
+Fully asynchronous, built-in queue, and can compile to binary files framework.
 
 ## [OPQ-NodeJs](https://github.com/opq-osc/OPQ-NodeJs) (Javascript)
 
@@ -24,8 +24,8 @@ IOT Bot Structure For Enterprise Developer
 
 ## [OPQBot-Native](https://github.com/opq-osc/OPQBot-Native) (C#)
 
-OPQBot 酷 Q 插件 兼容框架
+OPQBot CoolQ plugin compatibility framework
 
 ## [lua-lib](https://github.com/opq-osc/lua-lib) (Lua)
 
-进一步封装 OPQ 的 lua api，调用更统一，简化开发，去除插件冗余代码, 免受 OPQ wiki 的困扰
+Further encapsulation of OPQ's lua api, more unified calls, simplified development, removed plugin redundant code, free from OPQ wiki troubles

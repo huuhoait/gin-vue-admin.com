@@ -1,9 +1,9 @@
-# 华为云 obs
+# Huawei Cloud OBS
 
-1.1 [存储桶列表](https://console.huaweicloud.com/console/#/obs/manager/buckets)
+1.1 [Bucket List](https://console.huaweicloud.com/console/#/obs/manager/buckets)
 
-1.1 存储桶列表
-![新建存储桶](/study/huawei/buckets.png)
+1.1 Bucket List
+![Create New Bucket](/study/huawei/buckets.png)
 
-1.2 创建存储桶
-![创建存储桶](/study/huawei/create_bucket.png)
+1.2 Create Bucket
+![Create Bucket](/study/huawei/create_bucket.png)

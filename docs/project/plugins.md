@@ -1,6 +1,6 @@
-# 开源插件
+# Open Source Plugins
 
-无需开发，快速体验 OPQBot 开源社区提供的丰富插件功能。
+No development required, quickly experience the rich plugin functionality provided by the OPQBot open source community.
 
 ## botoy-plugins (Python)
 
@@ -11,7 +11,7 @@
     owner='xiyaowong'
 />
 
-一些 botoy 的插件
+Some botoy plugins
 
 ## OPQ-SetuBot (Python)
 
@@ -22,7 +22,7 @@
     owner='yuban10703'
 />
 
-OPQBOT 的色图机器人插件
+OPQBOT's image bot plugin
 
 ## opqqq-plugin (Python)
 
@@ -33,7 +33,7 @@ OPQBOT 的色图机器人插件
     owner='HeiLAAS'
 />
 
-OPQBot 即开即用的插件，自定义表情、早晚安、Vtuber/Pcr/原神 运势等
+OPQBot ready-to-use plugins, custom expressions, good morning/evening, Vtuber/Pcr/Genshin fortune, etc.
 
 ## ioobot (Python)
 
@@ -44,7 +44,7 @@ OPQBot 即开即用的插件，自定义表情、早晚安、Vtuber/Pcr/原神 �
     owner='kitUIN'
 />
 
-一个适用于 OPQBOT 的识图姬
+An image recognition bot suitable for OPQBOT
 
 ## OPQ-netDisk (Python)
 
@@ -55,7 +55,7 @@ OPQBot 即开即用的插件，自定义表情、早晚安、Vtuber/Pcr/原神 �
     owner='HeiLAAS'
 />
 
-使用腾讯 COS 服务作为 OPQ 机器人的网盘，模糊搜索腾讯 COS 并上传在群文件中的工具
+Using Tencent COS service as OPQ robot's network disk, fuzzy search Tencent COS and upload tools in group files
 
 ## bbb_bot (Python)
 
@@ -77,7 +77,7 @@ BBB_Bot(棒棒冰) - based on OPQBot
     owner='HeiLAAS'
 />
 
-机器人充值管理系统
+Robot recharge management system
 
 ## OPQ-netDisk (Python)
 
@@ -88,7 +88,7 @@ BBB_Bot(棒棒冰) - based on OPQBot
     owner='HeiLAAS'
 />
 
-使用腾讯 COS 服务作为 OPQ 机器人的网盘，模糊搜索腾讯 COS 并上传在群文件中
+Using Tencent COS service as OPQ robot's network disk, fuzzy search Tencent COS and upload in group files
 
 ## o0oo00oo00oo0oo0 (Python)
 

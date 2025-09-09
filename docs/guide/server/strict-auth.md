@@ -1,10 +1,10 @@
-# strictAuth 严格角色模式
+# strictAuth Strict Role Mode
 
-## 介绍
+## Introduction
 
-开启严格角色模式后，用户只能访问其拥有的角色权限，无法访问其他角色的权限。
+After enabling strict role mode, users can only access permissions of their own roles and cannot access permissions of other roles.
 
-## 配置
+## Configuration
 
 ```yaml
 system:
@@ -20,7 +20,7 @@ system:
   use-strict-auth: true  # 这里修改为true
 ```
 
-## 使用
-如果为顶级角色 则可以看到自己的角色且可以分配自己角色的相关api权限和菜单权限
-如果为子角色 则无法看到自己角色，能看到自己角色的下级所有角色，且可以对下级以及下级的所有角色做权限分配，分配范围为自己所有用的角色的所有权限
+## Usage
+If it is a top-level role, you can see your own role and can assign related API permissions and menu permissions of your own role
+If it is a sub-role, you cannot see your own role, you can see all sub-roles of your own role, and you can assign permissions to sub-levels and all sub-level roles, the assignment scope is all permissions of your own role
 ```

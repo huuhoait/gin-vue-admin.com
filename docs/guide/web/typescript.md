@@ -1,7 +1,7 @@
-# 开启TypeScript
+# Enable TypeScript
 
-在创建.vue文件的时候，.vue内部的所有`<script>`标签，添加`lang="ts"`属性，例：`<script lang="ts">` `<script lang="ts" setup>` 即可在当前的vue组件中开启ts模式。您可以畅快得使用您需要的ts语法。
+When creating .vue files, add the `lang="ts"` attribute to all `<script>` tags inside .vue, for example: `<script lang="ts">` `<script lang="ts" setup>` to enable ts mode in the current vue component. You can freely use the ts syntax you need.
 
-如果您其他组件不需要ts，那么按照原始的不携带lang=ts的标签即可继续使用js进行开发，项目支持不同组件使用不同的语言进行同步开发。您可以根据您的喜好和需求做出最佳选择。
+If your other components don't need ts, you can continue using js for development with the original tags without lang=ts. The project supports different components using different languages for synchronous development. You can make the best choice according to your preferences and needs.
 
 <img src="/web/ts.jpg" />

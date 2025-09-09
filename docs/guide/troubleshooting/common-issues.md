@@ -1,21 +1,21 @@
-# 常见问题排除指南
+# Common Issues Troubleshooting Guide
 
-本文档收集了 Gin-Vue-Admin 项目开发和部署过程中的常见问题及解决方案。
+This document collects common issues and solutions during the development and deployment process of the Gin-Vue-Admin project.
 
-## 🚀 安装和启动问题
+## 🚀 Installation and Startup Issues
 
-### 1. 后端启动问题
+### 1. Backend Startup Issues
 
-#### 问题：数据库连接失败
+#### Issue: Database Connection Failed
 
-**错误信息：**
+**Error Message:**
 ```
 failed to initialize database, got error dial tcp 127.0.0.1:3306: connect: connection refused
 ```
 
-**解决方案：**
+**Solution:**
 
-1. 检查数据库服务是否启动
+1. Check if database service is running
 ```bash
 # MySQL
 sudo systemctl status mysql
