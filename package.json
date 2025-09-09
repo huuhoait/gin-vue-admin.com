@@ -8,7 +8,8 @@
     "docs:dev": "vitepress dev docs",
     "start": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:serve": "vitepress serve docs",
+    "deploy": "vite build && gh-pages -d dist"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
@@ -16,9 +17,10 @@
     "autoprefixer": "^10.4.20",
     "chalk": "^5.3.0",
     "fs-extra": "^11.2.0",
+    "gh-pages": "^6.3.0",
     "lodash": "^4.17.21",
     "postcss": "^8.4.45",
-    "sass": "^1.78.0",
+    "sass": "^1.92.1",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.4",
     "vite": "5.4.3",
@@ -39,7 +41,6 @@
   "packageManager": "pnpm@9.9.0",
   "license": "MIT",
   "engines": {
-    
     "node": ">=16",
     "yarn": "forbidden, use pnpm",
     "npm": "forbidden, use pnpm"
