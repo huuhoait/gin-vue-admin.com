@@ -1,184 +1,184 @@
-# 项目初始化
+# Project Initialization
 
-本指南将详细介绍如何初始化和启动 Gin-Vue-Admin 项目，包括后端服务、前端应用和数据库的配置。
+This guide will detail how to initialize and start the Gin-Vue-Admin project, including backend service, frontend application, and database configuration.
 
-::: tip 📺 视频教程
-如果您更喜欢视频学习，可以观看我们的[视频教程](https://www.bilibili.com/video/BV1kv4y1g7nT?p=3)。
+::: tip 📺 Video Tutorial
+If you prefer video learning, you can watch our [video tutorial](https://www.bilibili.com/video/BV1kv4y1g7nT?p=3).
 :::
 
-## 📋 前置条件
+## 📋 Prerequisites
 
-在开始之前，请确保您已经完成：
+Before starting, please ensure you have completed:
 
-- ✅ [环境准备](/guide/start-quickly/env) - 安装 Node.js、Go、MySQL 等必要环境
-- ✅ 克隆项目代码到本地
-- ✅ 数据库服务正常运行
+- ✅ [Environment Setup](/guide/start-quickly/env) - Install Node.js, Go, MySQL and other necessary environments
+- ✅ Clone project code to local
+- ✅ Database service running normally
 
-## 🚀 快速启动
+## 🚀 Quick Start
 
-### 1. 克隆项目
+### 1. Clone Project
 
 ```bash
-# 克隆主分支代码
+# Clone main branch code
 git clone https://github.com/flipped-aurora/gin-vue-admin.git
 
-# 进入项目目录
+# Enter project directory
 cd gin-vue-admin
 ```
 
-### 2. 项目结构概览
+### 2. Project Structure Overview
 
 ```
 gin-vue-admin/
-├── server/          # 后端 Go 项目
-│   ├── main.go      # 程序入口
-│   ├── config.yaml  # 配置文件
+├── server/          # Backend Go project
+│   ├── main.go      # Program entry point
+│   ├── config.yaml  # Configuration file
 │   └── ...
-├── web/             # 前端 Vue 项目
-│   ├── src/         # 源代码
-│   ├── package.json # 依赖配置
+├── web/             # Frontend Vue project
+│   ├── src/         # Source code
+│   ├── package.json # Dependency configuration
 │   └── ...
-└── README.md        # 项目说明
+└── README.md        # Project description
 ```
 
-## 📚 详细教程视频
+## 📚 Detailed Tutorial Videos
 
-::: tip 💡 学习建议
-强烈建议观看以下分集视频教程，虽然新版UI样式有些许差别，但基础操作无变化。
+::: tip 💡 Learning Suggestion
+Strongly recommend watching the following episode video tutorials. Although the new UI style has some differences, the basic operations remain unchanged.
 :::
 
-### 基础入门
+### Basic Introduction
 
-- [1. 克隆项目和安装依赖](https://www.bilibili.com/video/BV1jx4y1s7xx)
-- [2. 初始化项目](https://www.bilibili.com/video/BV1sr421K7sv)
-- [3. 开启调试工具+创建初始化包](https://www.bilibili.com/video/BV1iH4y1c7Na)
+- [1. Clone Project and Install Dependencies](https://www.bilibili.com/video/BV1jx4y1s7xx)
+- [2. Initialize Project](https://www.bilibili.com/video/BV1sr421K7sv)
+- [3. Enable Debug Tools + Create Initialization Package](https://www.bilibili.com/video/BV1iH4y1c7Na)
 
-### 功能开发
+### Feature Development
 
-- [4. 手动使用自动化创建功能](https://www.bilibili.com/video/BV1UZ421T7fV)
-- [5. 使用已有表格创建业务](https://www.bilibili.com/video/BV1NE4m1977s)
-- [6. 使用AI创建业务和创建数据源模式的可选项](https://www.bilibili.com/video/BV17i421a7DE)
-- [7. 创建自己的后端方法](https://www.bilibili.com/video/BV1Yw4m1k7fg)
+- [4. Manually Use Automated Creation Features](https://www.bilibili.com/video/BV1UZ421T7fV)
+- [5. Create Business Using Existing Tables](https://www.bilibili.com/video/BV1NE4m1977s)
+- [6. Use AI to Create Business and Data Source Mode Options](https://www.bilibili.com/video/BV17i421a7DE)
+- [7. Create Your Own Backend Methods](https://www.bilibili.com/video/BV1Yw4m1k7fg)
 
-### 前端开发
+### Frontend Development
 
-- [8. 新增一个前端页面](https://www.bilibili.com/video/BV12y411i7oE)
-- [9. 配置一个前端二级页面](https://www.bilibili.com/video/BV1ZM4m1y7i3)
-- [10. 配置一个前端菜单参数](https://www.bilibili.com/video/BV1WS42197DZ)
-- [11. 菜单参数实战+动态菜单标题+菜单高亮配置](https://www.bilibili.com/video/BV1NE4m1979c)
-- [12. 增加菜单可控按钮](https://www.bilibili.com/video/BV1Sw4m1k746)
+- [8. Add a Frontend Page](https://www.bilibili.com/video/BV12y411i7oE)
+- [9. Configure a Frontend Secondary Page](https://www.bilibili.com/video/BV1ZM4m1y7i3)
+- [10. Configure Frontend Menu Parameters](https://www.bilibili.com/video/BV1WS42197DZ)
+- [11. Menu Parameter Practice + Dynamic Menu Title + Menu Highlight Configuration](https://www.bilibili.com/video/BV1NE4m1979c)
+- [12. Add Menu Controllable Buttons](https://www.bilibili.com/video/BV1Sw4m1k746)
 
-### 高级配置
+### Advanced Configuration
 
-- [14. 新增客户角色和其相关配置教学](https://www.bilibili.com/video/BV1Ki421a7X2)
-- [15. 发布项目上线](https://www.bilibili.com/video/BV1Lx4y1s77D)
+- [14. Add Customer Roles and Related Configuration Tutorial](https://www.bilibili.com/video/BV1Ki421a7X2)
+- [15. Deploy Project Online](https://www.bilibili.com/video/BV1Lx4y1s77D)
 
-## 🔧 后端服务启动
+## 🔧 Backend Service Startup
 
-### 1. 打开后端项目
+### 1. Open Backend Project
 
-使用 GoLand 或 VS Code 打开 `server` 文件夹：
+Use GoLand or VS Code to open the `server` folder:
 
 ```bash
-# 进入后端目录
+# Enter backend directory
 cd server
 
-# 使用 GoLand 打开（如果已安装）
+# Open with GoLand (if installed)
 goland .
 
-# 或使用 VS Code 打开
+# Or open with VS Code
 code .
 ```
 
-### 2. 安装依赖
+### 2. Install Dependencies
 
-在项目根目录下运行以下命令安装 Go 模块依赖：
+Run the following command in the project root directory to install Go module dependencies:
 
 ```bash
-# 下载并整理依赖
+# Download and organize dependencies
 go mod tidy
 ```
 
-::: details 🔍 命令说明
-- `go mod tidy`: 添加缺失的模块依赖，移除未使用的依赖
-- 该命令会根据 `go.mod` 文件下载所需的第三方包
+::: details 🔍 Command Description
+- `go mod tidy`: Add missing module dependencies, remove unused dependencies
+- This command will download required third-party packages based on the `go.mod` file
 :::
 
-### 3. 启动后端服务
+### 3. Start Backend Service
 
-#### 方式一：命令行启动
+#### Method 1: Command Line Startup
 
 ```bash
-# 在 server 目录下运行
+# Run in server directory
 go run main.go
 ```
 
-#### 方式二：GoLand 启动
+#### Method 2: GoLand Startup
 
-1. 在 GoLand 中打开 `main.go` 文件
-2. 点击行号旁的绿色三角形按钮
-3. 或使用快捷键 `Ctrl+Shift+F10` (Windows/Linux) 或 `Cmd+Shift+R` (macOS)
+1. Open `main.go` file in GoLand
+2. Click the green triangle button next to the line number
+3. Or use shortcut `Ctrl+Shift+F10` (Windows/Linux) or `Cmd+Shift+R` (macOS)
 
-#### 方式三：VS Code 启动
+#### Method 3: VS Code Startup
 
-1. 按 `F5` 或点击调试按钮
-2. 选择 "Go: Launch Package"
+1. Press `F5` or click debug button
+2. Select "Go: Launch Package"
 
-### 4. 验证后端启动
+### 4. Verify Backend Startup
 
-如果看到以下输出，说明后端服务启动成功：
+If you see the following output, the backend service has started successfully:
 
 ```
 [GIN-debug] Listening and serving HTTP on :8888
 ```
 
-访问 `http://localhost:8888/health` 检查服务状态。
+Visit `http://localhost:8888/health` to check service status.
 
-## 🎨 前端应用启动
+## 🎨 Frontend Application Startup
 
-### 1. 打开前端项目
+### 1. Open Frontend Project
 
-使用 VS Code 打开 `web` 文件夹：
+Use VS Code to open the `web` folder:
 
 ```bash
-# 进入前端目录
+# Enter frontend directory
 cd web
 
-# 使用 VS Code 打开
+# Open with VS Code
 code .
 ```
 
-### 2. 安装依赖
+### 2. Install Dependencies
 
-::: warning ⚠️ Node.js 版本要求
-确保您的 Node.js 版本 >= 18.16.2
+::: warning ⚠️ Node.js Version Requirement
+Ensure your Node.js version >= 18.16.2
 :::
 
 ```bash
-# 安装项目依赖
+# Install project dependencies
 npm install
 
-# 或使用 yarn（如果已安装）
+# Or use yarn (if installed)
 yarn install
 
-# 或使用 pnpm（推荐，速度更快）
+# Or use pnpm (recommended, faster)
 pnpm install
 ```
 
-### 3. 启动开发服务器
+### 3. Start Development Server
 
 ```bash
-# 启动开发服务器
+# Start development server
 npm run serve
 
-# 或使用其他包管理器
+# Or use other package managers
 yarn serve
 pnpm serve
 ```
 
-### 4. 验证前端启动
+### 4. Verify Frontend Startup
 
-如果看到以下输出，说明前端应用启动成功：
+If you see the following output, the frontend application has started successfully:
 
 ```
   App running at:
@@ -186,65 +186,65 @@ pnpm serve
   - Network: http://192.168.1.100:8080/
 ```
 
-## 🗄️ 数据库初始化
+## 🗄️ Database Initialization
 
-### 1. 访问初始化页面
+### 1. Access Initialization Page
 
-在浏览器中访问：`http://localhost:8080/#/init`
+Visit in browser: `http://localhost:8080/#/init`
 
-### 2. 配置数据库信息
+### 2. Configure Database Information
 
-在初始化页面填写数据库连接信息：
+Fill in database connection information on the initialization page:
 
-- **数据库类型**: 选择 MySQL
-- **主机地址**: `127.0.0.1`
-- **端口**: `3306`
-- **用户名**: `root`
-- **密码**: 您的数据库密码
-- **数据库名**: `gva`（如果不存在会自动创建）
+- **Database Type**: Select MySQL
+- **Host Address**: `127.0.0.1`
+- **Port**: `3306`
+- **Username**: `root`
+- **Password**: Your database password
+- **Database Name**: `gva` (will be created automatically if it doesn't exist)
 
-### 3. 执行初始化
+### 3. Execute Initialization
 
-1. 确认所有信息无误
-2. 点击 "立即初始化" 按钮
-3. 等待初始化完成
+1. Confirm all information is correct
+2. Click "Initialize Now" button
+3. Wait for initialization to complete
 
-![数据库初始化](https://qmplusimg.henrongyi.top/gva/gin-vue-admin.png)
+![Database Initialization](https://qmplusimg.henrongyi.top/gva/gin-vue-admin.png)
 
-### 4. 初始化完成
+### 4. Initialization Complete
 
-初始化成功后，系统会：
+After successful initialization, the system will:
 
-- ✅ 创建所有必要的数据表
-- ✅ 插入基础数据（管理员账号、菜单、权限等）
-- ✅ 自动跳转到登录页面
+- ✅ Create all necessary data tables
+- ✅ Insert basic data (admin account, menus, permissions, etc.)
+- ✅ Automatically redirect to login page
 
-**默认管理员账号**：
-- 用户名：`admin`
-- 密码：`123456`
+**Default Admin Account**:
+- Username: `admin`
+- Password: `123456`
 
-## 附. 使用Goland运行web项目
+## Appendix. Running Web Project with GoLand
 
-### 附.1 编辑配置
+### App.1 Edit Configuration
 
 ![image-20210710094929206](/first/image-20210710094929206.png)
 
-### 附.2 添加npm启动项
+### App.2 Add npm Startup Item
 
 ![image-20210710095126844](/first/image-20210710095126844.png)
 
-### 附.3 配置
+### App.3 Configuration
 
 ![image-20210710095356257](/first/image-20210710095356257.png)
 
-### 附.4 配置完成
+### App.4 Configuration Complete
 
 ![image-20210710095715145](/first/image-20210710095715145.png)
 
-### 附.5 启动web项目
+### App.5 Start Web Project
 
 ![image-20210710095814641](/first/image-20210710095814641.png)
 
-### 附.6 启动web项目成功
+### App.6 Web Project Started Successfully
 
 ![image-20210710095838176](/first/image-20210710095838176.png)

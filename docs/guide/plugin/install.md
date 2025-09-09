@@ -48,124 +48,124 @@ Automatic installation is the simplest and safest installation method, suitable 
    - Get plugin ZIP package
 
 2. **Login to Management Backend**
-   - 使用管理员账号登录系统
-   - 确保具有插件管理权限
+   - Use administrator account to login to system
+   - Ensure you have plugin management permissions
 
-3. **安装插件**
-   - 进入 `系统管理` → `插件系统` → `插件安装`
-   - 点击 `选择文件` 按钮
-   - 选择下载的插件 ZIP 文件
-   - 点击 `确认安装` 按钮
-   - 等待安装完成
+3. **Install Plugin**
+   - Go to `System Management` → `Plugin System` → `Plugin Installation`
+   - Click `Choose File` button
+   - Select downloaded plugin ZIP file
+   - Click `Confirm Installation` button
+   - Wait for installation to complete
 
-4. **验证安装**
-   - 检查插件是否出现在插件列表中
-   - 确认插件状态为 `已安装`
-   - 测试插件功能是否正常
+4. **Verify Installation**
+   - Check if plugin appears in plugin list
+   - Confirm plugin status is `Installed`
+   - Test if plugin functionality works normally
 
-#### 安装过程说明
+#### Installation Process Description
 
-系统会自动执行以下操作：
-- 验证插件包完整性
-- 检查依赖关系
-- 解压并部署文件
-- 注册路由和菜单
-- 执行数据库迁移
-- 更新系统配置
+The system will automatically execute the following operations:
+- Verify plugin package integrity
+- Check dependencies
+- Extract and deploy files
+- Register routes and menus
+- Execute database migrations
+- Update system configuration
 
-### 手动安装
+### Manual Installation
 
-手动安装适合高级用户或需要自定义部署的场景。
+Manual installation is suitable for advanced users or scenarios requiring custom deployment.
 
-#### 操作步骤
+#### Operation Steps
 
-1. **下载插件包**
-   - 从 [插件市场](https://plugin.gin-vue-admin.com/) 下载插件
-   - 获得插件 ZIP 压缩包
+1. **Download Plugin Package**
+   - Download plugin from [Plugin Market](https://plugin.gin-vue-admin.com/)
+   - Get plugin ZIP package
 
-2. **解压插件包**
+2. **Extract Plugin Package**
    ```bash
-   # 解压插件包
+   # Extract plugin package
    unzip plugin-name.zip
    
-   # 查看插件结构
+   # View plugin structure
    ls -la plugin-name/
    ```
 
-3. **部署前端文件**
+3. **Deploy Frontend Files**
    ```bash
-   # 复制前端文件到项目目录
+   # Copy frontend files to project directory
    cp -r plugin-name/web/* /path/to/gin-vue-admin/web/
    
-   # 安装前端依赖（如果需要）
+   # Install frontend dependencies (if needed)
    cd /path/to/gin-vue-admin/web
    npm install
    ```
 
-4. **部署后端文件**
+4. **Deploy Backend Files**
    ```bash
-   # 复制后端文件到项目目录
+   # Copy backend files to project directory
    cp -r plugin-name/server/* /path/to/gin-vue-admin/server/
    
-   # 更新 Go 模块
+   # Update Go modules
    cd /path/to/gin-vue-admin/server
    go mod tidy
    ```
 
-5. **配置插件**
-   - 阅读插件的 `README.md` 文件
-   - 按照说明进行配置
-   - 修改必要的配置文件
+5. **Configure Plugin**
+   - Read plugin's `README.md` file
+   - Configure according to instructions
+   - Modify necessary configuration files
 
-6. **重启服务**
+6. **Restart Services**
    ```bash
-   # 重启后端服务
+   # Restart backend service
    go run main.go
    
-   # 重启前端服务
+   # Restart frontend service
    npm run serve
    ```
 
-#### 注意事项
+#### Notes
 
-- 手动安装前请备份项目文件
-- 确保插件版本与系统版本兼容
-- 仔细阅读插件文档和注意事项
-- 测试插件功能是否正常工作
+- Please backup project files before manual installation
+- Ensure plugin version is compatible with system version
+- Carefully read plugin documentation and notes
+- Test if plugin functionality works normally
 
-## 插件配置
+## Plugin Configuration
 
-### 基础配置
+### Basic Configuration
 
-大多数插件安装后需要进行基础配置：
+Most plugins require basic configuration after installation:
 
-1. **数据库配置**
-   - 执行数据库迁移脚本
-   - 初始化插件数据
-   - 配置数据库连接参数
+1. **Database Configuration**
+   - Execute database migration scripts
+   - Initialize plugin data
+   - Configure database connection parameters
 
-2. **权限配置**
-   - 分配插件访问权限
-   - 配置角色和用户权限
-   - 设置菜单显示权限
+2. **Permission Configuration**
+   - Assign plugin access permissions
+   - Configure role and user permissions
+   - Set menu display permissions
 
-3. **功能配置**
-   - 根据业务需求调整配置
-   - 设置插件参数
-   - 配置第三方服务集成
+3. **Feature Configuration**
+   - Adjust configurations based on business needs
+   - Set plugin parameters
+   - Configure third-party service integrations
 
-### 高级配置
+### Advanced Configuration
 
-对于复杂插件，可能需要进行高级配置：
+For complex plugins, advanced configuration may be required:
 
-1. **环境变量配置**
+1. **Environment Variable Configuration**
    ```bash
-   # 在 .env 文件中添加插件配置
+   # Add plugin configurations in the .env file
    PLUGIN_NAME_API_KEY=your_api_key
    PLUGIN_NAME_SECRET=your_secret
    ```
 
-2. **配置文件修改**
+2. **Configuration File Modifications**
    ```yaml
    # config.yaml
    plugin:
@@ -176,121 +176,121 @@ Automatic installation is the simplest and safest installation method, suitable 
          option2: value2
    ```
 
-3. **自定义配置**
-   - 修改插件配置文件
-   - 调整业务逻辑参数
-   - 配置外部服务接口
+3. **Custom Configuration**
+   - Modify plugin configuration files
+   - Adjust business logic parameters
+   - Configure external service interfaces
 
-### 更新插件
+### Updating Plugins
 
-   - 备份当前插件文件
-   - 下载新版本插件
-   - 按照安装步骤重新部署
-   - 执行数据库迁移（如需要）
+   - Backup current plugin files
+   - Download the new plugin version
+   - Redeploy following the installation steps
+   - Execute database migrations (if required)
 
-### 卸载插件
+### Uninstalling Plugins
 
    ```bash
-   # 删除前端文件
+   # Remove frontend files
    rm -rf web/src/plugin/plugin-name
-   
-   # 删除后端文件
+
+   # Remove backend files
    rm -rf server/plugin/plugin-name
-   
-   # 清理数据库（谨慎操作）
-   # 根据插件文档执行清理脚本
+
+   # Clean up the database (use caution)
+   # Execute cleanup scripts as per plugin documentation
    ```
 
-## 故障排除
+## Troubleshooting
 
-### 常见问题
+### Common Issues
 
-#### 插件安装失败
+#### Plugin Installation Failed
 
-**可能原因：**
-- 插件包损坏或格式错误
-- 系统版本不兼容
-- 权限不足
-- 磁盘空间不足
+**Possible Causes:**
+- Plugin package is corrupted or in the wrong format
+- System version is incompatible
+- Insufficient permissions
+- Insufficient disk space
 
-**解决方案：**
-1. 重新下载插件包
-2. 检查系统版本兼容性
-3. 确认管理员权限
-4. 清理磁盘空间
-5. 查看系统日志获取详细错误信息
+**Solutions:**
+1. Re-download the plugin package
+2. Check system version compatibility
+3. Confirm administrator permissions
+4. Clear disk space
+5. Check system logs for detailed error information
 
-#### 插件无法启动
+#### Plugin Fails to Start
 
-**可能原因：**
-- 依赖缺失
-- 配置错误
-- 端口冲突
-- 数据库连接问题
+**Possible Causes:**
+- Missing dependencies
+- Configuration errors
+- Port conflicts
+- Database connection issues
 
-**解决方案：**
-1. 检查并安装缺失的依赖
-2. 验证插件配置文件
-3. 检查端口占用情况
-4. 测试数据库连接
-5. 查看插件日志文件
+**Solutions:**
+1. Check and install missing dependencies
+2. Validate plugin configuration files
+3. Check for port usage
+4. Test database connection
+5. View plugin log files
 
-#### 插件功能异常
+#### Plugin Functionality Issues
 
-**可能原因：**
-- 权限配置错误
-- 数据库数据异常
-- 第三方服务不可用
-- 插件版本过旧
+**Possible Causes:**
+- Incorrect permission configuration
+- Abnormal database data
+- Third-party service unavailability
+- Outdated plugin version
 
-**解决方案：**
-1. 检查用户权限配置
-2. 验证数据库数据完整性
-3. 测试第三方服务连接
-4. 更新插件到最新版本
-5. 联系插件开发者获取支持
+**Solutions:**
+1. Check user permission configurations
+2. Validate database data integrity
+3. Test third-party service connections
+4. Update the plugin to the latest version
+5. Contact the plugin developer for support
 
-## 最佳实践
+## Best Practices
 
-### 安装前准备
+### Pre-Installation Preparation
 
-1. **备份数据**
-   - 备份数据库
-   - 备份项目文件
-   - 记录当前配置
+1. **Backup Data**
+   - Backup the database
+   - Backup project files
+   - Record current configurations
 
-2. **测试环境验证**
-   - 在测试环境先行安装
-   - 验证插件功能
-   - 测试系统兼容性
+2. **Test Environment Validation**
+   - Install in a test environment first
+   - Validate plugin functionality
+   - Test system compatibility
 
-3. **阅读文档**
-   - 仔细阅读插件说明
-   - 了解配置要求
-   - 查看已知问题
+3. **Read Documentation**
+   - Carefully read the plugin instructions
+   - Understand configuration requirements
+   - Check known issues
 
-### 安装后维护
+### Post-Installation Maintenance
 
-1. **定期更新**
-   - 关注插件更新通知
-   - 及时安装安全补丁
-   - 保持插件版本最新
+1. **Regular Updates**
+   - Monitor plugin update notifications
+   - Install security patches promptly
+   - Keep the plugin version up-to-date
 
-2. **监控运行状态**
-   - 定期检查插件状态
-   - 监控系统性能
-   - 关注错误日志
+2. **Monitor Running Status**
+   - Regularly check plugin status
+   - Monitor system performance
+   - Review error logs
 
-3. **备份策略**
-   - 定期备份插件数据
-   - 保存配置文件
-   - 记录自定义修改
+3. **Backup Strategy**
+   - Regularly backup plugin data
+   - Save configuration files
+   - Record custom modifications
 
-## 技术支持
+## Technical Support
 
-如果您在使用插件过程中遇到问题，可以通过以下方式获取帮助：
+If you encounter problems while using the plugin, you can get help through the following ways:
 
-- **官方文档**：查阅详细的技术文档
-- **社区论坛**：与其他用户交流经验
-- **GitHub Issues**：报告 Bug 或提出功能建议
-- **商业支持**：购买专业技术支持服务
+- **Official Documentation**: Consult the detailed technical documentation
+- **Community Forum**: Exchange experiences with other users
+- **GitHub Issues**: Report bugs or suggest features
+- **Commercial Support**: Purchase professional technical support services

@@ -1,9 +1,9 @@
 import {defineConfig} from 'vitepress'
 
 const lang = 'zh-CN'
-const ogDescription = 'gin+vue编写的自动化代码开发脚手架，是gin+vue全栈学习最好的项目，腾讯阿里开发均有采用gin-vue-admin为模型进行相关业务开发，代码自动化，加快开发速度，权限系统齐全，减少重复工作'
-const ogImage = 'https://www.gin-vue-admin.com/logo.png'
-const ogTitle = ogDescription
+const ogDescription = 'The automated code development scaffolding written by gin+vue is the best project for full stack learning of gin+vue. Tencent Alibaba development uses gin-vue-admin as a model for related business development, code automation, speed up development speed, complete permission systems, and reduce duplicate work';
+const ogImage = 'https://www.gin-vue-admin.com/logo.png';
+const ogTitle = ogDescription;
 const ogUrl = 'https://www.gin-vue-admin.com'
 
 // const ITEMS = {
@@ -55,16 +55,16 @@ export default defineConfig({
                     zh: {
                         translations: {
                             button: {
-                                buttonText: '搜索文档',
-                                buttonAriaLabel: '搜索文档'
+                                buttonText: 'Search Documentation',
+                                buttonAriaLabel: 'Search Documentation'
                             },
                             modal: {
-                                noResultsText: '无法找到相关结果',
-                                resetButtonTitle: '清除查询条件',
+                                noResultsText: 'No relevant results found',
+                                resetButtonTitle: 'Clear search criteria',
                                 footer: {
-                                    selectText: '选择',
-                                    navigateText: '切换',
-                                    closeText: '关闭'
+                                    selectText: 'Select',
+                                    navigateText: 'Navigate',
+                                    closeText: 'Close'
                                 }
                             }
                         }
@@ -83,7 +83,7 @@ export default defineConfig({
 
         editLink: {
             pattern: 'https://github.com/flipped-aurora/gin-vue-admin.com/edit/master/docs/:path',
-            text: '在Github上编辑此页'
+            text: 'Edit this page on GitHub'
         },
 
         socialLinks: [
@@ -113,40 +113,40 @@ export default defineConfig({
             {
                 text: '🚀 Guide',
                 items: [
-                    {text: '项目介绍', link: '/guide/introduce/project'},
-                    {text: '快速开始', link: '/guide/start-quickly/initialization'},
-                    {text: 'AI助手集成', link: '/guide/server/mcp'},
-                    {text: '项目上线', link: '/guide/deployment/'},
-                    {text: '更新日志', link: 'https://flipped-aurora.feishu.cn/docx/LPufdOPWxo3zcpxNSVGcr1vcn71?from=from_copylink'},
+                    {text: 'Project Introduction', link: '/guide/introduce/project'},
+                    {text: 'Quick Start', link: '/guide/start-quickly/initialization'},
+                    {text: 'AI Assistant Integration', link: '/guide/server/mcp'},
+                    {text: 'Project Deployment', link: '/guide/deployment/'},
+                    {text: 'Change Log', link: 'https://flipped-aurora.feishu.cn/docx/LPufdOPWxo3zcpxNSVGcr1vcn71?from=from_copylink'},
                 ],
             },
             {
-                text: '📚︎ 著作权',
+                text: '📚︎ Copyright',
                 link: '/copyright.pdf',
                 target: '_blank'
             },
             {
-                text: '🎁 捐赠',
+                text: '🎁 Donate',
                 link: '/coffee/index'
             },
             {
-                text: '💰 购买授权',
+                text: '💰 Purchase License',
                 link: 'https://plugin.gin-vue-admin.com/license'
             },
             {
-                text: '✨ 插件市场',
+                text: '✨ Plugin Market',
                 link: 'https://plugin.gin-vue-admin.com/#/layout/home'
             },
             {
-                text: '⛓ 体验项目',
+                text: '⛓ Experience Project',
                 items: [
-                    {text: '在线体验', link: 'https://demo.gin-vue-admin.com'},
+                    {text: 'Online Demo', link: 'https://demo.gin-vue-admin.com'},
                     {text: 'Docker Playground', link: '/experience/docker-playground'},
                     {text: 'docker-compose', link: '/experience/docker-compose'},
                 ],
             },
             {
-                text: '🎉 关于我们',
+                text: '🎉 About Us',
                 link: '/about/join',
             },
 
@@ -155,261 +155,261 @@ export default defineConfig({
         sidebar: {
             '/guide/': [
                 {
-                    text: '介绍',
+                    text: 'Introduction',
                     collapsed: false,
                     items: [
                         {
-                            text: '项目介绍',
+                            text: 'Project Introduction',
                             link: '/guide/introduce/project'
                         }
                     ]
                 },
                 {
-                    text: '快速开始',
+                    text: 'Quick Start',
                     collapsed: true,
                     items: [
                         {
-                            text: '环境配置',
+                            text: 'Environment Configuration',
                             link: '/guide/start-quickly/env'
                         },
                         {
-                            text: '初始化',
+                            text: 'Initialization',
                             link: '/guide/start-quickly/initialization'
                         },
                         {
-                            text: 'AI助手配置',
+                            text: 'AI Assistant Configuration',
                             link: '/guide/server/mcp'
                         },
                         {
-                            text: 'swagger',
+                            text: 'Swagger',
                             link: '/guide/start-quickly/swagger'
                         },
                         {
-                            text: 'vscode',
+                            text: 'VS Code',
                             link: '/guide/start-quickly/vscode'
                         },
                         {
-                            text: '常见问题',
+                            text: 'Common Issues',
                             link: '/guide/manual/qa'
                         }
                     ]
                 },
                 {
-                    text: '代码生成器',
+                    text: 'Code Generator',
                     collapsed: true,
                     items: [
                         {
-                            text: '自动化package',
+                            text: 'Automated Package',
                             link: '/guide/generator/package',
                         },
                         {
-                            text: '代码生成器使用指南',
+                            text: 'Code Generator Usage Guide',
                             link: '/guide/generator/server',
                         },
                         {
-                            text: '表单生成器 `127.0.0.1` 拒绝连接',
+                            text: 'Form Generator `127.0.0.1` Connection Refused',
                             link: '/guide/generator/web',
                         },
                         {
-                            text: '表单生成器生产使用指南',
+                            text: 'Form Generator Production Usage Guide',
                             link: '/guide/generator/web-produce',
                         },
                     ]
                 },
                 {
-                    text: '前端项目指南',
+                    text: 'Frontend Project Guide',
                     collapsed: true,
                     items: [
                         {
-                            text: '前端指南',
+                            text: 'Frontend Guide',
                             link: '/guide/web/'
                         },
                         {
-                            text: '环境变量',
+                            text: 'Environment Variables',
                             link: '/guide/web/env',
                         },
                         {
-                            text: '按钮权限',
+                            text: 'Button Permissions',
                             link: '/guide/web/button-auth'
                         },
 												{
-														text: '字典方法',
+														text: 'Dictionary Methods',
                             link: '/guide/web/dictionary'
 												},
                         {
-                            text: '自定义全局皮肤',
+                            text: 'Custom Global Theme',
                             link: '/guide/web/menu-theme'
                         },
                         {
-                            text:'自定义图标【菜单以及直接使用】',
+                            text:'Custom Icons [Menu and Direct Use]',
                             link: '/guide/web/auto-icon'
                         },
                         {
-                            text: '开启TypeScript',
+                            text: 'Enable TypeScript',
                             link: '/guide/web/typescript',
                         },
                         {
-                            text: '导出Excel',
+                            text: 'Export Excel',
                             link: '/guide/web/export-excel',
                         },
                         {
-                            text: '开发指导文档',
+                            text: 'Development Guide Documentation',
                             link: 'https://www.gin-vue-admin.com/empower/index.html'
                         }
                     ]
                 },
                 {
-                    text: '后端项目指南',
+                    text: 'Backend Project Guide',
                     collapsed: true,
                     items: [
                         {
-                            text: '后端指南',
+                            text: 'Backend Guide',
                             link: '/guide/server/'
                         },
                         {
-                            text: '配置文件',
+                            text: 'Configuration Files',
                             link: '/guide/server/config'
                         },
                         {
-                            text: '认证系统',
+                            text: 'Authentication System',
                             link: '/guide/server/authentication'
                         },
                         {
-                            text: '权限系统',
+                            text: 'Authorization System',
                             link: '/guide/server/authorization'
                         },
                         {
-                            text: '代码生成器',
+                            text: 'Code Generator',
                             link: '/guide/server/code-generator'
                         },
                         {
-                            text: '对象存储',
+                            text: 'Object Storage',
                             link: '/guide/server/oss'
                         },
                         {
-                            text: '多数据库支持',
+                            text: 'Multi-Database Support',
                             link: '/guide/server/multiple-databases'
                         },
                         {
-                            text: '严格角色模式',
+                            text: 'Strict Role Mode',
                             link: '/guide/server/strict-auth'
                         },
                         {
-                            text: 'viper',
+                            text: 'Viper',
                             link: '/guide/server/core/viper'
                         },
                         {
-                            text: 'zap',
+                            text: 'Zap',
                             link: '/guide/server/core/zap'
                         },
                         {
-                            text: 'gorm',
+                            text: 'GORM',
                             link: '/guide/server/gorm'
                         },
                         {
-                            text: '定时任务',
+                            text: 'Scheduled Tasks',
                             link: '/guide/server/timer'
                         },
                         {
-                            text: 'MCP AI助手集成',
+                            text: 'MCP AI Assistant Integration',
                             link: '/guide/server/mcp'
                         },
                         {
-                            text: '数据库设计',
+                            text: 'Database Design',
                             link: '/guide/server/database-design'
                         },
                         {
-                            text: '开发指导文档',
+                            text: 'Development Guide Documentation',
                             link: 'https://www.gin-vue-admin.com/empower/index.html'
                         }
                     ]
                 },
                 {
-                    text: '最佳实践',
+                    text: 'Best Practices',
                     collapsed: false,
                     items: [
                         {
-                            text: '开发规范指南',
+                            text: 'Development Standards Guide',
                             link: '/guide/best-practices/development-standards'
                         }
                     ]
                 },
                 {
-                    text: '故障排除',
+                    text: 'Troubleshooting',
                     collapsed: false,
                     items: [
                         {
-                            text: '常见问题解答',
+                            text: 'Frequently Asked Questions',
                             link: '/guide/troubleshooting/common-issues'
                         }
                     ]
                 },
                 {
-                    text: '插件使用教程',
+                    text: 'Plugin Usage Tutorial',
                     collapsed: true,
                     items: [
                         {
-                            text: '插件安装教程',
+                            text: 'Plugin Installation Tutorial',
                             link: '/guide/plugin/install'
                         },
                         {
-                            text: '插件研发教程',
+                            text: 'Plugin Development Tutorial',
                             link: '/guide/plugin/develop'
                         },
                     ]
                 },
                 {
-                    text: '部署指南',
+                    text: 'Deployment Guide',
                     collapsed: true,
                     items: [
                         {
-                            text: '项目上线',
+                            text: 'Project Deployment',
                             link: '/guide/deployment/'
                         },
                         {
-                            text: 'docker',
+                            text: 'Docker',
                             link: '/guide/deployment/docker'
                         },
                         {
-                            text: 'docker-compose',
+                            text: 'Docker Compose',
                             link: '/guide/deployment/docker-compose'
                         },
                         {
-                            text: 'kubernetes',
+                            text: 'Kubernetes',
                             link: '/guide/deployment/k8s'
                         },
                         {
-                            text: '生产环境部署',
+                            text: 'Production Environment Deployment',
                             link: '/guide/deployment/production'
                         },
                         {
-                            text: '更详部署指南',
+                            text: 'Detailed Deployment Guide',
                             link: 'https://www.gin-vue-admin.com/empower/index.html'
                         }
                     ]
                 },
                 {
-                    text: '视频教程',
+                    text: 'Video Tutorials',
                     collapsed: true,
                     items: [
                         {
-                            text: 'Go教程',
+                            text: 'Go Tutorial',
                             link: '/guide/video/golang'
                         },
                         {
-                            text: 'Gin教程',
+                            text: 'Gin Tutorial',
                             link: '/guide/video/gin'
                         },
                         {
-                            text: 'Gorm教程',
+                            text: 'GORM Tutorial',
                             link: '/guide/video/gorm'
                         },
                         {
-                            text: 'server项目教程',
+                            text: 'Server Project Tutorial',
                             link: '/guide/video/server'
                         },
                         {
-                            text: 'web项目教程',
+                            text: 'Web Project Tutorial',
                             link: '/guide/video/web'
                         },
                     ]
@@ -417,19 +417,19 @@ export default defineConfig({
             ],
             '/experience/': [
                 {
-                    text: '体验项目',
+                    text: 'Experience Project',
                     collapsed: false,
                     items: [
                         {
-                            text: '在线体验',
+                            text: 'Online Demo',
                             link: '/experience/online'
                         },
                         {
-                            text: 'DockerPlayground',
+                            text: 'Docker Playground',
                             link: '/experience/docker-playground'
                         },
                         {
-                            text: 'docker-compose',
+                            text: 'Docker Compose',
                             link: '/experience/docker-compose'
                         }
                     ]
@@ -437,17 +437,17 @@ export default defineConfig({
             ],
             '/study/': [
                 {
-                    text: '学习',
+                    text: 'Learning',
                     items: [
-                        {text: '相关站点', link: '/study/'}
+                        {text: 'Related Sites', link: '/study/'}
                     ]
                 },
                 {
-                    text: '对象存储插件',
+                    text: 'Object Storage Plugins',
                     items: [
-                        {text: '阿里云对象存储', link: '/study/aliyun'},
-                        {text: '腾讯对象存储', link: '/study/tencent'},
-                        {text: '七牛云对象存储', link: '/study/qiniu'},
+                        {text: 'Alibaba Cloud Object Storage', link: '/study/aliyun'},
+                        {text: 'Tencent Object Storage', link: '/study/tencent'},
+                        {text: 'Qiniu Cloud Object Storage', link: '/study/qiniu'},
                     ]
                 }
             ],

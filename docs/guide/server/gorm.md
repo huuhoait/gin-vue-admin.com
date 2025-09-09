@@ -58,26 +58,26 @@ system:
   env: 'public'  # Change to "develop" to skip authentication for development mode
   addr: 8888
   db-type: 'mysql'
-  oss-type: 'local'    # 控制oss选择走本地还是 七牛等其他仓 自行增加其他oss仓可以在 server/utils/upload/upload.go 中 NewOss函数配置
+  oss-type: 'local'    # Controls OSS selection for local or Qiniu and other storage. You can add other OSS storage in server/utils/upload/upload.go NewOss function configuration
   use-multipoint: false
-  # IP限制次数 一个小时15000次
+  # IP limit count 15000 times per hour
   iplimit-count: 15000
-  #  IP限制一个小时
+  # IP limit time one hour
   iplimit-time: 3600
 ```
 
 
-### config.yaml 配置字段详解
+### config.yaml Configuration Field Details
 ```yaml
 mysql:
-  path: ''   # 链接地址
-  port: ''   # 链接端口
-  config: ''  # 其他配置 例如时区
-  db-name: ''  # 数据库名称
-  username: '' # 数据库用户名
-  password: '' # 数据库密码
-  max-idle-conns: 10 # 连接池相关
-  max-open-conns: 100 # 连接池相关
-  log-mode: "" # 是控制台打印日志级别 "silent"、"error"、"warn"、"info" 不填默认info  填入silent可以关闭控制台日志
-  log-zap: false # 日志是否用zap保存到本地
+  path: ''   # Connection address
+  port: ''   # Connection port
+  config: ''  # Other configurations such as timezone
+  db-name: ''  # Database name
+  username: '' # Database username
+  password: '' # Database password
+  max-idle-conns: 10 # Connection pool related
+  max-open-conns: 100 # Connection pool related
+  log-mode: "" # Console log level "silent", "error", "warn", "info" defaults to info if not filled, fill silent to close console logs
+  log-zap: false # Whether to save logs to local using zap
 ```

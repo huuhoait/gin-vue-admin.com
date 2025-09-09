@@ -1,10 +1,10 @@
 # docker-compose
 
-## Web使用Docker打包示例
+## Web Docker Packaging Example
 
-- 使用 `nginx` 镜像
+- Using `nginx` image
 
-`my.conf` 来源于 [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin) 的[my.conf](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/.docker-compose/nginx/conf.d/my.conf)
+`my.conf` sourced from [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin)'s [my.conf](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/.docker-compose/nginx/conf.d/my.conf)
 
  ```shell
 server {
@@ -25,8 +25,8 @@ server {
         proxy_set_header  X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        rewrite ^/api/(.*)$ /$1 break;  #重写
-        proxy_pass http://177.7.0.12:8888; # 设置代理服务器的协议和地址
+        rewrite ^/api/(.*)$ /$1 break;  #rewrite
+        proxy_pass http://177.7.0.12:8888; # Set proxy server protocol and address
      }
 
     location /api/swagger/index.html {
@@ -35,102 +35,102 @@ server {
  }
  ```
 
-`Dockerfile` 来源于 [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin) 的[Dockerfile](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/Dockerfile)
+`Dockerfile` sourced from [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin)'s [Dockerfile](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/Dockerfile)
 
 ```
-# 声明镜像来源为node:12.16.1
+# Declare image source as node:12.16.1
 FROM node:12.16.1
 
-# 声明工作目录
+# Declare working directory
 WORKDIR /gva_web/
 
-# 拷贝整个web项目到当前工作目录
+# Copy entire web project to current working directory
 COPY . .
 
-# 通过npm下载cnpm
+# Download cnpm through npm
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
-# 使用cnpm进行安装依赖
+# Use cnpm to install dependencies
 RUN cnpm install || npm install
 
-# 使用npm run build命令打包web项目
+# Use npm run build command to package web project
 RUN npm run build
-# ===================================================== 以下为多阶段构建 ==========================================================
+# ===================================================== Multi-stage build below ==========================================================
 
-# 声明镜像来源为nginx:alpine, alpine 镜像小
+# Declare image source as nginx:alpine, alpine image is small
 FROM nginx:alpine
 
-# 镜像编写者及邮箱
+# Image author and email
 LABEL MAINTAINER="SliverHorn@sliver_horn@qq.com"
 
-# 从.docker-compose/nginx/conf.d/目录拷贝my.conf到容器内的/etc/nginx/conf.d/my.conf
+# Copy my.conf from .docker-compose/nginx/conf.d/ directory to /etc/nginx/conf.d/my.conf in container
 COPY .docker-compose/nginx/conf.d/my.conf /etc/nginx/conf.d/my.conf
 
-# 从第一阶段进行拷贝文件
+# Copy files from first stage
 COPY --from=0 /gva_web/dist /usr/share/nginx/html
 
-# 查看/etc/nginx/nginx.conf文件
+# View /etc/nginx/nginx.conf file
 RUN cat /etc/nginx/nginx.conf
 
-# 查看 /etc/nginx/conf.d/my.conf
+# View /etc/nginx/conf.d/my.conf
 RUN cat /etc/nginx/conf.d/my.conf
 
-# 查看 文件是否拷贝成功
+# Check if files are copied successfully
 RUN ls -al /usr/share/nginx/html
 ```
 
-## Server使用Docker打包示例
+## Server Docker Packaging Example
 
-- `mysql` -> `path` 的 `mysql` 会自动获取mysql服务的容器内部ip及端口
-- `redis` -> `path` 的 `redis` 会自动获取redis服务的容器内部ip
+- `mysql` -> `path`'s `mysql` will automatically get mysql service container internal ip and port
+- `redis` -> `path`'s `redis` will automatically get redis service container internal ip
 
-`Dockerfile` 来源于 [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin) 的 [Dockerfile](https://github.com/flipped-aurora/gin-vue-admin/blob/master/server/Dockerfile)
+`Dockerfile` sourced from [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin)'s [Dockerfile](https://github.com/flipped-aurora/gin-vue-admin/blob/master/server/Dockerfile)
 
 ```
-# 声明镜像来源为golang:alpine
+# Declare image source as golang:alpine
 FROM golang:alpine
 
-# 声明工作目录
+# Declare working directory
 WORKDIR /go/src/gin-vue-admin
 
-# 拷贝整个server项目到工作目录
+# Copy entire server project to working directory
 COPY . .
 
-# go generate 编译前自动执行代码
-# go env 查看go的环境变量
-# go build -o server . 打包项目生成文件名为server的二进制文件
+# go generate automatically execute code before compilation
+# go env view go environment variables
+# go build -o server . package project to generate binary file named server
 RUN go generate && go env && go build -o server .
 
-# ==================================================== 以下为多阶段构建 ==========================================================
+# ==================================================== Multi-stage build below ==========================================================
 
-# 声明镜像来源为alpine:latest
+# Declare image source as alpine:latest
 FROM alpine:latest
 
-# 镜像编写者及邮箱
+# Image author and email
 LABEL MAINTAINER="SliverHorn@sliver_horn@qq.com"
 
-# 声明工作目录
+# Declare working directory
 WORKDIR /go/src/gin-vue-admin
 
-# 把/go/src/gin-vue-admin中的可执行文件以及配置文件(resource模板文件)添加进入docker中
+# Add executable files and configuration files (resource template files) from /go/src/gin-vue-admin into docker
 COPY --from=0 /go/src/gin-vue-admin/server ./
 COPY --from=0 /go/src/gin-vue-admin/config.docker.yaml ./
 COPY --from=0 /go/src/gin-vue-admin/resource ./
 
 EXPOSE 8888
 
-# 运行打包好的二进制 并用-c 指定config.docker.yaml配置文件
+# Run packaged binary and use -c to specify config.docker.yaml configuration file
 ENTRYPOINT ./server -c config.docker.yaml
 ```
 
-## docker-compose.yaml详解
+## docker-compose.yaml Detailed Explanation
 
-`docker-compose.yaml` 来源于 [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin) 的 [docker-compose.yaml](https://github.com/flipped-aurora/gin-vue-admin/blob/master/docker-compose.yaml)
+`docker-compose.yaml` sourced from [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin)'s [docker-compose.yaml](https://github.com/flipped-aurora/gin-vue-admin/blob/master/docker-compose.yaml)
 
 ```yaml
 version: "3"
 
-# 声明一个名为network的networks,subnet为network的子网地址,默认网关是177.7.0.1
+# Declare a network named network, subnet is the subnet address of network, default gateway is 177.7.0.1
 networks:
   network:
     ipam:
@@ -138,109 +138,109 @@ networks:
       config:
         - subnet: '177.7.0.0/16'
 
-# 设置mysql，redis持久化保存
+# Set mysql, redis persistent storage
 volumes:
   mysql:
 
 services:
-  # web服务
+  # web service
   web:
     build:
       context: ./web
-      # 指定dockerfile启动容器
+      # Specify dockerfile to start container
       dockerfile: ./Dockerfile
-    # 自定义容器名
+    # Custom container name
     container_name: gva-web
-    # 容器启动失败是否重启
+    # Whether to restart container on startup failure
     restart: always
-    # 映射端口
+    # Port mapping
     ports:
       - '8080:8080'
-    # web服务依赖于server服务
+    # web service depends on server service
     depends_on:
       - server
     command: [ 'nginx-debug', '-g', 'daemon off;' ]
     networks:
       network:
-        # 在network网络下的容器内部的Ipv4地址
+        # Ipv4 address inside container under network network
         ipv4_address: 177.7.0.11
 
-  # server服务
+  # server service
   server:
     build:
       context: ./server
-      # 指定dockerfile启动容器
+      # Specify dockerfile to start container
       dockerfile: ./Dockerfile
-    # 自定义容器名
+    # Custom container name
     container_name: gva-server
-    # 容器启动失败是否重启
+    # Whether to restart container on startup failure
     restart: always
-    # 映射端口
+    # Port mapping
     ports:
       - '8888:8888'
-    # server服务依赖于mysql服务于redis服务
+    # server service depends on mysql service and redis service
     depends_on:
       - mysql
       - redis
     networks:
       network:
-      	# 在network网络下的容器内部的Ipv4地址
+      	# Ipv4 address inside container under network network
         ipv4_address: 177.7.0.12
 
   mysql:
-    # 指定mysql镜像版本
-    # 如果您是 arm64 架构：如 MacOS 的 M1，请修改镜像为 image: mysql/mysql-server:8.0.21
+    # Specify mysql image version
+    # If you are arm64 architecture: like MacOS M1, please modify image to image: mysql/mysql-server:8.0.21
     image: mysql:8.0.21
-    # 自定义容器名
+    # Custom container name
     container_name: gva-mysql
-    # 设置utf8字符集
+    # Set utf8 character set
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci 
-    # 容器启动失败是否重启
+    # Whether to restart container on startup failure
     restart: always
-    # 映射端口
+    # Port mapping
     ports:
-      - "13306:3306"  # host物理直接映射端口为13306
-    # 系统环境变量
+      - "13306:3306"  # host physical direct mapping port is 13306
+    # System environment variables
     environment:
-      MYSQL_DATABASE: 'qmPlus' # 初始化启动时要创建的数据库的名称
-      MYSQL_ROOT_PASSWORD: 'Aa@6447985' # root管理员用户密码
-    # 映射数据卷到数据库
+      MYSQL_DATABASE: 'qmPlus' # Database name to create when initializing startup
+      MYSQL_ROOT_PASSWORD: 'Aa@6447985' # root admin user password
+    # Map data volume to database
     volumes:
       - mysql:/var/lib/mysql
     networks:
       network:
-        # 在network网络下的容器内部的Ipv4地址
+        # Ipv4 address inside container under network network
         ipv4_address: 177.7.0.13
 
-  # redis服务
+  # redis service
   redis:
-    # 指定redis镜像版本
+    # Specify redis image version
     image: redis:6.0.6
-    # 自定义容器名
-    container_name: gva-redis # 容器名
-    # 容器启动失败是否重启
+    # Custom container name
+    container_name: gva-redis # Container name
+    # Whether to restart container on startup failure
     restart: always
-    # 映射端口
+    # Port mapping
     ports:
       - '6379:6379'
     networks:
       network:
-        # 在network网络下的容器内部的Ipv4地址
+        # Ipv4 address inside container under network network
         ipv4_address: 177.7.0.14
 ```
 
-## 常用命令
+## Common Commands
 
 ```shell
-# 使用docker-compose启动四个容器
+# Use docker-compose to start four containers
 docker-compose -f deploy/docker-compose/docker-compose.yaml up
-# 如果您修改了某些配置选项,可以使用此命令重新打包镜像
+# If you modified some configuration options, you can use this command to repackage images
 docker-compose -f deploy/docker-compose/docker-compose.yaml up --build
-# 使用docker-compose 后台启动
+# Use docker-compose to start in background
 docker-compose -f deploy/docker-compose/docker-compose.yaml up -d
-# 使用docker-compose 重新打包镜像并后台启动
+# Use docker-compose to repackage images and start in background
 docker-compose -f deploy/docker-compose/docker-compose.yaml up --build -d
-# 服务都启动成功后,使用此命令行可清除none镜像
+# After all services start successfully, use this command line to clear none images
 docker system prune
 ```
 

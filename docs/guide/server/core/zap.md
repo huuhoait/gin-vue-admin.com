@@ -48,14 +48,14 @@ var Router = gin.New()
 Router.Use(middleware.ZapLogger(), gin.Recovery())
 ```
 
-- 在 `server/initialize/router.go` 文件中
+- In `server/initialize/router.go` file
 
-- 一定要 `ZapLogger` 中间件 **注册为全局中间件** ,不然不会生效的
+- Must register `ZapLogger` middleware **as global middleware**, otherwise it won't take effect
 
-- `gin.Recovery()` 与 `Logger()` 为Gin框架的 `gin.Default()`  默认使用的全局中间件
+- `gin.Recovery()` and `Logger()` are the global middleware used by default in Gin framework's `gin.Default()`
 
 	- ```go
-		// 此代码为Gin框架的源码
+		// This code is from Gin framework source
 		// Default returns an Engine instance with the Logger and Recovery middleware already attached.
 		func Default() *Engine {
 			debugPrintWARNINGDefault()
@@ -65,11 +65,11 @@ Router.Use(middleware.ZapLogger(), gin.Recovery())
 		}
 		```
 
-## 基于zap的Recovery捕获panic异常中间件
+## Zap-based Recovery middleware for catching panic exceptions
 
-> 添加文件,代码来源于[李文周](https://www.liwenzhou.com/posts/Go/use_zap_in_gin/)
+> Add file, code source from [Li Wenzhou](https://www.liwenzhou.com/posts/Go/use_zap_in_gin/)
 
-在 `server/middleware` 目录新建一个 `logger.go` 文件,将以下代码复制粘贴进 `logger.go` 文件
+Create a new `logger.go` file in `server/middleware` directory, copy and paste the following code into the `logger.go` file
 
 ```go
 package middleware
@@ -86,7 +86,7 @@ import (
 	"strings"
 )
 
-// ZapRecovery recover掉项目可能出现的panic，并使用zap记录相关日志
+// ZapRecovery recover from possible panics in the project and use zap to record related logs
 func ZapRecovery(stack bool) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		defer func() {
@@ -134,28 +134,28 @@ func ZapRecovery(stack bool) gin.HandlerFunc {
 }
 ```
 
-- [v2.3.0](https://github.com/flipped-aurora/gin-vue-admin/releases/tag/v2.3.0)版本以上无需添加此文件代码
+- [v2.3.0](https://github.com/flipped-aurora/gin-vue-admin/releases/tag/v2.3.0) and above versions do not need to add this file code
 
-> 使用ZapRecovery()中间件
+> Using ZapRecovery() middleware
 
 ```go
 var Router = gin.Default()
-// 将上面的代码替换为
+// Replace the above code with
 var Router = gin.New()
 Router.Use(middleware.ZapLogger(), middleware.ZapRecovery())
 
-// V2.3.0版本请使用以下代码
+// V2.3.0 version please use the following code
 var Router = gin.Default()
-// 将上面的代码替换为
+// Replace the above code with
 var Router = gin.New()
 Router.Use(middleware.ZapLogger(), middleware.GinRecovery())
 ```
 
 
 
-> Zap日志库使用指南&&配置指南
+> Zap Logging Library Usage Guide & Configuration Guide
 
-Zap日志库的配置选择在 config.yaml (./server/config.yaml)下的zap
+The configuration for the Zap logging library is located in `config.yaml` (./server/config.yaml) under the `zap` section.
 
 ```yaml
 # zap logger configuration
@@ -171,28 +171,28 @@ zap:
   log_in_console: true
 ```
 
-| 配置名         | 配置的类型 | 说明                                                         |
-| -------------- | ---------- | ------------------------------------------------------------ |
-| level          | string     | level的模式的详细说明,请看[zap官方文档](https://pkg.go.dev/go.uber.org/zap?tab=doc#pkg-constants) <br />info: info模式,无错误的堆栈信息,只输出信息<br />debug:debug模式,有错误的堆栈详细信息<br />warn:warn模式<br />error: error模式,有错误的堆栈详细信息<br />dpanic: dpanic模式<br />panic: panic模式<br />fatal: fatal模式<br /> |
-| format         | string     | console: 控制台形式输出日志<br />json: json格式输出日志      |
-| prefix         | string     | 日志的前缀                                                   |
-| director       | string     | 存放日志的文件夹,修改即可,不需要手动创建                     |
-| link_name      | string     | 在server目录下会生成一个link_name的[软连接文件](https://baike.baidu.com/item/%E8%BD%AF%E9%93%BE%E6%8E%A5),链接的是director配置项的最新日志文件 |
-| show_line      | bool       | 显示行号, 默认为true,不建议修改                              |
-| encode_level   | string     | LowercaseLevelEncoder:小写<br /> LowercaseColorLevelEncoder:小写带颜色<br />CapitalLevelEncoder: 大写<br />CapitalColorLevelEncoder: 大写带颜色 |
-| stacktrace_key | string     | 堆栈的名称,即在json格式输出日志时的josn的key                 |
-| log_in_console | bool       | 是否输出到控制台,默认为true                                  |
+| Configuration Name | Type       | Description                                                                 |
+|--------------------|------------|-----------------------------------------------------------------------------|
+| level              | string     | Logging level. For detailed explanation, see [Zap official documentation](https://pkg.go.dev/go.uber.org/zap?tab=doc#pkg-constants).<br>info: Info level, no error stack trace, only outputs information.<br>debug: Debug level, includes detailed error stack trace.<br>warn: Warning level.<br>error: Error level, includes detailed error stack trace.<br>dpanic: DPanic level.<br>panic: Panic level.<br>fatal: Fatal level. |
+| format             | string     | `console`: Outputs logs in console format.<br>`json`: Outputs logs in JSON format. |
+| prefix             | string     | Log prefix.                                                                 |
+| director           | string     | Directory to store log files. Modify as needed; no manual creation required. |
+| link_name          | string     | A [symbolic link file](https://en.wikipedia.org/wiki/Symbolic_link) named as specified, linking to the latest log file in the `director` directory. |
+| show_line          | bool       | Whether to display line numbers. Default is `true`. Not recommended to change. |
+| encode_level       | string     | `LowercaseLevelEncoder`: Lowercase.<br>`LowercaseColorLevelEncoder`: Lowercase with color.<br>`CapitalLevelEncoder`: Uppercase.<br>`CapitalColorLevelEncoder`: Uppercase with color. |
+| stacktrace_key     | string     | Key name for stack trace in JSON log output.                                |
+| log_in_console     | bool       | Whether to output logs to the console. Default is `true`.                   |
 
-- 开发环境 || 调试环境配置建议
-	- `level:debug`
-	- `format:console`
-	- `encode_level:LowercaseColorLevelEncoder`或者`encode_leve:CapitalColorLevelEncoder`
-- 部署环境配置建议
-	- `level:error`
-	- `format:json` 
-	- `encode_level: LowercaseLevelEncoder `或者 `encode_level:CapitalLevelEncoder`
-	- `log_in_console: false` 
-- 建议只是建议,按照自己的需求进行即可,给出建议仅供参考
+- **Development or Debugging Environment Configuration Suggestions**
+  - `level: debug`
+  - `format: console`
+  - `encode_level: LowercaseColorLevelEncoder` or `encode_level: CapitalColorLevelEncoder`
+- **Production Environment Configuration Suggestions**
+  - `level: error`
+  - `format: json`
+  - `encode_level: LowercaseLevelEncoder` or `encode_level: CapitalLevelEncoder`
+  - `log_in_console: false`
+- These are only suggestions. Adjust according to your needs. The recommendations are for reference only.
 
 
 

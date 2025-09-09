@@ -1,6 +1,6 @@
-# 生产使用表单生成器
+# Production Form Generator Usage
 
-- 1.需修改`web/src/view/systemTools/formCreate/index.vue`
+- 1. Need to modify `web/src/view/systemTools/formCreate/index.vue`
 
   ```
   <template>
@@ -10,7 +10,7 @@
   </template>
   ```
 
-  修改为
+  Modify to
 
   ```
   <template>
@@ -22,7 +22,7 @@
 
   
 
-- 2.添加修改nginx配置
+- 2. Add and modify nginx configuration
 
   ```
       location  /form-generator {
@@ -36,7 +36,7 @@
 
   
 
-- 3.同时`web/.env.production`配置为
+- 3. Also configure `web/.env.production` as
 
   ```
   ENV = 'production'
@@ -44,8 +44,8 @@
   VITE_CLI_PORT = 8080
   VITE_SERVER_PORT = 8888
   VITE_BASE_API = /api
-  #下方修改为你的线上域名
-  VITE_BASE_PATH = https://你的线上域名
+  # Modify below to your online domain
+  VITE_BASE_PATH = https://your-online-domain
   ```
 
   

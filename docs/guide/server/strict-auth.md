@@ -17,7 +17,7 @@ system:
   use-multipoint: false
   use-redis: false
   use-mongo: false
-  use-strict-auth: true  # 这里修改为true
+  use-strict-auth: true  # Change this to true
 ```
 
 ## Usage

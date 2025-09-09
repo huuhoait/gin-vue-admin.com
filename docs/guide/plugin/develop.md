@@ -48,78 +48,78 @@ Plugin Name/
         ├─ components/               # Public components (optional)
         │  ├─ PluginComponent.vue   # Plugin component
         │  └─ index.ts              # Component export
-        └─ utils/                    # 工具函数（可选）
-           ├─ index.ts              # 工具函数
-           └─ constants.ts          # 常量定义
+        └─ utils/                    # Utility functions (optional)
+           ├─ index.ts              # Utility functions
+           └─ constants.ts          # Constant definitions
 ```
 
-### 后端（Server）目录结构
+### Backend (Server) Directory Structure
 
-::: tip 提示
-后端插件可以使用自动插件模板工具生成基础结构，提高开发效率。
+::: tip Tip
+Backend plugins can use automatic plugin template tools to generate basic structure, improving development efficiency.
 :::
 
 ```
-插件名称/
+Plugin Name/
   └─ server/
     └─ plugin/
-      └─ 插件名称/                    # 插件根目录（必须）
-        ├─ api/                      # API 控制器（可选）
-        │  ├─ api.go             # 主要 API 接口
-        │  └─ enter.go              # API 入口文件
-        ├─ config/                   # 配置结构（可选）
-        │  └─ config.go             # 配置定义
-        ├─ global/                   # 全局变量（可选）
-        │  └─ global.go             # 全局变量定义
-        ├─ model/                    # 数据模型（可选）
-        │  ├─ model.go             # 数据模型
-        │  ├─ request/              # 请求模型
-        │  │  └─ main.go          # 请求参数结构
-        │  └─ response/             # 响应模型
-        │     └─ main.go          # 响应数据结构
-        ├─ router/                   # 路由注册（可选）
-           ├─ router.go              # 路由定义
-        │  └─ enter.go             # 路由入口
-        ├─ service/                  # 业务逻辑（可选）
-        │  ├─ service.go             # 主要业务逻辑
-        │  └─ enter.go              # 服务入口文件
-        ├─ utils/                    # 工具函数（可选）
-        │  └─ plugin.go             # 工具函数
-        ├─ middleware/               # 中间件（可选）
-        │  └─ plugin.go             # 自定义中间件
-        ├─ initialize/               # 初始化（可选）
-        │  ├─ router.go             # 路由初始化
-        │  ├─ gorm.go               # 数据库初始化
-        │  └─ viper.go              # 配置初始化
-        ├─ plugin.go                 # 插件入口文件（必须）
-        └─ README.md                 # 插件说明（推荐）
+      └─ Plugin Name/                # Plugin root directory (required)
+        ├─ api/                      # API controllers (optional)
+        │  ├─ api.go             # Main API interfaces
+        │  └─ enter.go              # API entry file
+        ├─ config/                   # Configuration structure (optional)
+        │  └─ config.go             # Configuration definitions
+        ├─ global/                   # Global variables (optional)
+        │  └─ global.go             # Global variable definitions
+        ├─ model/                    # Data models (optional)
+        │  ├─ model.go             # Data models
+        │  ├─ request/              # Request models
+        │  │  └─ main.go          # Request parameter structures
+        │  └─ response/             # Response models
+        │     └─ main.go          # Response data structures
+        ├─ router/                   # Route registration (optional)
+           ├─ router.go              # Route definitions
+        │  └─ enter.go             # Route entry
+        ├─ service/                  # Business logic (optional)
+        │  ├─ service.go             # Main business logic
+        │  └─ enter.go              # Service entry file
+        ├─ utils/                    # Utility functions (optional)
+        │  └─ plugin.go             # Utility functions
+        ├─ middleware/               # Middleware (optional)
+        │  └─ plugin.go             # Custom middleware
+        ├─ initialize/               # Initialization (optional)
+        │  ├─ router.go             # Route initialization
+        │  ├─ gorm.go               # Database initialization
+        │  └─ viper.go              # Configuration initialization
+        ├─ plugin.go                 # Plugin entry file (required)
+        └─ README.md                 # Plugin documentation (recommended)
 ```
 
-## 开发规范
+## Development Standards
 
-### 命名规范
+### Naming Conventions
 
-- **插件名称**：使用小写字母和连字符，如 `user-management`
-- **文件命名**：遵循项目命名规范，Go 文件使用下划线，Vue 文件使用 PascalCase
-- **API 路径**：使用 RESTful 风格，如 `/api/plugin/user-management/users`
-- **组件命名**：使用 PascalCase，如 `UserManagement`
+- **Plugin Name**: Use lowercase letters and hyphens, such as `user-management`
+- **File Naming**: Follow project naming conventions, Go files use underscores, Vue files use PascalCase
+- **API Paths**: Use RESTful style, such as `/api/plugin/user-management/users`
+- **Component Naming**: Use PascalCase, such as `UserManagement`
 
-### 代码规范
+### Code Standards
 
-- **前端代码**：遵循 Vue 3 + TypeScript 最佳实践
-- **后端代码**：遵循 Go 编码规范和 Gin 框架约定
-- **注释规范**：提供清晰的函数和接口注释
-- **错误处理**：统一的错误处理和日志记录
+- **Frontend Code**: Follow Vue 3 + TypeScript best practices
+- **Backend Code**: Follow Go coding standards and Gin framework conventions
+- **Comment Standards**: Provide clear function and interface comments
+- **Error Handling**: Unified error handling and logging
 
-### 版本管理
+### Version Management
 
-- 使用语义化版本号（Semantic Versioning）
-- 在 `package.json` 中明确版本信息
-- 提供版本更新日志
+- Use semantic versioning (Semantic Versioning)
+- Clearly specify version information in `package.json`
+- Provide version update logs
 
-### 后端配置
+### Backend Configuration
 
-在 `server/plugin/插件名称/plugin.go` 中定义插件信息：
+Define plugin information in `server/plugin/plugin_name/plugin.go`:
 
 ```go
 package plugin_name
@@ -144,65 +144,65 @@ func (*Plugin) RouterPath() string {
 }
 ```
 
-### 开发环境配置
+### Development Environment Configuration
 
-1. **前端开发**：在主项目的 `web` 目录下开发和调试
-2. **后端开发**：在主项目的 `server` 目录下开发和调试
-3. **热重载**：支持前后端代码的热重载功能
+1. **Frontend Development**: Develop and debug in the main project's `web` directory
+2. **Backend Development**: Develop and debug in the main project's `server` directory
+3. **Hot Reload**: Support hot reloading for both frontend and backend code
 
-## 最佳实践
+## Best Practices
 
-### 性能优化
+### Performance Optimization
 
-- **懒加载**：使用 Vue 的异步组件和路由懒加载
-- **代码分割**：合理拆分代码，避免单个文件过大
-- **缓存策略**：合理使用缓存提高响应速度
-- **数据库优化**：优化查询语句和索引设计
+- **Lazy Loading**: Use Vue's asynchronous components and route lazy loading
+- **Code Splitting**: Split code reasonably to avoid overly large files
+- **Caching Strategy**: Use caching effectively to improve response speed
+- **Database Optimization**: Optimize query statements and index design
 
-### 安全考虑
+### Security Considerations
 
-- **输入验证**：严格验证用户输入数据
-- **权限控制**：集成主项目的权限管理系统
-- **SQL 注入防护**：使用参数化查询
-- **XSS 防护**：对输出内容进行转义
+- **Input Validation**: Strictly validate user input data
+- **Permission Control**: Integrate the main project's permission management system
+- **SQL Injection Protection**: Use parameterized queries
+- **XSS Protection**: Escape output content
 
-### 错误处理
+### Error Handling
 
-- **统一错误码**：使用项目统一的错误码规范
-- **日志记录**：记录关键操作和错误信息
-- **用户友好**：提供清晰的错误提示信息
-- **降级处理**：在插件异常时不影响主系统
+- **Unified Error Codes**: Use the project's unified error code specifications
+- **Log Recording**: Record key operations and error information
+- **User-Friendly**: Provide clear error messages
+- **Fallback Handling**: Ensure plugin exceptions do not affect the main system
 
-### 测试策略
+### Testing Strategy
 
-- **单元测试**：为核心业务逻辑编写单元测试
-- **集成测试**：测试插件与主系统的集成
-- **端到端测试**：测试完整的用户操作流程
-- **性能测试**：验证插件的性能表现
+- **Unit Testing**: Write unit tests for core business logic
+- **Integration Testing**: Test the integration of the plugin with the main system
+- **End-to-End Testing**: Test complete user operation flows
+- **Performance Testing**: Verify the plugin's performance
 
-## 常见问题
+## Common Issues
 
-### 插件无法加载
+### Plugin Fails to Load
 
-1. 检查插件目录结构是否正确
-2. 确认插件配置文件格式正确
-3. 查看控制台错误信息
-4. 检查插件依赖是否安装
+1. Check if the plugin directory structure is correct
+2. Ensure the plugin configuration file format is correct
+3. View console error messages
+4. Check if plugin dependencies are installed
 
-### 路由冲突
+### Route Conflicts
 
-1. 确保插件路由路径唯一
-2. 避免与主系统路由冲突
-3. 使用插件前缀区分路由
+1. Ensure plugin route paths are unique
+2. Avoid conflicts with main system routes
+3. Use plugin prefixes to distinguish routes
 
-### 样式冲突
+### Style Conflicts
 
-1. 使用 CSS Modules 或 scoped 样式
-2. 避免全局样式污染
-3. 使用插件特定的 CSS 类名前缀
+1. Use CSS Modules or scoped styles
+2. Avoid global style pollution
+3. Use plugin-specific CSS class name prefixes
 
-### 数据库迁移
+### Database Migration
 
-1. 提供数据库迁移脚本
-2. 支持版本升级和回滚
-3. 注意数据库兼容性
+1. Provide database migration scripts
+2. Support version upgrades and rollbacks
+3. Pay attention to database compatibility

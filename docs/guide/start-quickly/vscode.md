@@ -22,20 +22,20 @@ Before starting configuration, please ensure you have:
 It is recommended to use VS Code's workspace feature to manage the entire project:
 
 ```bash
-# 进入项目根目录
+# Enter project root directory
 cd gin-vue-admin
 
-# 使用 VS Code 打开整个项目
+# Open entire project with VS Code
 code .
 ```
 
-或者打开预配置的工作区文件：
+Or open the pre-configured workspace file:
 
-![VS Code 工作区](https://qmplusimg.henrongyi.top/gva/vscode.png)
+![VS Code Workspace](https://qmplusimg.henrongyi.top/gva/vscode.png)
 
-### 2. 工作区配置
+### 2. Workspace Configuration
 
-创建 `.vscode/gin-vue-admin.code-workspace` 文件：
+Create `.vscode/gin-vue-admin.code-workspace` file:
 
 ```json
 {
@@ -75,47 +75,47 @@ code .
 }
 ```
 
-## 🔌 必备插件安装
+## 🔌 Essential Extensions Installation
 
-### Go 开发插件
+### Go Development Extensions
 
 1. **Go** (golang.go)
-   - Go 语言官方插件
-   - 提供语法高亮、智能提示、调试等功能
+   - Official Go language extension
+   - Provides syntax highlighting, IntelliSense, debugging, etc.
 
 2. **Go Outliner** (766b.go-outliner)
-   - 显示 Go 文件的结构大纲
+   - Shows Go file structure outline
 
-### Vue 开发插件
+### Vue Development Extensions
 
 1. **Vue Language Features (Volar)** (vue.volar)
-   - Vue 3 官方语言支持
-   - 替代 Vetur，提供更好的 TypeScript 支持
+   - Official Vue 3 language support
+   - Replaces Vetur, provides better TypeScript support
 
 2. **TypeScript Vue Plugin (Volar)** (vue.vscode-typescript-vue-plugin)
-   - Vue 文件的 TypeScript 支持
+   - TypeScript support for Vue files
 
-### 通用开发插件
+### General Development Extensions
 
 1. **Prettier - Code formatter** (esbenp.prettier-vscode)
-   - 代码格式化工具
+   - Code formatting tool
 
 2. **ESLint** (dbaeumer.vscode-eslint)
-   - JavaScript/TypeScript 代码检查
+   - JavaScript/TypeScript code linting
 
 3. **Tailwind CSS IntelliSense** (bradlc.vscode-tailwindcss)
-   - Tailwind CSS 智能提示
+   - Tailwind CSS IntelliSense
 
 4. **Auto Rename Tag** (formulahendry.auto-rename-tag)
-   - 自动重命名配对的 HTML/XML 标签
+   - Auto rename paired HTML/XML tags
 
 5. **Path Intellisense** (christian-kohler.path-intellisense)
-   - 文件路径智能提示
+   - File path IntelliSense
 
-### 安装插件
+### Install Extensions
 
 ```bash
-# 使用命令行安装推荐插件
+# Install recommended extensions using command line
 code --install-extension golang.go
 code --install-extension vue.volar
 code --install-extension vue.vscode-typescript-vue-plugin
@@ -126,11 +126,11 @@ code --install-extension formulahendry.auto-rename-tag
 code --install-extension christian-kohler.path-intellisense
 ```
 
-## 🏃‍♂️ 运行和调试配置
+## 🏃‍♂️ Run and Debug Configuration
 
-### 1. 创建调试配置
+### 1. Create Debug Configuration
 
-在项目根目录创建 `.vscode/launch.json` 文件：
+Create `.vscode/launch.json` file in project root directory:
 
 ```json
 {
@@ -172,9 +172,9 @@ code --install-extension christian-kohler.path-intellisense
 }
 ```
 
-### 2. 创建任务配置
+### 2. Create Tasks Configuration
 
-创建 `.vscode/tasks.json` 文件：
+Create `.vscode/tasks.json` file:
 
 ```json
 {
@@ -232,60 +232,60 @@ code --install-extension christian-kohler.path-intellisense
 }
 ```
 
-### 3. 运行项目
+### 3. Run Project
 
-#### 方式一：使用调试面板
+#### Method 1: Using Debug Panel
 
-1. 按 `Ctrl+Shift+D` (Windows/Linux) 或 `Cmd+Shift+D` (macOS) 打开调试面板
-2. 选择要运行的配置：
-   - **🔧 Launch Server (Go)**: 仅启动后端服务
-   - **🎨 Launch Web (Node)**: 仅启动前端应用
-   - **🚀 Launch Both (Server + Web)**: 同时启动前后端
+1. Press `Ctrl+Shift+D` (Windows/Linux) or `Cmd+Shift+D` (macOS) to open debug panel
+2. Select the configuration to run:
+   - **🔧 Launch Server (Go)**: Start backend service only
+   - **🎨 Launch Web (Node)**: Start frontend application only
+   - **🚀 Launch Both (Server + Web)**: Start both frontend and backend
 
-![VS Code 后端调试](https://qmplusimg.henrongyi.top/gva/vscode-backend.png)
+![VS Code Backend Debug](https://qmplusimg.henrongyi.top/gva/vscode-backend.png)
 
-![VS Code 前端调试](https://qmplusimg.henrongyi.top/gva/vscode-frontend.png)
+![VS Code Frontend Debug](https://qmplusimg.henrongyi.top/gva/vscode-frontend.png)
 
-![VS Code 同时运行](https://qmplusimg.henrongyi.top/gva/vscode-both.png)
+![VS Code Run Both](https://qmplusimg.henrongyi.top/gva/vscode-both.png)
 
-#### 方式二：使用终端
+#### Method 2: Using Terminal
 
 ```bash
-# 启动后端（在 server 目录）
+# Start backend (in server directory)
 cd server
 go run main.go
 
-# 启动前端（在 web 目录）
+# Start frontend (in web directory)
 cd web
 npm run serve
 ```
 
-#### 方式三：使用任务
+#### Method 3: Using Tasks
 
-1. 按 `Ctrl+Shift+P` (Windows/Linux) 或 `Cmd+Shift+P` (macOS)
-2. 输入 "Tasks: Run Task"
-3. 选择要执行的任务
+1. Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS)
+2. Type "Tasks: Run Task"
+3. Select the task to execute
 
-## ⚙️ Go 环境配置
+## ⚙️ Go Environment Configuration
 
-### 1. 配置 Go 模块代理
+### 1. Configure Go Module Proxy
 
-为了提高依赖下载速度，建议配置 Go 模块代理：
+To improve dependency download speed, it's recommended to configure Go module proxy:
 
 ```bash
-# 启用 Go Modules
+# Enable Go Modules
 go env -w GO111MODULE=on
 
-# 配置模块代理
+# Configure module proxy
 go env -w GOPROXY=https://goproxy.cn,direct
 
-# 配置校验和数据库
+# Configure checksum database
 go env -w GOSUMDB=sum.golang.google.cn
 ```
 
-### 2. VS Code Go 插件配置
+### 2. VS Code Go Extension Configuration
 
-在 VS Code 设置中添加以下配置：
+Add the following configuration in VS Code settings:
 
 ```json
 {
@@ -309,15 +309,15 @@ go env -w GOSUMDB=sum.golang.google.cn
 }
 ```
 
-### 3. 安装 Go 工具
+### 3. Install Go Tools
 
-在 VS Code 中按 `Ctrl+Shift+P`，输入 "Go: Install/Update Tools"，选择所有工具进行安装。
+In VS Code, press `Ctrl+Shift+P`, type "Go: Install/Update Tools", select all tools to install.
 
-## 🎨 前端开发配置
+## 🎨 Frontend Development Configuration
 
-### 1. Prettier 配置
+### 1. Prettier Configuration
 
-在 `web` 目录创建 `.prettierrc` 文件：
+Create `.prettierrc` file in `web` directory:
 
 ```json
 {
@@ -331,11 +331,11 @@ go env -w GOSUMDB=sum.golang.google.cn
 }
 ```
 
-### 2. ESLint 配置
+### 2. ESLint Configuration
 
-确保 `web` 目录有正确的 `.eslintrc.js` 配置文件。
+Ensure `web` directory has correct `.eslintrc.js` configuration file.
 
-### 3. VS Code 前端设置
+### 3. VS Code Frontend Settings
 
 ```json
 {
@@ -351,11 +351,11 @@ go env -w GOSUMDB=sum.golang.google.cn
 }
 ```
 
-## 🔧 实用技巧
+## 🔧 Practical Tips
 
-### 1. 代码片段
+### 1. Code Snippets
 
-创建 Go 代码片段 `.vscode/go.code-snippets`：
+Create Go code snippets `.vscode/go.code-snippets`:
 
 ```json
 {
@@ -379,9 +379,9 @@ go env -w GOSUMDB=sum.golang.google.cn
 }
 ```
 
-### 2. 快捷键配置
+### 2. Keyboard Shortcuts Configuration
 
-在 `keybindings.json` 中添加自定义快捷键：
+Add custom keyboard shortcuts in `keybindings.json`:
 
 ```json
 [
@@ -398,9 +398,9 @@ go env -w GOSUMDB=sum.golang.google.cn
 ]
 ```
 
-### 3. 文件关联
+### 3. File Associations
 
-在设置中添加文件关联：
+Add file associations in settings:
 
 ```json
 {
@@ -413,31 +413,31 @@ go env -w GOSUMDB=sum.golang.google.cn
 }
 ```
 
-## 🐛 调试技巧
+## 🐛 Debugging Tips
 
-### 1. Go 调试
+### 1. Go Debugging
 
-- 在代码行号左侧点击设置断点
-- 使用 `F5` 开始调试
-- 使用 `F10` 单步执行，`F11` 步入函数
-- 在调试控制台查看变量值
+- Click to the left of line numbers to set breakpoints
+- Use `F5` to start debugging
+- Use `F10` for step over, `F11` for step into
+- View variable values in debug console
 
-### 2. 前端调试
+### 2. Frontend Debugging
 
-- 使用浏览器开发者工具
-- 在 VS Code 中安装 "Debugger for Chrome" 插件
-- 配置浏览器调试
+- Use browser developer tools
+- Install "Debugger for Chrome" extension in VS Code
+- Configure browser debugging
 
-### 3. 日志查看
+### 3. Log Viewing
 
-- 使用集成终端查看应用日志
-- 配置输出面板显示不同类型的日志
+- Use integrated terminal to view application logs
+- Configure output panel to display different types of logs
 
-## 🚀 性能优化
+## 🚀 Performance Optimization
 
-### 1. 排除文件
+### 1. Exclude Files
 
-在 `.vscode/settings.json` 中排除不必要的文件：
+Exclude unnecessary files in `.vscode/settings.json`:
 
 ```json
 {
@@ -455,6 +455,6 @@ go env -w GOSUMDB=sum.golang.google.cn
 }
 ```
 
-### 2. 禁用不需要的插件
+### 2. Disable Unnecessary Extensions
 
-在工作区中禁用不相关的插件以提高性能。
+Disable irrelevant extensions in the workspace to improve performance.

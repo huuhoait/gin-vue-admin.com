@@ -66,7 +66,7 @@ Using Tencent COS service as OPQ robot's network disk, fuzzy search Tencent COS 
     owner='BrandTime'
 />
 
-BBB_Bot(棒棒冰) - based on OPQBot
+BBB_Bot (Popsicle) - based on OPQBot
 
 ## authMS (Python)
 
@@ -99,7 +99,7 @@ Using Tencent COS service as OPQ robot's network disk, fuzzy search Tencent COS 
     owner='Teeoo'
 />
 
-词云插件/斗地主插件/扫雷插件
+Word cloud plugin/Landlord game plugin/Minesweeper plugin
 
 ## login (Python)
 
@@ -110,7 +110,7 @@ Using Tencent COS service as OPQ robot's network disk, fuzzy search Tencent COS 
     owner='xiyaowong'
 />
 
-终端打印登录二维码
+Print login QR code in terminal
 
 ## bot_change_avatar (Python)
 
@@ -121,7 +121,7 @@ Using Tencent COS service as OPQ robot's network disk, fuzzy search Tencent COS 
     owner='xiyaowong'
 />
 
-生成头像，国旗头像
+Generate avatars, national flag avatars
 
 ## botoy_word_cloud (Python)
 
@@ -132,7 +132,7 @@ Using Tencent COS service as OPQ robot's network disk, fuzzy search Tencent COS 
     owner='yuban10703'
 />
 
-词云
+Word cloud
 
 ## bot_bili_vtbs (Python)
 
@@ -143,7 +143,7 @@ Using Tencent COS service as OPQ robot's network disk, fuzzy search Tencent COS 
     owner='xiyaowong'
 />
 
-botoy 插件：查看 B 站关注了多少虚拟主播
+botoy plugin: Check how many virtual streamers you follow on Bilibili
 
 ## botoy_netease_music (Python)
 
@@ -154,7 +154,7 @@ botoy 插件：查看 B 站关注了多少虚拟主播
     owner='yuban10703'
 />
 
-网易云的点歌
+NetEase Cloud Music song request
 
 ## botoy-QQorder (Python)
 
@@ -165,7 +165,7 @@ botoy 插件：查看 B 站关注了多少虚拟主播
     owner='HYLnP'
 />
 
-基于 OPQ/botoy 的 qq 机器人指令配置 (基于 botoy 的制定指令和日记功能)
+QQ robot command configuration based on OPQ/botoy (custom commands and diary functions based on botoy)
 
 ## bot_QQorder (Python)
 
@@ -176,7 +176,7 @@ botoy 插件：查看 B 站关注了多少虚拟主播
     owner='HeiLAAS'
 />
 
-基于 botoy 的制定指令和日记功能;既插件版的 QQorder。
+Custom commands and diary functions based on botoy; plugin version of QQorder.
 
 ## bot_exhentai (Python)
 
@@ -187,7 +187,7 @@ botoy 插件：查看 B 站关注了多少虚拟主播
     owner='yuban10703'
 />
 
-基于 botoy 和 OPQBot 的本子机器人，一个用来下载 exhentai 里本子的插件
+Bot based on botoy and OPQBot for downloading content from exhentai
 
 ## bot_yaowoyizhi (Python)
 
@@ -198,7 +198,7 @@ botoy 插件：查看 B 站关注了多少虚拟主播
     owner='xiyaowong'
 />
 
-要我一直 img 吗
+Do you want me to keep sending images?
 
 ## opq_reply_engine (Python)
 
@@ -209,7 +209,7 @@ botoy 插件：查看 B 站关注了多少虚拟主播
     owner='LukWang'
 />
 
-一个 OPQ 的回复和插件管理模块，OPQBOT 的回复管理引擎
+An OPQ reply and plugin management module, OPQBOT's reply management engine
 
 ## bot_emojimix (Python)
 
@@ -220,7 +220,7 @@ botoy 插件：查看 B 站关注了多少虚拟主播
     owner='xiyaowong'
 />
 
-botoy 插件，emoji 合成
+botoy plugin, emoji synthesis
 
 ## botoy-plugin-template (Python)
 
@@ -231,7 +231,7 @@ botoy 插件，emoji 合成
     owner='xiyaowong'
 />
 
-botoy 插件模板
+botoy plugin template
 
 ## bot_antiasoul (Python)
 
@@ -242,7 +242,7 @@ botoy 插件模板
     owner='xiyaowong'
 />
 
-botoy 插件，用于恶心嘉心糖
+botoy plugin for annoying A-SOUL fans
 
 ## bot_translation (Python)
 
@@ -253,7 +253,7 @@ botoy 插件，用于恶心嘉心糖
     owner='yuban10703'
 />
 
-botoy 的翻译小插件
+botoy translation plugin
 
 ## botoy-plugin-petpet (Python)
 
@@ -275,7 +275,7 @@ making some fun pictures
     owner='HYLnP'
 />
 
-botoy 插件：监听群文件上传消息，并转发详细内容
+botoy plugin: Monitor group file upload messages and forward detailed content
 
 ## bot_remotechat (Python)
 
@@ -286,7 +286,7 @@ botoy 插件：监听群文件上传消息，并转发详细内容
     owner='HYLnP'
 />
 
-主人直接通过机器人进行聊天，群员通过艾特机器人和主人聊天
+Owner chats directly through the bot, group members chat with owner by mentioning the bot
 
 ## bot_MessageForwarding (Python)
 
@@ -297,7 +297,7 @@ botoy 插件：监听群文件上传消息，并转发详细内容
     owner='aoguai'
 />
 
-基于 OPQBot 和 botoy 的消息监控转发插件
+Message monitoring and forwarding plugin based on OPQBot and botoy
 
 ## OPQBot-GroupManager (Go)
 
@@ -308,7 +308,7 @@ botoy 插件：监听群文件上传消息，并转发详细内容
     owner='mcoo'
 />
 
-OPQBot 群管理机器人
+OPQBot group management robot
 
 ## OPQBOT-jikipedia (Go)
 
@@ -319,7 +319,7 @@ OPQBot 群管理机器人
     owner='xiyaowong'
 />
 
-opqosc/OPQBot 的查梗插件
+Meme lookup plugin for opqosc/OPQBot
 
 ## OPQPlugin (Go)
 
@@ -330,7 +330,7 @@ opqosc/OPQBot 的查梗插件
     owner='mcoo'
 />
 
-golang OPQBot 插件
+golang OPQBot plugin
 
 ## GenshinBot (C#)
 
@@ -341,7 +341,7 @@ golang OPQBot 插件
     owner='AZhrZho'
 />
 
-原神 QQ 机器人，基于 OPQ。提供原神游戏角色查询、每日任务及树脂提醒、个人深渊战绩查询、世界探索信息查询等功能。
+Genshin Impact QQ bot based on OPQ. Provides features like character lookup, daily task and resin reminders, personal abyss records query, world exploration info query, etc.
 
 ## IOTQQ_Plugins (Lua)
 
@@ -352,7 +352,7 @@ golang OPQBot 插件
     owner='MengXin001'
 />
 
-IOTQQ 机器人 LuaPlugins 插件仓库
+IOTQQ robot LuaPlugins plugin repository
 
 ## lua-plugins (Lua)
 
@@ -363,7 +363,7 @@ IOTQQ 机器人 LuaPlugins 插件仓库
     owner='spirit1431007'
 />
 
-适用于 OPQBOT 的一系列 lua 插件
+A series of lua plugins for OPQBOT
 
 ## LuaPlugins (Lua)
 
@@ -385,7 +385,7 @@ IOTQQ -- Lua 插件
     owner='xiyaowong'
 />
 
-使用 lua-lib 的小插件
+Small plugins using lua-lib
 
 ## OPQ-PHP-plugins (PHP)
 
@@ -396,4 +396,4 @@ IOTQQ -- Lua 插件
     owner='xuxiaofen2'
 />
 
-OPQ PHP 插件
+OPQ PHP plugins

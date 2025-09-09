@@ -48,25 +48,25 @@ System Tools → Code Generator → Add New
    - Query conditions
    - Dictionary type
 
-3. **生成选项**
-   - 生成模块
-   - 生成路径
-   - 是否覆盖
+3. **Generation Options**
+   - Generation module
+   - Generation path
+   - Whether to overwrite
 
-### 2. 命令行生成
+### 2. Command Line Generation
 
 ```bash
-# 进入项目目录
+# Enter project directory
 cd server
 
-# 运行代码生成器
+# Run code generator
 go run main.go -c=config.yaml -gva=gen
 ```
 
-### 3. API 接口生成
+### 3. API Interface Generation
 
 ```bash
-# 使用 curl 调用生成接口
+# Use curl to call generation interface
 curl -X POST "http://localhost:8888/autoCode/createTemp" \
   -H "Content-Type: application/json" \
   -d '{
@@ -76,106 +76,106 @@ curl -X POST "http://localhost:8888/autoCode/createTemp" \
     "fields": [
       {
         "fieldName": "Name",
-        "fieldDesc": "用户名",
+        "fieldDesc": "Username",
         "fieldType": "string",
         "dataType": "varchar(255)",
         "fieldJson": "name",
         "require": true,
-        "errorText": "请输入用户名"
+        "errorText": "Please enter username"
       }
     ]
   }'
 ```
 
-## 📋 配置详解
+## 📋 Configuration Details
 
-### 基础配置结构
+### Basic Configuration Structure
 
 ```go
 type AutoCodeStruct struct {
-    StructName         string                 `json:"structName"`         // 结构体名称
-    TableName          string                 `json:"tableName"`          // 表名
-    PackageName        string                 `json:"packageName"`        // 包名
-    HumpPackageName    string                 `json:"humpPackageName"`    // 驼峰包名
-    Abbreviation       string                 `json:"abbreviation"`       // 缩写
-    Description        string                 `json:"description"`        // 描述
-    AutoCreateApiToSql bool                   `json:"autoCreateApiToSql"` // 自动创建API
-    AutoCreateResource bool                   `json:"autoCreateResource"` // 自动创建资源
-    AutoMoveFile       bool                   `json:"autoMoveFile"`       // 自动移动文件
-    Fields             []Field                `json:"fields"`             // 字段列表
-    DictTypes          []string               `json:"dictTypes"`          // 字典类型
-    Package            string                 `json:"package"`            // 完整包路径
-    PackageT           string                 `json:"packageT"`           // 模板包路径
-    NeedValid          bool                   `json:"needValid"`          // 需要验证
-    HasTimer           bool                   `json:"hasTimer"`           // 包含时间字段
-    NeedSort           bool                   `json:"needSort"`           // 需要排序
-    HasSearchTimer     bool                   `json:"hasSearchTimer"`     // 包含搜索时间
-    HasFile            bool                   `json:"hasFile"`            // 包含文件字段
-    HasDataSource      bool                   `json:"hasDataSource"`      // 包含数据源
-    HasRichText        bool                   `json:"hasRichText"`        // 包含富文本
-    HasPic             bool                   `json:"hasPic"`             // 包含图片
-    LogicDelete        bool                   `json:"logicDelete"`        // 逻辑删除
-    MenuID             string                 `json:"menuID"`             // 菜单ID
+    StructName         string                 `json:"structName"`         // Struct name
+    TableName          string                 `json:"tableName"`          // Table name
+    PackageName        string                 `json:"packageName"`        // Package name
+    HumpPackageName    string                 `json:"humpPackageName"`    // Camel case package name
+    Abbreviation       string                 `json:"abbreviation"`       // Abbreviation
+    Description        string                 `json:"description"`        // Description
+    AutoCreateApiToSql bool                   `json:"autoCreateApiToSql"` // Automatically create API
+    AutoCreateResource bool                   `json:"autoCreateResource"` // Automatically create resources
+    AutoMoveFile       bool                   `json:"autoMoveFile"`       // Automatically move files
+    Fields             []Field                `json:"fields"`             // Field list
+    DictTypes          []string               `json:"dictTypes"`          // Dictionary types
+    Package            string                 `json:"package"`            // Full package path
+    PackageT           string                 `json:"packageT"`           // Template package path
+    NeedValid          bool                   `json:"needValid"`          // Validation required
+    HasTimer           bool                   `json:"hasTimer"`           // Includes time fields
+    NeedSort           bool                   `json:"needSort"`           // Sorting required
+    HasSearchTimer     bool                   `json:"hasSearchTimer"`     // Includes search time
+    HasFile            bool                   `json:"hasFile"`            // Includes file fields
+    HasDataSource      bool                   `json:"hasDataSource"`      // Includes data source
+    HasRichText        bool                   `json:"hasRichText"`        // Includes rich text
+    HasPic             bool                   `json:"hasPic"`             // Includes pictures
+    LogicDelete        bool                   `json:"logicDelete"`        // Logical deletion
+    MenuID             string                 `json:"menuID"`             // Menu ID
 }
 ```
 
-### 字段配置结构
+### Field Configuration Structure
 
 ```go
 type Field struct {
-    FieldName       string `json:"fieldName"`       // 字段名
-    FieldDesc       string `json:"fieldDesc"`       // 字段描述
-    FieldType       string `json:"fieldType"`       // Go字段类型
-    FieldJson       string `json:"fieldJson"`       // JSON标签
-    DataType        string `json:"dataType"`        // 数据库字段类型
-    ColumnName      string `json:"columnName"`      // 数据库列名
-    Comment         string `json:"comment"`         // 注释
-    Require         bool   `json:"require"`         // 是否必填
-    ErrorText       string `json:"errorText"`       // 错误提示
-    Clearable       bool   `json:"clearable"`       // 是否可清空
-    Sort            bool   `json:"sort"`            // 是否排序字段
-    PrimaryKey      bool   `json:"primaryKey"`      // 是否主键
-    DefaultValue    string `json:"defaultValue"`    // 默认值
-    DictType        string `json:"dictType"`        // 字典类型
-    Front           bool   `json:"front"`           // 前端显示
-    Desc            bool   `json:"desc"`            // 降序
-    SearchType      string `json:"searchType"`      // 搜索类型
-    FieldSearchType string `json:"fieldSearchType"` // 字段搜索类型
-    FieldSearchHide bool   `json:"fieldSearchHide"` // 隐藏搜索
-    FieldIndexType  string `json:"fieldIndexType"`  // 索引类型
-    CheckDataSource bool   `json:"checkDataSource"` // 检查数据源
+    FieldName       string `json:"fieldName"`       // Field name
+    FieldDesc       string `json:"fieldDesc"`       // Field description
+    FieldType       string `json:"fieldType"`       // Go field type
+    FieldJson       string `json:"fieldJson"`       // JSON tag
+    DataType        string `json:"dataType"`        // Database field type
+    ColumnName      string `json:"columnName"`      // Database column name
+    Comment         string `json:"comment"`         // Comment
+    Require         bool   `json:"require"`         // Required
+    ErrorText       string `json:"errorText"`       // Error message
+    Clearable       bool   `json:"clearable"`       // Clearable
+    Sort            bool   `json:"sort"`            // Sort field
+    PrimaryKey      bool   `json:"primaryKey"`      // Primary key
+    DefaultValue    string `json:"defaultValue"`    // Default value
+    DictType        string `json:"dictType"`        // Dictionary type
+    Front           bool   `json:"front"`           // Frontend display
+    Desc            bool   `json:"desc"`            // Descending order
+    SearchType      string `json:"searchType"`      // Search type
+    FieldSearchType string `json:"fieldSearchType"` // Field search type
+    FieldSearchHide bool   `json:"fieldSearchHide"` // Hide search
+    FieldIndexType  string `json:"fieldIndexType"`  // Index type
+    CheckDataSource bool   `json:"checkDataSource"` // Check data source
     DataSource      struct {
-        Association int    `json:"association"` // 关联类型
-        Table       string `json:"table"`       // 关联表
-        Label       string `json:"label"`       // 显示字段
-        Value       string `json:"value"`       // 值字段
-    } `json:"dataSource"` // 数据源配置
+        Association int    `json:"association"` // Association type
+        Table       string `json:"table"`       // Associated table
+        Label       string `json:"label"`       // Display field
+        Value       string `json:"value"`       // Value field
+    } `json:"dataSource"` // Data source configuration
 }
 ```
 
-## 🎨 模板系统
+## 🎨 Template System
 
-### 模板目录结构
+### Template Directory Structure
 
 ```
 server/resource/template/
 ├── web/
-│   ├── api.js.tpl           # 前端API模板
-│   ├── form.vue.tpl         # 表单页面模板
-│   ├── table.vue.tpl        # 列表页面模板
+│   ├── api.js.tpl           # Frontend API template
+│   ├── form.vue.tpl         # Form page template
+│   ├── table.vue.tpl        # List page template
 │   └── ...
 └── server/
-    ├── api.go.tpl           # 后端API模板
-    ├── model.go.tpl         # 模型模板
-    ├── request.go.tpl       # 请求结构模板
-    ├── router.go.tpl        # 路由模板
-    ├── service.go.tpl       # 服务模板
+    ├── api.go.tpl           # Backend API template
+    ├── model.go.tpl         # Model template
+    ├── request.go.tpl       # Request structure template
+    ├── router.go.tpl        # Router template
+    ├── service.go.tpl       # Service template
     └── ...
 ```
 
-### 自定义模板
+### Custom Templates
 
-#### 后端模板示例
+#### Backend Template Example
 
 ```go
 // model.go.tpl
@@ -188,7 +188,7 @@ import (
     {{- end}}
 )
 
-// {{.StructName}} 结构体  {{.Description}}
+// {{.StructName}}  structure  {{.Description}}
 type {{.StructName}} struct {
     global.GVA_MODEL {{- range .Fields}}
     {{- if .PrimaryKey}}
@@ -198,13 +198,13 @@ type {{.StructName}} struct {
     {{- end}}{{- end}}
 }
 
-// TableName {{.StructName}} 表名
+// TableName {{.StructName}} table name
 func ({{.StructName}}) TableName() string {
     return "{{.TableName}}"
 }
 ```
 
-#### 前端模板示例
+#### Frontend Template Example
 
 ```vue
 <!-- table.vue.tpl -->
@@ -216,15 +216,15 @@ func ({{.StructName}}) TableName() string {
         {{- if .FieldSearchType}}
         <el-form-item label="{{.FieldDesc}}" prop="{{.FieldJson}}">
           {{- if eq .FieldSearchType "LIKE" }}
-          <el-input v-model="searchInfo.{{.FieldJson}}" placeholder="搜索条件" />
+          <el-input v-model="searchInfo.{{.FieldJson}}" placeholder="Search condition" />
           {{- else if eq .FieldSearchType "BETWEEN" }}
           <template v-if="searchInfo.{{.FieldJson}} && searchInfo.{{.FieldJson}}.length === 2">
             <el-date-picker
               v-model="searchInfo.{{.FieldJson}}"
               type="datetimerange"
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
+              range-separator="to"
+              start-placeholder="Start date"
+              end-placeholder="End date"
             />
           </template>
           {{- end}}
@@ -232,15 +232,15 @@ func ({{.StructName}}) TableName() string {
         {{- end}}
         {{- end}}
         <el-form-item>
-          <el-button type="primary" icon="search" @click="onSubmit">查询</el-button>
-          <el-button icon="refresh" @click="onReset">重置</el-button>
+          <el-button type="primary" icon="search" @click="onSubmit">Search</el-button>
+          <el-button icon="refresh" @click="onReset">Reset</el-button>
         </el-form-item>
       </el-form>
     </div>
     <div class="gva-table-box">
       <div class="gva-btn-list">
-        <el-button type="primary" icon="plus" @click="openDialog">新增</el-button>
-        <el-button icon="delete" style="margin-left: 10px;" :disabled="!multipleSelection.length" @click="onDelete">删除</el-button>
+        <el-button type="primary" icon="plus" @click="openDialog">Add</el-button>
+        <el-button icon="delete" style="margin-left: 10px;" :disabled="!multipleSelection.length" @click="onDelete">Delete</el-button>
       </div>
       <el-table
         ref="multipleTable"
@@ -256,10 +256,10 @@ func ({{.StructName}}) TableName() string {
         <el-table-column align="left" label="{{.FieldDesc}}" prop="{{.FieldJson}}" width="120" />
         {{- end}}
         {{- end}}
-        <el-table-column align="left" label="操作">
+        <el-table-column align="left" label="Actions">
           <template #default="scope">
-            <el-button type="primary" link class="table-button" @click="getDetails(scope.row)"><icon name="edit" />变更</el-button>
-            <el-button type="primary" link class="table-button" @click="deleteRow(scope.row)"><icon name="delete" />删除</el-button>
+            <el-button type="primary" link class="table-button" @click="getDetails(scope.row)"><icon name="edit" />Edit</el-button>
+            <el-button type="primary" link class="table-button" @click="deleteRow(scope.row)"><icon name="delete" />Delete</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -279,22 +279,22 @@ func ({{.StructName}}) TableName() string {
 </template>
 ```
 
-## 🔧 生成器核心代码
+## 🔧 Core Code of the Generator
 
-### 代码生成服务
+### Code Generation Service
 
 ```go
 type AutoCodeService struct{}
 
-// CreateTemp 创建代码
+// CreateTemp creates code
 func (autoCodeService *AutoCodeService) CreateTemp(autoCode system.AutoCodeStruct, ids ...uint) (err error) {
-    // 1. 创建基础目录
+    // 1. Create base directory
     basePath := "autocode_template/"
     if autoCode.AutoMoveFile {
         basePath = ""
     }
     
-    // 2. 生成后端代码
+    // 2. Generate backend code
     for _, value := range autoCode.Fields {
         if value.FieldType == "time.Time" {
             autoCode.HasTimer = true
@@ -307,7 +307,7 @@ func (autoCodeService *AutoCodeService) CreateTemp(autoCode system.AutoCodeStruc
         }
     }
     
-    // 3. 解析模板并生成文件
+    // 3. Parse templates and generate files
     templates := []string{
         "server/api.go.tpl",
         "server/model.go.tpl", 
@@ -325,7 +325,7 @@ func (autoCodeService *AutoCodeService) CreateTemp(autoCode system.AutoCodeStruc
         }
     }
     
-    // 4. 自动注入路由和API
+    // 4. Automatically inject routes and APIs
     if autoCode.AutoCreateApiToSql {
         if err = autoCodeService.AutoCreateApi(&autoCode); err != nil {
             return err
@@ -335,79 +335,79 @@ func (autoCodeService *AutoCodeService) CreateTemp(autoCode system.AutoCodeStruc
     return nil
 }
 
-// generateFile 生成单个文件
+// generateFile generates a single file
 func (autoCodeService *AutoCodeService) generateFile(templatePath string, data system.AutoCodeStruct, basePath string) error {
-    // 读取模板文件
+    // Read template file
     templateContent, err := ioutil.ReadFile("resource/template/" + templatePath)
     if err != nil {
         return err
     }
     
-    // 解析模板
+    // Parse template
     tmpl, err := template.New("autocode").Parse(string(templateContent))
     if err != nil {
         return err
     }
     
-    // 生成目标文件路径
+    // Generate target file path
     outputPath := autoCodeService.getOutputPath(templatePath, data, basePath)
     
-    // 创建目录
+    // Create directory
     if err = os.MkdirAll(filepath.Dir(outputPath), 0755); err != nil {
         return err
     }
     
-    // 生成文件
+    // Generate file
     file, err := os.Create(outputPath)
     if err != nil {
         return err
     }
     defer file.Close()
     
-    // 执行模板
+    // Execute template
     return tmpl.Execute(file, data)
 }
 ```
 
-### 自动注入功能
+### Automatic Injection Feature
 
 ```go
-// AutoCreateApi 自动创建API
+// AutoCreateApi automatically creates API
 func (autoCodeService *AutoCodeService) AutoCreateApi(autoCode *system.AutoCodeStruct) error {
     apis := []system.SysApi{
         {
             Path:        "/" + autoCode.Abbreviation + "/create" + autoCode.StructName,
-            Description: "新增" + autoCode.Description,
+            Description: "Add " + autoCode.Description,
             ApiGroup:    autoCode.Description,
             Method:      "POST",
         },
         {
             Path:        "/" + autoCode.Abbreviation + "/delete" + autoCode.StructName,
-            Description: "删除" + autoCode.Description,
+            Description: "Delete " + autoCode.Description,
             ApiGroup:    autoCode.Description,
             Method:      "DELETE",
         },
         {
             Path:        "/" + autoCode.Abbreviation + "/delete" + autoCode.StructName + "ByIds",
-            Description: "批量删除" + autoCode.Description,
+            Description: "Batch delete " + autoCode.Description,
             ApiGroup:    autoCode.Description,
             Method:      "DELETE",
         },
         {
             Path:        "/" + autoCode.Abbreviation + "/update" + autoCode.StructName,
-            Description: "更新" + autoCode.Description,
+            Description: "Update " + autoCode.Description,
             ApiGroup:    autoCode.Description,
             Method:      "PUT",
         },
         {
             Path:        "/" + autoCode.Abbreviation + "/find" + autoCode.StructName,
-            Description: "根据ID获取" + autoCode.Description,
+            Description: "Get " + autoCode.Description + " by ID",
             ApiGroup:    autoCode.Description,
             Method:      "GET",
         },
         {
             Path:        "/" + autoCode.Abbreviation + "/get" + autoCode.StructName + "List",
-            Description: "获取" + autoCode.Description + "列表",
+            Description: "Get " + autoCode.Description + " list",
             ApiGroup:    autoCode.Description,
             Method:      "GET",
         },
@@ -422,7 +422,7 @@ func (autoCodeService *AutoCodeService) AutoCreateApi(autoCode *system.AutoCodeS
     return nil
 }
 
-// AutoCreateMenu 自动创建菜单
+// AutoCreateMenu automatically creates menu
 func (autoCodeService *AutoCodeService) AutoCreateMenu(autoCode *system.AutoCodeStruct) error {
     menu := system.SysBaseMenu{
         ParentId:  "0",
@@ -440,21 +440,21 @@ func (autoCodeService *AutoCodeService) AutoCreateMenu(autoCode *system.AutoCode
 }
 ```
 
-## 🎯 高级功能
+## 🎯 Advanced Features
 
-### 1. 关联表生成
+### 1. Associated Table Generation
 
 ```go
-// 一对多关联配置
+// One-to-many association configuration
 type Association struct {
-    Type        string `json:"type"`        // 关联类型：hasOne, hasMany, belongsTo
-    ForeignKey  string `json:"foreignKey"`  // 外键
-    References  string `json:"references"`  // 引用字段
-    Table       string `json:"table"`       // 关联表
-    StructName  string `json:"structName"`  // 关联结构体
+    Type        string `json:"type"`        // Association type: hasOne, hasMany, belongsTo
+    ForeignKey  string `json:"foreignKey"`  // Foreign key
+    References  string `json:"references"`  // Referenced field
+    Table       string `json:"table"`       // Associated table
+    StructName  string `json:"structName"`  // Associated structure
 }
 
-// 生成关联查询代码
+// Generate association query code
 func generateAssociationCode(associations []Association) string {
     var code strings.Builder
     
@@ -477,14 +477,14 @@ func generateAssociationCode(associations []Association) string {
 }
 ```
 
-### 2. 字典类型支持
+### 2. Dictionary Type Support
 
 ```go
-// 字典字段处理
+// Dictionary field processing
 func processDictField(field Field) string {
     if field.DictType != "" {
         return fmt.Sprintf(`
-        <el-select v-model="formData.%s" placeholder="请选择%s">
+        <el-select v-model="formData.%s" placeholder="Please select %s">
           <el-option
             v-for="item in %sOptions"
             :key="item.value"
@@ -497,15 +497,15 @@ func processDictField(field Field) string {
             field.DictType,
         )
     }
-    return fmt.Sprintf(`<el-input v-model="formData.%s" placeholder="请输入%s" />`,
+    return fmt.Sprintf(`<el-input v-model="formData.%s" placeholder="Please enter %s" />`,
         field.FieldJson, field.FieldDesc)
 }
 ```
 
-### 3. 文件上传字段
+### 3. File Upload Field
 
 ```go
-// 文件上传字段模板
+// File upload field template
 const fileUploadTemplate = `
 <el-upload
   class="upload-demo"
@@ -514,35 +514,35 @@ const fileUploadTemplate = `
   :on-success="handleFileSuccess"
   :before-upload="beforeFileUpload"
 >
-  <el-button type="primary">点击上传</el-button>
+  <el-button type="primary">Click to upload</el-button>
   <template #tip>
-    <div class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+    <div class="el-upload__tip">Only jpg/png files can be uploaded, and the size should not exceed 500kb</div>
   </template>
 </el-upload>
 `
 
-// 生成文件上传处理函数
+// Generate file upload handling functions
 func generateFileUploadMethods(fields []Field) string {
     var methods strings.Builder
     
     for _, field := range fields {
         if field.FieldType == "file" {
             methods.WriteString(fmt.Sprintf(`
-// %s文件上传成功回调
+// %s file upload success callback
 const handle%sSuccess = (response) => {
   formData.value.%s = response.data.file.url
 }
 
-// %s文件上传前校验
+// %s file upload pre-check
 const before%sUpload = (file) => {
   const isJPG = file.type === 'image/jpeg' || file.type === 'image/png'
   const isLt2M = file.size / 1024 / 1024 < 2
   
   if (!isJPG) {
-    ElMessage.error('上传头像图片只能是 JPG/PNG 格式!')
+    ElMessage.error('Uploaded avatar image can only be in JPG/PNG format!')
   }
   if (!isLt2M) {
-    ElMessage.error('上传头像图片大小不能超过 2MB!')
+    ElMessage.error('Uploaded avatar image size cannot exceed 2MB!')
   }
   return isJPG && isLt2M
 }`,
@@ -558,25 +558,25 @@ const before%sUpload = (file) => {
 }
 ```
 
-## 📊 生成统计
+## 📊 Generation Statistics
 
-### 代码生成记录
+### Code Generation Records
 
 ```go
 type AutoCodeHistory struct {
     ID            uint      `json:"ID" gorm:"primarykey"`
     CreatedAt     time.Time `json:"CreatedAt"`
     UpdatedAt     time.Time `json:"UpdatedAt"`
-    StructName    string    `json:"structName" gorm:"comment:结构体名称"`
-    TableName     string    `json:"tableName" gorm:"comment:表名"`
-    RequestMeta   string    `json:"requestMeta" gorm:"type:text;comment:请求meta信息"`
-    AutoCodePath  string    `json:"autoCodePath" gorm:"comment:自动生成代码路径"`
-    InjectionMeta string    `json:"injectionMeta" gorm:"type:text;comment:注入meta信息"`
-    ApiIDs        string    `json:"apiIDs" gorm:"comment:api表注册内容"`
-    Flag          int       `json:"flag" gorm:"comment:表示对应状态 0 代表创建, 1 代表回滚 ...."`
+    StructName    string    `json:"structName" gorm:"comment:Structure name"`
+    TableName     string    `json:"tableName" gorm:"comment:Table name"`
+    RequestMeta   string    `json:"requestMeta" gorm:"type:text;comment:Request meta information"`
+    AutoCodePath  string    `json:"autoCodePath" gorm:"comment:Automatically generated code path"`
+    InjectionMeta string    `json:"injectionMeta" gorm:"type:text;comment:Injection meta information"`
+    ApiIDs        string    `json:"apiIDs" gorm:"comment:API table registration content"`
+    Flag          int       `json:"flag" gorm:"comment:Indicates the corresponding status 0 represents creation, 1 represents rollback ...."`
 }
 
-// 记录生成历史
+// Record generation history
 func (autoCodeService *AutoCodeService) CreateAutoCodeHistory(meta, path, injectionMeta, apiIDs string, autoCode system.AutoCodeStruct) error {
     return global.GVA_DB.Create(&system.SysAutoCodeHistory{
         RequestMeta:   meta,
@@ -590,23 +590,23 @@ func (autoCodeService *AutoCodeService) CreateAutoCodeHistory(meta, path, inject
 }
 ```
 
-## 🔄 代码回滚
+## 🔄 Code Rollback
 
 ```go
-// RollBack 回滚自动生成的代码
+// RollBack rollback automatically generated code
 func (autoCodeService *AutoCodeService) RollBack(id uint) error {
     var history system.SysAutoCodeHistory
     if err := global.GVA_DB.First(&history, id).Error; err != nil {
         return err
     }
     
-    // 删除生成的文件
+    // Delete generated files
     var meta system.AutoCodeStruct
     if err := json.Unmarshal([]byte(history.RequestMeta), &meta); err != nil {
         return err
     }
     
-    // 删除后端文件
+    // Delete backend files
     serverFiles := []string{
         fmt.Sprintf("app/%s/model/%s.go", meta.PackageName, meta.PackageName),
         fmt.Sprintf("app/%s/request/%s.go", meta.PackageName, meta.PackageName),
@@ -621,7 +621,7 @@ func (autoCodeService *AutoCodeService) RollBack(id uint) error {
         }
     }
     
-    // 删除前端文件
+    // Delete frontend files
     webFiles := []string{
         fmt.Sprintf("../web/src/api/%s.js", meta.PackageName),
         fmt.Sprintf("../web/src/view/%s/%s.vue", meta.PackageName, meta.PackageName),
@@ -634,20 +634,20 @@ func (autoCodeService *AutoCodeService) RollBack(id uint) error {
         }
     }
     
-    // 删除API记录
+    // Delete API records
     var apiIDs []uint
     if err := json.Unmarshal([]byte(history.ApiIDs), &apiIDs); err == nil {
         global.GVA_DB.Delete(&system.SysApi{}, apiIDs)
     }
     
-    // 更新历史记录状态
+    // Update history record status
     return global.GVA_DB.Model(&history).Update("flag", 1).Error
 }
 ```
 
-## 🎨 前端集成
+## 🎨 Frontend Integration
 
-### 代码生成器页面
+### Code Generator Page
 
 ```vue
 <template>
@@ -655,48 +655,48 @@ func (autoCodeService *AutoCodeService) RollBack(id uint) error {
     <el-card>
       <template #header>
         <div class="card-header">
-          <span>代码生成器</span>
+          <span>Code Generator</span>
         </div>
       </template>
       
       <el-form ref="autoCodeForm" :model="form" :rules="rules" label-width="120px">
-        <el-form-item label="结构体名称" prop="structName">
-          <el-input v-model="form.structName" placeholder="请输入结构体名称" />
+        <el-form-item label="Structure Name" prop="structName">
+          <el-input v-model="form.structName" placeholder="Please enter structure name" />
         </el-form-item>
         
-        <el-form-item label="表名" prop="tableName">
-          <el-input v-model="form.tableName" placeholder="请输入表名" />
+        <el-form-item label="Table Name" prop="tableName">
+          <el-input v-model="form.tableName" placeholder="Please enter table name" />
         </el-form-item>
         
-        <el-form-item label="包名" prop="packageName">
-          <el-input v-model="form.packageName" placeholder="请输入包名" />
+        <el-form-item label="Package Name" prop="packageName">
+          <el-input v-model="form.packageName" placeholder="Please enter package name" />
         </el-form-item>
         
-        <el-form-item label="结构体描述" prop="description">
-          <el-input v-model="form.description" placeholder="请输入结构体描述" />
+        <el-form-item label="Structure Description" prop="description">
+          <el-input v-model="form.description" placeholder="Please enter structure description" />
         </el-form-item>
         
-        <!-- 字段配置 -->
-        <el-form-item label="字段配置">
+        <!-- Field configuration -->
+        <el-form-item label="Field Configuration">
           <el-table :data="form.fields" border>
-            <el-table-column label="字段名" prop="fieldName" />
-            <el-table-column label="字段描述" prop="fieldDesc" />
-            <el-table-column label="字段类型" prop="fieldType" />
-            <el-table-column label="数据库类型" prop="dataType" />
-            <el-table-column label="操作">
+            <el-table-column label="Field Name" prop="fieldName" />
+            <el-table-column label="Field Description" prop="fieldDesc" />
+            <el-table-column label="Field Type" prop="fieldType" />
+            <el-table-column label="Database Type" prop="dataType" />
+            <el-table-column label="Actions">
               <template #default="scope">
-                <el-button @click="editField(scope.$index)">编辑</el-button>
-                <el-button @click="deleteField(scope.$index)">删除</el-button>
+                <el-button @click="editField(scope.$index)">Edit</el-button>
+                <el-button @click="deleteField(scope.$index)">Delete</el-button>
               </template>
             </el-table-column>
           </el-table>
           
-          <el-button @click="addField" style="margin-top: 10px;">添加字段</el-button>
+          <el-button @click="addField" style="margin-top: 10px;">Add Field</el-button>
         </el-form-item>
         
         <el-form-item>
-          <el-button type="primary" @click="generateCode">生成代码</el-button>
-          <el-button @click="resetForm">重置</el-button>
+          <el-button type="primary" @click="generateCode">Generate Code</el-button>
+          <el-button @click="resetForm">Reset</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -717,41 +717,34 @@ const form = reactive({
 })
 
 const rules = {
-  structName: [{ required: true, message: '请输入结构体名称', trigger: 'blur' }],
-  tableName: [{ required: true, message: '请输入表名', trigger: 'blur' }],
-  packageName: [{ required: true, message: '请输入包名', trigger: 'blur' }]
+  structName: [{ required: true, message: 'Please enter structure name', trigger: 'blur' }],
+  tableName: [{ required: true, message: 'Please enter table name', trigger: 'blur' }],
+  packageName: [{ required: true, message: 'Please enter package name', trigger: 'blur' }]
 }
 
 const generateCode = async () => {
   try {
     const res = await createTemp(form)
     if (res.code === 0) {
-      ElMessage.success('代码生成成功')
+      ElMessage.success('Code generated successfully')
     }
   } catch (error) {
-    ElMessage.error('代码生成失败')
+    ElMessage.error('Code generation failed')
   }
 }
 </script>
 ```
 
-## 🐛 常见问题
+## 🐛 Frequently Asked Questions
 
-### Q: 生成的代码编译失败？
-A: 检查字段类型配置是否正确，确保 Go 类型和数据库类型匹配。
+### Q: The generated code fails to compile?
+A: Check if the field type configuration is correct, ensuring that the Go type and database type match.
 
-### Q: 前端页面显示异常？
-A: 检查字段的前端显示配置，确保必要的字段已设置为前端显示。
+### Q: The frontend page displays abnormally?
+A: Check the frontend display configuration of the fields, ensuring that the necessary fields are set to be displayed on the frontend.
 
-### Q: 如何自定义生成模板？
-A: 修改 `server/resource/template/` 目录下的模板文件，重启服务即可生效。
+### Q: How to customize the generation template?
+A: Modify the template files in the `server/resource/template/` directory and restart the service to take effect.
 
-### Q: 生成后如何添加自定义逻辑？
-A: 在生成的代码基础上添加自定义方法，避免直接修改生成的核心 CRUD 方法。
-
-## 📚 相关文档
-
-- [数据库设计](./database-design.md)
-- [服务端配置](./config.md)
-- [前端开发指南](../web/index.md)
-- [代码生成器](../generator/server.md)
+### Q: How to add custom logic after generation?
+A: Add custom methods on top of the generated code, avoiding direct modification of the core CRUD methods that are generated.

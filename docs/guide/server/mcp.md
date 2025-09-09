@@ -43,62 +43,62 @@ Add the following MCP configuration in your AI editor's configuration file:
 }
 ```
 
-<img src="/mcp/ai-config-demo.svg" alt="AI编辑器MCP配置示例" style="width: 100%; max-width: 800px; margin: 20px 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
+<img src="/mcp/ai-config-demo.svg" alt="AI Editor MCP Configuration Example" style="width: 100%; max-width: 800px; margin: 20px 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
 
-#### 第三步：重启编辑器
-保存配置后重启你的AI编辑工具，等待MCP连接建立，MCP状态显示绿色即表示连接成功
+#### Step 3: Restart Editor
+After saving the configuration, restart your AI editing tool, wait for MCP connection to be established, green MCP status indicates successful connection
 
-### 🚀 AI助手新能力
+### 🚀 AI Assistant New Capabilities
 
-配置完成后，AI助手将获得以下超能力：
+After configuration, the AI assistant will gain the following superpowers:
 
-- 🧠 **深度理解项目**：自动识别GVA项目结构和代码模式
-- 🎯 **智能代码生成**：根据需求自动生成完整的功能模块
-- 🔍 **精准文件定位**：快速找到相关文件并提供修改建议
-- 📱 **全栈开发**：同时处理前端、后端、数据库的代码生成
-- 🎨 **UI自动化**：自动配置路由、菜单和权限系统
+- 🧠 **Deep Project Understanding**: Automatically identify GVA project structure and code patterns
+- 🎯 **Intelligent Code Generation**: Automatically generate complete functional modules based on requirements
+- 🔍 **Precise File Location**: Quickly find related files and provide modification suggestions
+- 📱 **Full-stack Development**: Handle frontend, backend, and database code generation simultaneously
+- 🎨 **UI Automation**: Automatically configure routes, menus, and permission systems
 
-### 使用示例
+### Usage Examples
 
-只需要告诉AI："我想创建一个用户管理模块"，AI就会：
-- 📋 自动生成用户表结构
-- 🔧 创建完整的CRUD API
-- 🎨 生成前端管理页面
-- 📱 配置菜单和路由
-- 🔐 设置权限控制
+Just tell the AI: "I want to create a user management module", and the AI will:
+- 📋 Automatically generate user table structure
+- 🔧 Create complete CRUD API
+- 🎨 Generate frontend management pages
+- 📱 Configure menus and routes
+- 🔐 Set up permission controls
 
-## 🎓 开发者培训资源
+## 🎓 Developer Training Resources
 
-## 授权用户内部培训文档【公开】
+## Authorized User Internal Training Documentation [Public]
 
-[MCP内部培训文档](https://flipped-aurora.feishu.cn/docx/DWvvdLVfvoZajJxwDR1cDThhnAh?from=from_copylink)
+[MCP Internal Training Documentation](https://flipped-aurora.feishu.cn/docx/DWvvdLVfvoZajJxwDR1cDThhnAh?from=from_copylink)
 
-## 视频教程
+## Video Tutorials
 
-[点击观看](https://www.bilibili.com/video/BV1cNJgzbEHT)
+[Click to Watch](https://www.bilibili.com/video/BV1cNJgzbEHT)
 
-## 配置文件说明
+## Configuration File Description
 
 ```yaml
 mcp:
-    name: GVA_MCP  # MCP服务名称
-    version: v1.0.0 # 版本号
-    sse_path: /sse # SSE路径
-    message_path: /message # 消息路径
-    url_prefix: '' # URL前缀
+    name: GVA_MCP  # MCP service name
+    version: v1.0.0 # Version number
+    sse_path: /sse # SSE path
+    message_path: /message # Message path
+    url_prefix: '' # URL prefix
 ```
 
-## 自动填写页面参数示例
+## Auto-fill Page Parameter Example
 
 <img src="/mcp/image.png"/>
 
-点击生成后后端会获得MCP模板
+After clicking generate, the backend will get MCP template
 
-在模板的handle函数中书写业务逻辑即可实现一个简单的mcp工具
+Write business logic in the template's handle function to implement a simple MCP tool
 
 <img src="/mcp/image2.png"/>
 
-## 调试工具展示
+## Debug Tool Display
 
 <img src="/mcp/image3.png"/>
 

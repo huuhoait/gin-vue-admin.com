@@ -1,81 +1,81 @@
-# 代码生成器使用指南
+# Code Generator Usage Guide
 
-## 2.5.3以后需先创造package
-参考视频：https://www.bilibili.com/video/BV1kv4y1g7nT?p=3
+## Package Creation Required After 2.5.3
+Reference video: https://www.bilibili.com/video/BV1kv4y1g7nT?p=3
 
-## 代码生成器
+## Code Generator
 
-最上方的点这里从现有数据库创建代码，可以选择数据库中的表，然后生成对应的代码。
+Click "Create code from existing database" at the top to select tables from the database and generate corresponding code.
 
 ![image-20201026165650624](/generator/image-20201026165650624.png)
 
-| 界面名称         | 对应生成结构体结构体名称          | 中文说明               | 备注                                                                             |
+| Interface Name         | Corresponding Generated Struct Name          | Description               | Notes                                                                             |
 |--------------|-----------------------|--------------------|--------------------------------------------------------------------------------|
-| `Struct名称`   | `StructName`          | 结构体名称              | `server/model` 文件夹下的结构体文件中，结构体的名称，首字母必须**大写**。                                 |
-| `TableName`  | `TableName`           | 指定表名(非必填)          | 数据库中生成的与结构体对应的数据表名。                                                            |
-| `Struct简称`   | `Abbreviation`        | 简称会作为入参对象名和路由group | 用于结构体作为参数时的名称，以及路由 group 名称。这里一般与**Stuct名称**对应，但是首字母小写。                        |
-| `Struct中文名称` | `Description`         | 中文描述作为自动api描述      | 作为自动api描述，也是左侧菜单显示时的默认菜单名。                                                     |
-| `文件名称`       | `PackageName`         | 生成文件的默认名称          | 使用 小驼峰 形式命名。生成后端代码时，model下的文件名会用这里的命名。                                         |
-| `Package（包）` | `Package`             | 生成的目标包             | 必选，自动化代码会生成到所选的包下，自动填充enter.go等文件                                              |
-| `业务库`        | `BusinessDB`          | 选择业务库              | 可选，如果选中本条目，则自动生成的global.GVA_DB会被替换为global.MustGetGlobalDBByDBName(BusinessDb)。 |
-| `使用GVA结构`    | `GvaModel`            | 使用GVA结构            | 建议选中，如果不选则不会自动创建api表，需要自己去api管理里面手动增加对应路由。                                     |
-| `创建资源标识`           | `AutoCreateResource`  | 创建资源标识             | 可选，此功能需要配合插件市场的组织管理插件使用。                                                       |
-| `自动创建api`    | `AutoCreateApiToSql`  | 自动创建api            | 建议选中，把自动生成的API注册进数据库。                                                          |
-| `自动创建菜单`           | `AutoCreateMenuToSql` | 自动创建菜单             | 建议选中，把自动生成的菜单注册进数据库。                                                           |
-| `自动移动文件`     | `AutoMoveFile`        | 自动移动文件             | 建议选中，自动迁移生成的文件到yaml配置的对应位置。                                                    |
+| `Struct Name`   | `StructName`          | Struct name              | The struct name in the struct file under `server/model` folder, first letter must be **uppercase**.                                 |
+| `TableName`  | `TableName`           | Specify table name (optional)          | The data table name in the database corresponding to the struct.                                                            |
+| `Struct Abbreviation`   | `Abbreviation`        | Abbreviation will be used as parameter object name and route group | Used as the name when struct is used as parameter, and route group name. Generally corresponds to **Struct Name** but with lowercase first letter.                        |
+| `Struct Description` | `Description`         | Description as automatic API description      | Used as automatic API description, also the default menu name displayed in the left menu.                                                     |
+| `File Name`       | `PackageName`         | Default name for generated files          | Use camelCase naming. When generating backend code, the file name under model will use this naming.                                         |
+| `Package` | `Package`             | Target package for generation             | Required, automated code will be generated to the selected package, automatically filling enter.go and other files                                              |
+| `Business Database`        | `BusinessDB`          | Select business database              | Optional, if selected, the automatically generated global.GVA_DB will be replaced with global.MustGetGlobalDBByDBName(BusinessDb). |
+| `Use GVA Structure`    | `GvaModel`            | Use GVA structure            | Recommended to select, if not selected, API table will not be automatically created, need to manually add corresponding routes in API management.                                     |
+| `Create Resource Identifier`           | `AutoCreateResource`  | Create resource identifier             | Optional, this feature needs to be used with organization management plugin from plugin market.                                                       |
+| `Auto Create API`    | `AutoCreateApiToSql`  | Auto create API            | Recommended to select, register automatically generated APIs into database.                                                          |
+| `Auto Create Menu`           | `AutoCreateMenuToSql` | Auto create menu             | Recommended to select, register automatically generated menus into database.                                                           |
+| `Auto Move Files`     | `AutoMoveFile`        | Auto move files             | Recommended to select, automatically migrate generated files to corresponding positions configured in yaml.                                                    |
 
-## 字段界面说明
+## Field Interface Description
 
 ![image-20201026165813881](/generator/image-20201026165813881.png)
 
-| 组件内容名称      | 对应生成结构体结构体名称                | 中文说明                     | 备注                                                                                                             |
+| Component Content Name      | Corresponding Generated Struct Name                | Description                     | Notes                                                                                                             |
 |-------------|-----------------------------|--------------------------|----------------------------------------------------------------------------------------------------------------|
-| `Field名称`   | `FieldName`                 | 结构体名称                    | struct结构体中的字段名称，首字母**大写**                                                                                      |
-| `Field中文名`  | `FieldDesc`                 | 结构体中文名称                  | 对应struct结构体tag中的comment字段值，也是数据列表展示表格的表头名称。                                                                    |
-| `FieldJSON` | `FieldJson`                 | golang struct tag `json` | 对应struct结构体tag中的json字段值。在使用struct对象调用某个字段时，使用“对象.json字段值”                                                      |
-| `数据库字段名`    | `ColumnName`                | 数据库字段名                   | 对应数据库中的字段名称                                                                                                    |
-| `Field数据类型` | `FieldType`                 | 字段对应golang数据类型           | 对应struct结构体中的字段类型                                                                                              |
-| `数据库字段长度`   | `DataTypeLong`              | 字段数据类型长度                 | 对应生成的数据表中的字段长度                                                                                                 |
-| `数据库字段描述`   | `Comment`                   | 数据库字段描述                  | 数据库字段描述,会根据此属性生成前端表格的表头名称和表单的label名称                                                                           |
-| `默认值`       | `DefaultValue`              | 数据库字段默认值                 | 当数据为空时，数据库录入时会自动以DefaultValue值进行填充                                                                             |
-| `是否必填`      | `Require`                   | 是否必填                     | 自动创建前后端必填校验                                                                                                    |
-| `校验失败文案`    | `ErrorText`                 | 必填校验失败的文案                | 必填校验失败的文案                                                                                                      |
-| `是否排序`      | `Sort`                      | 是否排序                     | 自动创建前后端排序代码                                                                                                    |
-| `前端可见`      | `Front`                     | 前端可见                     | 前端是否创建本字端（常用于仅后端使用，前端不需要展示给用户的字段）                                                                              |
-| `主键`        | `PrimaryKey`                | 数据库主键                    | 数据库主键，在不适用gva默认结构下，本字段会自动成为查询主要字段                                                                              |
-| `是否可清空`     | `Clearable`                 | clearable                    | 前端输入框右侧是否出现X允许用户点击清空本字段已经输入过的内容                                                                                |
-| `Field查询条件` | `FieldSearchType`           | 搜索类型                     | 用于实现该对象数据列表的条件查询                                                                                               |
-| `关联字典`      | `DictType`                  | 关联字典标记                   | 从字典功能中关联一个可用的字典进行数据操作，展示位下拉选择。                                                                                 |
-| `数据源配置`     | `dataSource:{table,label,value}` | 数据源配置                   | 本功能用于产生一个关联字段，字段在前端展示位下拉选择（单选），字段来源取决于配置内容，数据源表为内容索取的表，展示用字段配置，则会从表取本字段用于前端下拉框的展示内容，存储用字段，则会从表取本字段用于选中后真实的赋值内容 |
+| `Field Name`   | `FieldName`                 | Struct name                    | Field name in struct, first letter **uppercase**                                                                                      |
+| `Field Description`  | `FieldDesc`                 | Field description                  | Corresponds to comment field value in struct tag, also the table header name in data list display.                                                                    |
+| `FieldJSON` | `FieldJson`                 | golang struct tag `json` | Corresponds to json field value in struct tag. When using struct object to call a field, use "object.json field value"                                                      |
+| `Database Field Name`    | `ColumnName`                | Database field name                   | Corresponds to field name in database                                                                                                    |
+| `Field Data Type` | `FieldType`                 | Field corresponding golang data type           | Corresponds to field type in struct                                                                                              |
+| `Database Field Length`   | `DataTypeLong`              | Field data type length                 | Corresponds to field length in generated data table                                                                                                 |
+| `Database Field Description`   | `Comment`                   | Database field description                  | Database field description, will generate frontend table header name and form label name based on this attribute                                                                           |
+| `Default Value`       | `DefaultValue`              | Database field default value                 | When data is empty, database entry will automatically fill with DefaultValue                                                                             |
+| `Required`      | `Require`                   | Whether required                     | Automatically create frontend and backend required validation                                                                                                    |
+| `Validation Error Text`    | `ErrorText`                 | Required validation failure text                | Required validation failure text                                                                                                      |
+| `Sortable`      | `Sort`                      | Whether sortable                     | Automatically create frontend and backend sorting code                                                                                                    |
+| `Frontend Visible`      | `Front`                     | Frontend visible                     | Whether frontend creates this field (commonly used for backend-only fields that don't need to be displayed to users)                                                                              |
+| `Primary Key`        | `PrimaryKey`                | Database primary key                    | Database primary key, when not using gva default structure, this field will automatically become the main query field                                                                              |
+| `Clearable`     | `Clearable`                 | Clearable                    | Whether X appears on the right side of frontend input box allowing users to click to clear the field content                                                                                |
+| `Field Query Condition` | `FieldSearchType`           | Search type                     | Used to implement conditional queries for object data list                                                                                               |
+| `Associated Dictionary`      | `DictType`                  | Associated dictionary marker                   | Associate an available dictionary from dictionary function for data operations, displayed as dropdown selection.                                                                                 |
+| `Data Source Configuration`     | `dataSource:{table,label,value}` | Data source configuration                   | This function is used to generate an associated field, field is displayed as dropdown selection (single select) in frontend, field source depends on configuration content, data source table is the table for content retrieval, display field configuration will take this field from table for frontend dropdown display content, storage field will take this field from table for actual assignment value after selection |
 
 
-## 1. 生成一步到位代码包
+## 1. Generate One-Step Code Package
 
-### 1.1 自行设计业务基础结构体模型
+### 1.1 Design Business Basic Struct Model
 
-- 点击左侧菜单中的 **系统工具 → 代码生成器**
-- 填写好 `Struct名称` ` tableName` `Struct简称` `Struct中文名称` `文件名称` 空格
-- 选择好 `自动创建api` `自动移动文件` 按钮
+- Click **System Tools → Code Generator** in the left menu
+- Fill in `Struct Name`, `TableName`, `Struct Abbreviation`, `Struct Description`, `File Name` fields
+- Select `Auto Create API` and `Auto Move Files` buttons
 
-- 点击 **新增Field** 按钮，为数据表、struct结构体创建字段,  具体请看[字段界面说明](#字段界面说明)。
+- Click **Add Field** button to create fields for data table and struct, see [Field Interface Description](#field-interface-description) for details.
 
-### 1.2 从数据库的选择表进行生成结构体
+### 1.2 Generate Struct from Database Table Selection
 
-- 点击左侧菜单中的**系统工具** > **代码生成器** ,代码生成器是用来生成CURD代码的。
+- Click **System Tools** > **Code Generator** in the left menu, code generator is used to generate CRUD code.
 
-- 点击 **点这里从现有数据库创建代码**
+- Click **Create code from existing database here**
 
 - ![image-20200915160906999](/generator/image-20200915160906999.png)
 
-- 选择 **数据库名** 以及 **表名**
+- Select **Database Name** and **Table Name**
 
 - ![image-20200915161618174](/generator/image-20200915161618174.png)
 
-- 点击**使用此表创建**
+- Click **Use this table to create**
 
 - ![image-20200915161727520](/generator/image-20200915161727520.png)
 
-- 自行编辑好各个`Filed`的所需的搜索条件, 需要关联的字典, 或者其他自己要修改的地方点击编辑进行修改.
+- Edit the required search conditions for each `Field`, associated dictionaries, or other modifications you need to make by clicking edit.
 
 - ![image-20200915161917791](/generator/image-20200915161917791.png)
 
@@ -83,25 +83,25 @@
 
 
 
-### 1.3  点击生成代码按钮
+### 1.3 Click Generate Code Button
 
-:::info 注意
+:::info Note
 
-完成1.1或1.2步骤操作, 其中一个操作喔!
+Complete step 1.1 or 1.2 operation, one of them!
 
 :::
 
-代码会自动移动到前后端你所创建的package文件夹下
-前端分别会移动到 `/api/${pageageName}` 和 `/view/${pageageName}` 下
-后端分别会移动到 `/api/${pageageName}`、 `/service/${pageageName}` 、 `/router/${pageageName}` 下、 `/model/${pageageName}` 下
+Code will automatically move to the package folder you created in both frontend and backend
+Frontend will move to `/api/${packageName}` and `/view/${packageName}` respectively
+Backend will move to `/api/${packageName}`, `/service/${packageName}`, `/router/${packageName}`, `/model/${packageName}` respectively
 
-:::tip 提示
-在创建自动化代码时候会自动创建enter.go 一下为关于enter.go的介绍
+:::tip Tip
+When creating automated code, enter.go will be automatically created. Below is an introduction about enter.go
 :::
 
-enter.go内部将所有的相关功能模块下的结构统一为一个总结构体，然后将可以通过new这个总结构体实现对本模块的所有结构统一实例化使用 我们此处仅以api下的system分类为例（其他模块操作类似 model模块无enter.go）
+enter.go internally unifies all structures under related functional modules into a total struct, then you can use new to instantiate all structures of this module uniformly. We only use the system category under api as an example here (other modules operate similarly, model module has no enter.go)
 
-我们以system这个package为例
+We use the system package as an example
 ```
 enter.go
   sys_api.go
@@ -120,7 +120,7 @@ enter.go
   sys_user.go
 ```
 enter.go
-文件中存在如下结构
+The file contains the following structure
 
 ```go
 
@@ -129,9 +129,9 @@ package system
 import "github.com/flipped-aurora/gin-vue-admin/server/service"
 
 
-// 此处为功能模块的分组 表示我们这边是API模块 我们总结了当前目录下的所有结构体
+// This is the grouping of functional modules, indicating that we are the API module, we summarize all structs in the current directory
 type ApiGroup struct {
-	DBApi	//这是当前分组下存在的模块 DBApi模块 就来自于 sys_initdb.go 下的 type DBApi struct{} 下方同理
+	DBApi	//This is the module that exists under the current group, DBApi module comes from type DBApi struct{} under sys_initdb.go, same below
 	JwtApi
 	BaseApi
 	SystemApi
@@ -147,10 +147,10 @@ type ApiGroup struct {
 }
 
 
-// 此处是为了统一方便使用Service下的功能 因此统一获取做了拆解 方便api模块下所有的功能都可以通过调用此处的变量获取到对应的Service实例从而调用其方法
+// This is for unified and convenient use of Service functions, so unified acquisition is decomposed for convenience, all functions under api module can get corresponding Service instances by calling variables here and then call their methods
 var (
 	apiService              = service.ServiceGroupApp.SystemServiceGroup.ApiService 
-	// apiService： 例如此处描述的就是 service包下的ServiceGroup示例下的SystemServiceGroup功能组的ApiService相关功能
+	// apiService: For example, this describes the ApiService related functions of the SystemServiceGroup functional group under the ServiceGroup instance under the service package
 	jwtService              = service.ServiceGroupApp.SystemServiceGroup.JwtService
 	menuService             = service.ServiceGroupApp.SystemServiceGroup.MenuService
 	userService             = service.ServiceGroupApp.SystemServiceGroup.UserService
@@ -168,9 +168,9 @@ var (
 
 ```
 
-这里我们介绍完了声明enter的过程 和使用其他包下enter的过程  然后我们找到实例化enter的过程
+Here we have introduced the process of declaring enter and using enter from other packages, then we find the process of instantiating enter
 
-查看/server/api/v1/enter.go 这个文件
+Check the `/server/api/v1/enter.go` file
 
 ```go
 
@@ -188,30 +188,30 @@ type ApiGroup struct {
 	AutoCodeApiGroup autocode.ApiGroup
 }
 
-// 我们在此处对上方前面做过的所有声明进行了总结并且实例化为App 其他包我们通过调用 v1.ApiGroupApp.xxxx组.xxx功能.xxx方法即可
+// Here we summarize all the declarations made above and instantiate them as App. Other packages can be called through v1.ApiGroupApp.xxxxGroup.xxxFunction.xxxMethod
 var ApiGroupApp = new(ApiGroup)
 
 
 ```
-手动添加自动化生成代码的方式也介绍完了，此模式方便大家模块化使用，看起来比较长，但是其便于对单一分类统一管理，创建同意方法等，同样也便于项目后期拓展维护。在后续迭代中不再痛苦。
+The method of manually adding automatically generated code is also introduced. This mode is convenient for modular use. It looks long, but it facilitates unified management of single categories, creating unified methods, etc., and also facilitates project expansion and maintenance in the later stage. It won't be painful in subsequent iterations.
 
-### 1.4 预览代码
+### 1.4 Preview Code
 
-:::info 注意
+:::info Note
 
-此功能需要在 [v2.3.9](https://github.com/flipped-aurora/gin-vue-admin/tree/v2.3.9) 之后的版本才会有喔, 不包含v2.3.9!
+This function requires version [v2.3.9](https://github.com/flipped-aurora/gin-vue-admin/tree/v2.3.9) or later, not including v2.3.9!
 
 :::
 
 ![image-20210224151109195](/generator/image-20210224151109195.png)
 
-效果预览
+Effect Preview
 
 ![image-20210224151320620](/generator/image-20210224151320620.png)
 
-## 2. 注册路由和数据库表
+## 2. Register Routes and Database Tables
 
-### 2.1 注册路由 (目前版本已可自动添加)
+### 2.1 Register Routes (Current version can be added automatically)
 
 [server/initialize/router.go](https://github.com/flipped-aurora/gin-vue-admin/blob/master/server/initialize/router.go)
 
@@ -229,58 +229,58 @@ import (
 	"net/http"
 )
 
-// 初始化总路由
+// Initialize the main router
 
 func Routers() *gin.Engine {
 	Router := gin.Default()
 
-	// 如果想要不使用nginx代理前端网页，可以修改 web/.env.production 下的
+	// If you want to use the frontend webpage without nginx proxy, you can modify web/.env.production
 	// VUE_APP_BASE_API = /
 	// VUE_APP_BASE_PATH = http://localhost
-	// 然后执行打包命令 npm run build。在打开下面4行注释
-	// Router.LoadHTMLGlob("./dist/*.html") // npm打包成dist的路径
+	// Then execute the build command npm run build. Uncomment the following 4 lines
+	// Router.LoadHTMLGlob("./dist/*.html") // npm package path for dist
 	// Router.Static("/favicon.ico", "./dist/favicon.ico")
-	// Router.Static("/static", "./dist/assets")   // dist里面的静态资源
-	// Router.StaticFile("/", "./dist/index.html") // 前端网页入口页面
+	// Router.Static("/static", "./dist/assets")   // Static resources inside dist
+	// Router.StaticFile("/", "./dist/index.html") // Frontend webpage entry point
 
-	Router.StaticFS(global.GVA_CONFIG.Local.Path, http.Dir(global.GVA_CONFIG.Local.Path)) // 为用户头像和文件提供静态地址
-	// Router.Use(middleware.LoadTls())  // 打开就能玩https了
+	Router.StaticFS(global.GVA_CONFIG.Local.Path, http.Dir(global.GVA_CONFIG.Local.Path)) // Provide static addresses for user avatars and files
+	// Router.Use(middleware.LoadTls())  // Enable HTTPS
 	global.GVA_LOG.Info("use middleware logger")
-	// 跨域，如需跨域可以打开下面的注释
-	// Router.Use(middleware.Cors()) // 直接放行全部跨域请求
-	//Router.Use(middleware.CorsByRules()) // 按照配置的规则放行跨域请求
+	// Cross-domain, if cross-domain is needed, you can uncomment the following
+	// Router.Use(middleware.Cors()) // Allow all cross-domain requests
+	//Router.Use(middleware.CorsByRules()) // Allow cross-domain requests according to configured rules
 	global.GVA_LOG.Info("use middleware cors")
 	Router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	global.GVA_LOG.Info("register swagger handler")
-	// 方便统一添加路由组前缀 多服务器上线使用
+	// Convenient for unified route group prefix addition for multi-server deployment
 
-	// 获取路由组实例
+	// Get route group instances
 	systemRouter := router.RouterGroupApp.System
 	exampleRouter := router.RouterGroupApp.Example
 	autocodeRouter := router.RouterGroupApp.Autocode
-	// 来自router的enter.go
+	// From router's enter.go
 	PublicGroup := Router.Group("")
 	{
-		// 健康监测
+		// Health check
 		PublicGroup.GET("/health", func(c *gin.Context) {
 			c.JSON(200, "ok")
 		})
 	}
 	{
-		systemRouter.InitBaseRouter(PublicGroup) // 注册基础功能路由 不做鉴权
-		systemRouter.InitInitRouter(PublicGroup) // 自动初始化相关
+		systemRouter.InitBaseRouter(PublicGroup) // Register basic function routes without authentication
+		systemRouter.InitInitRouter(PublicGroup) // Auto initialization related
 	}
 	PrivateGroup := Router.Group("")
 	PrivateGroup.Use(middleware.JWTAuth()).Use(middleware.CasbinHandler())
 	{
-		systemRouter.InitApiRouter(PrivateGroup)                 // 注册功能api路由
-		systemRouter.InitJwtRouter(PrivateGroup)                 // jwt相关路由
-		systemRouter.InitUserRouter(PrivateGroup)                // 注册用户路由
-		systemRouter.InitMenuRouter(PrivateGroup)                // 注册menu路由
-		systemRouter.InitSystemRouter(PrivateGroup)              // system相关路由
-		systemRouter.InitCasbinRouter(PrivateGroup)              // 权限相关路由
-		systemRouter.InitAutoCodeRouter(PrivateGroup)            // 创建自动化代码
-		systemRouter.InitAuthorityRouter(PrivateGroup)           // 注册角色路由
+		systemRouter.InitApiRouter(PrivateGroup)                 // Register function API routes
+		systemRouter.InitJwtRouter(PrivateGroup)                 // JWT related routes
+		systemRouter.InitUserRouter(PrivateGroup)                // Register user routes
+		systemRouter.InitMenuRouter(PrivateGroup)                // Register menu routes
+		systemRouter.InitSystemRouter(PrivateGroup)              // System related routes
+		systemRouter.InitCasbinRouter(PrivateGroup)              // Permission related routes
+		systemRouter.InitAutoCodeRouter(PrivateGroup)            // Create automated code
+		systemRouter.InitAuthorityRouter(PrivateGroup)           // Register role routes
 		systemRouter.InitSysDictionaryRouter(PrivateGroup)       // 字典管理
 		systemRouter.InitAutoCodeHistoryRouter(PrivateGroup)     // 自动化代码历史
 		systemRouter.InitSysOperationRecordRouter(PrivateGroup)  // 操作记录
@@ -302,11 +302,11 @@ func Routers() *gin.Engine {
 }
 ```
 
-### 2.2 注册数据库表 (目前版本已可自动添加)
+### 2.2 Register Database Tables (Current version can be added automatically)
 
 [server/initialize/gorm.go](https://github.com/flipped-aurora/gin-vue-admin/blob/master/server/initialize/gorm.go)
 
-将你的model结构配置进入 db.AutoMigrate()内部即可
+Configure your model structure into db.AutoMigrate() internally
 
 ```go
 package initialize
@@ -372,35 +372,35 @@ func RegisterTables(db *gorm.DB) {
 
 ```
 
-## 3.配置目录菜单
+## 3. Configure Directory Menu
 
 ![image-20210224143727296](/generator/image-20210224143727296.png)
 
-进入系统 超级管理员 → 菜单管理 菜单，点击 **新增根菜单** 按钮，配置菜单信息。
+Enter the system Super Administrator → Menu Management menu, click **Add Root Menu** button to configure menu information.
 
-- 路由name：对应进入列表显示页面时的访问路径
-- 路由path：选中后边的“添加参数”后才可以输入，对应进入列表显示页面时访问路径后的参数,具体使用方式看[视频](https://www.bilibili.com/video/BV1jk4y127yg)
-- 是否隐藏：是否在系统左侧目录菜单显示时，隐藏掉该目录菜单
-- 父节点Id：该目录菜单的父级目录菜单。这里是自动填充的数据，不需要自己操作
-- 文件路径：对应前端项目中 /view/ [PackageName](#packagename) (自建)/[StructName](#structname).vue 文件
-- 展示名称：该目录菜单显示在系统左侧目录菜单中的名称
-- 图标：该目录菜单显示在系统左侧目录菜单中的图标
-- 排序标记：用于调整该目录菜单在系统左侧目录菜单中显示的上下位置
-- keepAlive：是否使用keepAlive缓存
+- Route name: Corresponds to the access path when entering the list display page
+- Route path: Can only be entered after selecting "Add Parameters" behind it, corresponds to the parameters after the access path when entering the list display page, see [video](https://www.bilibili.com/video/BV1jk4y127yg) for specific usage
+- Hidden: Whether to hide this directory menu when displaying the system left directory menu
+- Parent Node Id: The parent directory menu of this directory menu. This is automatically filled data, no need to operate manually
+- File Path: Corresponds to /view/ [PackageName](#packagename) (self-built)/[StructName](#structname).vue file in the frontend project
+- Display Name: The name displayed in the system left directory menu for this directory menu
+- Icon: The icon displayed in the system left directory menu for this directory menu
+- Sort Mark: Used to adjust the up and down position of this directory menu in the system left directory menu
+- keepAlive: Whether to use keepAlive cache
 
-以上配置好后，点击 **确定** 按钮，完成菜单配置。
+After configuring the above, click **Confirm** button to complete menu configuration.
 
-## 4.配置后端接口
+## 4. Configure Backend Interface
 
-如果在第一步的`自动创建api`打钩了即可跳过此步
+If `Auto Create API` is checked in the first step, you can skip this step
 
 ![](/generator/image-20200915163147059.png)
 
-如果是自己写的业务代码，这里需要配置好后端接口。进入系统 `超级管理员` → api管理 菜单，点击 **新增api** 按钮，配置接口信息。
+If it's your own business code, you need to configure the backend interface here. Enter the system `Super Administrator` → API Management menu, click **Add API** button to configure interface information.
 
-:::info 注意
+:::info Note
 
-如果不知道怎么写,可以看看 [代码](https://github.com/flipped-aurora/gin-vue-admin/blob/master/server/service/sys_auto_code.go#L254)
+If you don't know how to write it, you can look at the [code](https://github.com/flipped-aurora/gin-vue-admin/blob/master/server/service/sys_auto_code.go#L254)
 
 ```go
 //@author: [piexlmax](https://github.com/piexlmax)
@@ -438,7 +438,7 @@ func AutoCreateApi(a *model.AutoCodeStruct) (err error) {
 		},
 		{
 			Path:        "/" + a.Abbreviation + "/" + "find" + a.StructName,
-			Description: "根据ID获取" + a.Description,
+			Description: "Get by ID" + a.Description,
 			ApiGroup:    a.Abbreviation,
 			Method:      "GET",
 		},
@@ -466,55 +466,55 @@ func AutoCreateApi(a *model.AutoCodeStruct) (err error) {
 
 :::
 
-- 路径：就是接口路径，比如前端项目中 src → api → [PackageName](#packagename) .js 每个方法里的 url
-- 请求：根据接口实际选择即可
-- api分组：对应 struct 简称
-- api简介：对api的简要说明
+- Path: Interface path, such as the url in each method in src → api → [PackageName](#packagename).js in the frontend project
+- Request: Select according to the actual interface
+- API Group: Corresponds to struct abbreviation
+- API Description: Brief description of the API
 
-以上配置好后，点击 **确定** 按钮，完成接口配置。
+After configuring the above, click **Confirm** button to complete interface configuration.
 
-## 5.配置角色权限
+## 5. Configure Role Permissions
 
-进入系统 `超级管理员` → `角色管理` 菜单，找到需要设置权限的角色，点击对应的 **设置权限** 按钮，配置角色相关权限。
+Enter the system `Super Administrator` → `Role Management` menu, find the role that needs to set permissions, click the corresponding **Set Permissions** button to configure role-related permissions.
 
 ![image-20210224144035326](/generator/image-20210224144035326.png)
 
-角色菜单：勾选该角色可以访问的目录菜单
+Role Menu: Check the directory menus that this role can access
 
 ![image-20210224144517336](/generator/image-20210224144517336.png)
 
-角色api：勾选该角色可以访问的接口
+Role API: Check the interfaces that this role can access
 
 ![image-20210224144708399](/generator/image-20210224144708399.png)
 
-## 6：完善新增表单弹窗/页面
+## 6: Complete Add Form Popup/Page
 
-:::info 注意
+:::info Note
 
-在 [v2.3.5](https://github.com/flipped-aurora/gin-vue-admin/releases/tag/v2.3.5) 版本后,不再需要手动创建表单, 如果你要自己定义表单,可以看看!
+After [v2.3.5](https://github.com/flipped-aurora/gin-vue-admin/releases/tag/v2.3.5) version, manual form creation is no longer needed. If you want to define forms yourself, you can take a look!
 
 :::
 
-以上6个步骤完成后，我们可以在系统中看到我们所创建的结构体数据列表页面。目前，这个页面已经是可以实现 **删除**、**查询** 功能了，**新增**、**修改** 功能仍然需要我们自己完善一下弹窗表单。
+After completing the above 6 steps, we can see the struct data list page we created in the system. Currently, this page can already implement **delete** and **query** functions. **Add** and **modify** functions still need us to complete the popup form ourselves.
 
-进入系统 系统工具 → 表单生成器 菜单，根据自己的实际需求，将左侧组件拖拽至中间画布区域，并在右侧设置组件属性。
+Enter the system System Tools → Form Generator menu, drag the left components to the middle canvas area according to your actual needs, and set component properties on the right.
 
-- 组件类型：默认是左侧选中的组件类型，这里还可以再进行调整
-- 字段名：对应 Step3 中的 **FieldJSON** 字段
-- 标题：即组件label
-- 占位提示：。。。就是占位提示
+- Component Type: Default is the component type selected on the left, can be adjusted here
+- Field Name: Corresponds to **FieldJSON** field in Step 3
+- Title: Component label
+- Placeholder: Just placeholder
 
-把所有组件上边几个基本的组件属性填好以后，点击画布上方的 **复制代码** 按钮，会出现一个弹窗，让我们选择 **生成类型** 是 页面 还是 弹窗。我用的时候选的页面，具体内容应该是没差的，这里选择哪个应该不影响我们目前的需求。然后点击 **确定** 按钮，就成功复制到了我们的表单代码。
+After filling in the basic component properties above for all components, click the **Copy Code** button above the canvas, a popup will appear letting us choose **Generation Type** as page or popup. I chose page when using it, the specific content should be the same, choosing which one shouldn't affect our current needs. Then click **Confirm** button to successfully copy our form code.
 
-接下来，
+Next,
 
-- 随便找个记事本或者地方，把代码复制到里边。
-- 在复制出来的代码中，取出 `<el-form>……</el-form>` 部分代码，覆盖掉前端项目中 src → view →  [PackageName](#packagename)(自建) → [StructName](#structname).vue 中 `此处请使用表单生成器生成form填充 表单默认绑定 formData 如手动修改过请自行修改key` 这句话。
-- 在复制出来的代码中，把 js 部分`data`方法里返回的对象复制到前端项目中，上边提及的 .vue 文件的 js 部分 `data` 方法的 `return` 对象里
+- Find any notepad or place to copy the code into.
+- In the copied code, extract the `<el-form>……</el-form>` part code, replace the sentence `此处请使用表单生成器生成form填充 表单默认绑定 formData 如手动修改过请自行修改key` in the frontend project src → view → [PackageName](#packagename)(self-built) → [StructName](#structname).vue file.
+- In the copied code, copy the object returned in the `data` method of the js part to the frontend project, in the `return` object of the `data` method in the js part of the .vue file mentioned above
 
 ## Finish
 
-至此，一个单表基本业务结构体的数据列表显示，单表数据增加、删除、查找、更新功能全部搞定。
+At this point, a single table basic business struct data list display, single table data add, delete, find, update functions are all complete.
 
 
 

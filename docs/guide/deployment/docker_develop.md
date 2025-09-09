@@ -48,7 +48,7 @@
    docker-compose -f deploy/docker-compose/docker-compose-dev.yaml  stop
    ```
 
-2. 启动完成请打开浏览器访问
+2. After startup, please open browser to access
 
    ```
    http://127.0.0.1:8080
@@ -57,9 +57,9 @@
 
 
 
-### 三、初始化
+### 3. Initialization
 
-1.  请使用下面的数据进行初始化，具体配置参考 docker-compose-dev.yaml ，若要直接使用请修改 server/config.yaml
+1.  Please use the following data for initialization, specific configuration reference docker-compose-dev.yaml, if you want to use directly please modify server/config.yaml
 
 ![image-20220310173721432](/deployment/image-20220310173721432.png)
 

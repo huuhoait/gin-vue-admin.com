@@ -54,42 +54,42 @@ zap:
 
 ```go
 type Zap struct {
-	Level         string `mapstructure:"level" json:"level" yaml:"level"`                            // 级别
-	Prefix        string `mapstructure:"prefix" json:"prefix" yaml:"prefix"`                         // 日志前缀
-	Format        string `mapstructure:"format" json:"format" yaml:"format"`                         // 输出
-	Director      string `mapstructure:"director" json:"director"  yaml:"director"`                  // 日志文件夹
-	EncodeLevel   string `mapstructure:"encode-level" json:"encode-level" yaml:"encode-level"`       // 编码级
-	StacktraceKey string `mapstructure:"stacktrace-key" json:"stacktrace-key" yaml:"stacktrace-key"` // 栈名
-	ShowLine      bool   `mapstructure:"show-line" json:"show-line" yaml:"show-line"`                // 显示行
-	LogInConsole  bool   `mapstructure:"log-in-console" json:"log-in-console" yaml:"log-in-console"` // 输出控制台
-	RetentionDay  int    `mapstructure:"retention-day" json:"retention-day" yaml:"retention-day"`    // 日志保留天数
+	Level         string `mapstructure:"level" json:"level" yaml:"level"`                            // Level
+	Prefix        string `mapstructure:"prefix" json:"prefix" yaml:"prefix"`                         // Log prefix
+	Format        string `mapstructure:"format" json:"format" yaml:"format"`                         // Output
+	Director      string `mapstructure:"director" json:"director"  yaml:"director"`                  // Log folder
+	EncodeLevel   string `mapstructure:"encode-level" json:"encode-level" yaml:"encode-level"`       // Encode level
+	StacktraceKey string `mapstructure:"stacktrace-key" json:"stacktrace-key" yaml:"stacktrace-key"` // Stack name
+	ShowLine      bool   `mapstructure:"show-line" json:"show-line" yaml:"show-line"`                // Show line
+	LogInConsole  bool   `mapstructure:"log-in-console" json:"log-in-console" yaml:"log-in-console"` // Output to console
+	RetentionDay  int    `mapstructure:"retention-day" json:"retention-day" yaml:"retention-day"`    // Log retention days
 }
 ```
 
 ### description
 
-| 配置名         | 类型   | 说明                                                         |
+| Configuration Name | Type   | Description                                                         |
 | -------------- | ------ | ------------------------------------------------------------ |
-| level          | string | level的模式的详细说明,请看[zap官方文档](https://pkg.go.dev/go.uber.org/zap?tab=doc#pkg-constants) <br />info: info模式,无错误的堆栈信息,只输出信息 <br />debug:debug模式,有错误的堆栈详细信息 <br />warn:warn模式 <br />error: error模式,有错误的堆栈详细信息 <br />dpanic: dpanic模式 <br />panic: panic模式 <br />fatal: fatal模式 |
-| format         | string | console: 控制台形式输出日志 json: json格式输出日志           |
-| prefix         | string | 日志的前缀                                                   |
-| director       | string | 存放日志的文件夹,修改即可,不需要手动创建                     |
-| show_line      | bool   | 显示行号, 默认为true,不建议修改                              |
-| encode_level   | string | LowercaseLevelEncoder:小写 <br />LowercaseColorLevelEncoder:小写带颜色 <br />CapitalLevelEncoder: 大写 <br />CapitalColorLevelEncoder: 大写带颜色 |
-| stacktrace_key | string | 堆栈的名称,即在json格式输出日志时的josn的key                 |
-| log_in_console | bool   | 是否输出到控制台,默认为true                                  |
-| retention_day  | int    | 日志保留天数                                                 |
+| level          | string | Detailed description of level modes, see [zap official documentation](https://pkg.go.dev/go.uber.org/zap?tab=doc#pkg-constants) <br />info: info mode, no error stack information, only output information <br />debug: debug mode, detailed error stack information <br />warn: warn mode <br />error: error mode, detailed error stack information <br />dpanic: dpanic mode <br />panic: panic mode <br />fatal: fatal mode |
+| format         | string | console: console format output logs json: json format output logs           |
+| prefix         | string | Log prefix                                                   |
+| director       | string | Log folder, modify as needed, no need to manually create                     |
+| show_line      | bool   | Show line numbers, default true, not recommended to modify                              |
+| encode_level   | string | LowercaseLevelEncoder: lowercase <br />LowercaseColorLevelEncoder: lowercase with color <br />CapitalLevelEncoder: uppercase <br />CapitalColorLevelEncoder: uppercase with color |
+| stacktrace_key | string | Stack name, the json key when outputting logs in json format                 |
+| log_in_console | bool   | Whether to output to console, default true                                  |
+| retention_day  | int    | Log retention days                                                 |
 
-- 开发环境 || 调试环境配置建议
+- Development Environment || Debug Environment Configuration Recommendations
 	- `level:debug`
 	- `format:console`
-	- `encode-level:LowercaseColorLevelEncoder`或者`encode-leve:CapitalColorLevelEncoder`
-- 部署环境配置建议
+	- `encode-level:LowercaseColorLevelEncoder` or `encode-leve:CapitalColorLevelEncoder`
+- Production Environment Configuration Recommendations
 	- `level:error`
 	- `format:json`
-	- `encode-level: LowercaseLevelEncoder `或者 `encode-level:CapitalLevelEncoder`
+	- `encode-level: LowercaseLevelEncoder ` or `encode-level:CapitalLevelEncoder`
 	- `log-in-console: false`
-- 建议只是建议,按照自己的需求进行即可,给出建议仅供参考
+- These are just recommendations, adjust according to your needs, provided for reference only
 
 ## Redis
 
@@ -110,25 +110,25 @@ redis:
 
 ```go
 type Redis struct {
-	Name         string   `mapstructure:"name" json:"name" yaml:"name"`                         // 代表当前实例的名字
-	Addr         string   `mapstructure:"addr" json:"addr" yaml:"addr"`                         // 服务器地址:端口
-	Password     string   `mapstructure:"password" json:"password" yaml:"password"`             // 密码
-	DB           int      `mapstructure:"db" json:"db" yaml:"db"`                               // 单实例模式下redis的哪个数据库
-	UseCluster   bool     `mapstructure:"useCluster" json:"useCluster" yaml:"useCluster"`       // 是否使用集群模式
-	ClusterAddrs []string `mapstructure:"clusterAddrs" json:"clusterAddrs" yaml:"clusterAddrs"` // 集群模式下的节点地址列表
+	Name         string   `mapstructure:"name" json:"name" yaml:"name"`                         // Represents the name of the current instance
+	Addr         string   `mapstructure:"addr" json:"addr" yaml:"addr"`                         // Server address:port
+	Password     string   `mapstructure:"password" json:"password" yaml:"password"`             // Password
+	DB           int      `mapstructure:"db" json:"db" yaml:"db"`                               // Which database in single instance mode redis
+	UseCluster   bool     `mapstructure:"useCluster" json:"useCluster" yaml:"useCluster"`       // Whether to use cluster mode
+	ClusterAddrs []string `mapstructure:"clusterAddrs" json:"clusterAddrs" yaml:"clusterAddrs"` // Node address list in cluster mode
 }
 ```
 
 ### description
 
-| 配置名        | 类型     | 说明                        |
+| Configuration Name | Type     | Description                        |
 | ------------- | -------- | --------------------------- |
-| name          | string   | 代表当前实例的名字          |
-| addr          | string   | redis连接地址及端口         |
-| password      | string   | 密码                        |
-| db            | int      | redis的哪个数据库           |
-| use-cluster   | bool     | 是否使用集群模式            |
-| cluster-addrs | []string | 集群模式下的节点地址列表    |
+| name          | string   | Represents the name of the current instance          |
+| addr          | string   | Redis connection address and port         |
+| password      | string   | Password                        |
+| db            | int      | Which database in redis           |
+| use-cluster   | bool     | Whether to use cluster mode            |
+| cluster-addrs | []string | Node address list in cluster mode    |
 
 ## Email
 
@@ -151,29 +151,29 @@ email:
 
 ```go
 type Email struct {
-	To          string `mapstructure:"to" json:"to" yaml:"to"`                               // 收件人:多个以英文逗号分隔 例：a@qq.com b@qq.com 正式开发中请把此项目作为参数使用
-	From        string `mapstructure:"from" json:"from" yaml:"from"`                         // 发件人  你自己要发邮件的邮箱
-	Host        string `mapstructure:"host" json:"host" yaml:"host"`                         // 服务器地址 例如 smtp.qq.com  请前往QQ或者你要发邮件的邮箱查看其smtp协议
-	Secret      string `mapstructure:"secret" json:"secret" yaml:"secret"`                   // 密钥    用于登录的密钥 最好不要用邮箱密码 去邮箱smtp申请一个用于登录的密钥
-	Nickname    string `mapstructure:"nickname" json:"nickname" yaml:"nickname"`             // 昵称    发件人昵称 通常为自己的邮箱
-	Port        int    `mapstructure:"port" json:"port" yaml:"port"`                         // 端口     请前往QQ或者你要发邮件的邮箱查看其smtp协议 大多为 465
-	IsSSL       bool   `mapstructure:"is-ssl" json:"is-ssl" yaml:"is-ssl"`                   // 是否SSL   是否开启SSL
-	IsLoginAuth bool   `mapstructure:"is-loginauth" json:"is-loginauth" yaml:"is-loginauth"` // 是否LoginAuth   是否使用LoginAuth认证方式（适用于IBM、微软邮箱服务器等）
+	To          string `mapstructure:"to" json:"to" yaml:"to"`                               // Recipients: multiple separated by English commas, e.g.: a@qq.com b@qq.com, in formal development please use this item as a parameter
+	From        string `mapstructure:"from" json:"from" yaml:"from"`                         // Sender: your own email address for sending emails
+	Host        string `mapstructure:"host" json:"host" yaml:"host"`                         // Server address, e.g. smtp.qq.com, please check the SMTP protocol from QQ or the email you want to send from
+	Secret      string `mapstructure:"secret" json:"secret" yaml:"secret"`                   // Secret key for login, preferably not using email password, apply for a login secret key from email SMTP
+	Nickname    string `mapstructure:"nickname" json:"nickname" yaml:"nickname"`             // Nickname: sender nickname, usually your own email
+	Port        int    `mapstructure:"port" json:"port" yaml:"port"`                         // Port: please check the SMTP protocol from QQ or the email you want to send from, mostly 465
+	IsSSL       bool   `mapstructure:"is-ssl" json:"is-ssl" yaml:"is-ssl"`                   // Whether SSL: whether to enable SSL
+	IsLoginAuth bool   `mapstructure:"is-loginauth" json:"is-loginauth" yaml:"is-loginauth"` // Whether LoginAuth: whether to use LoginAuth authentication method (suitable for IBM, Microsoft email servers, etc.)
 }
 ```
 
 ### description
 
-| 配置名       | 类型   | 说明                                                         |
+| Configuration Name | Type   | Description                                                         |
 | ------------ | ------ | ------------------------------------------------------------ |
-| to           | string | 邮件接收者,可以是多个,<br />以英文逗号(,)进行区分,最好别带空格,如果是一个邮箱最后请不要加英文逗号(,) |
-| from         | string | 发件人邮箱                                                   |
-| host         | string | 邮箱的主服务器地址                                           |
-| secret       | string | 密钥，用于登录的密钥，最好不要用邮箱密码                     |
-| nickname     | string | 发件人昵称                                                   |
-| port         | int    | 邮件服务端口                                                 |
-| is-ssl       | bool   | 是否使用SSL                                                  |
-| is-loginauth | bool   | 是否使用LoginAuth认证方式（适用于IBM、微软邮箱服务器等）     |
+| to           | string | Email recipients, can be multiple,<br />separated by English commas (,), preferably no spaces, if it's one email please don't add English comma (,) at the end |
+| from         | string | Sender email address                                                   |
+| host         | string | Main server address of the email                                           |
+| secret       | string | Secret key for login, preferably not using email password                     |
+| nickname     | string | Sender nickname                                                   |
+| port         | int    | Email service port                                                 |
+| is-ssl       | bool   | Whether to use SSL                                                  |
+| is-loginauth | bool   | Whether to use LoginAuth authentication method (suitable for IBM, Microsoft email servers, etc.)     |
 
 ## Casbin
 
@@ -195,9 +195,9 @@ type Casbin struct {
 
 ### description
 
-| 配置名     | 类型   | 说明                                                         | 建议是否修改 |
+| Configuration Name | Type   | Description                                                         | Recommended to Modify |
 | ---------- | ------ | ------------------------------------------------------------ | ------------ |
-| model-path | string | 存放casbin模型的相对路径<br />默认值为`./resource/rbac_model.conf` | 不推荐修改   |
+| model-path | string | Relative path to store casbin model<br />Default value is `./resource/rbac_model.conf` | Not recommended   |
 
 ## System
 
@@ -223,35 +223,35 @@ system:
 
 ```go
 type System struct {
-	Env           string `mapstructure:"env" json:"env" yaml:"env"`                                     // 环境值
-	DbType        string `mapstructure:"db-type" json:"db-type" yaml:"db-type"`                         // 数据库类型:mysql(默认)|sqlite|sqlserver|postgresql
-	OssType       string `mapstructure:"oss-type" json:"oss-type" yaml:"oss-type"`                     // Oss类型
-	RouterPrefix  string `mapstructure:"router-prefix" json:"router-prefix" yaml:"router-prefix"`       // 路由前缀
-	Addr          int    `mapstructure:"addr" json:"addr" yaml:"addr"`                                 // 端口值
-	LimitCountIP  int    `mapstructure:"iplimit-count" json:"iplimit-count" yaml:"iplimit-count"`       // 限制同IP访问次数
-	LimitTimeIP   int    `mapstructure:"iplimit-time" json:"iplimit-time" yaml:"iplimit-time"`          // 限制时间
-	UseMultipoint bool   `mapstructure:"use-multipoint" json:"use-multipoint" yaml:"use-multipoint"`    // 多点登录拦截
-	UseRedis      bool   `mapstructure:"use-redis" json:"use-redis" yaml:"use-redis"`                   // 使用redis
-	UseMongo      bool   `mapstructure:"use-mongo" json:"use-mongo" yaml:"use-mongo"`                   // 使用mongo
-	UseStrictAuth bool   `mapstructure:"use-strict-auth" json:"use-strict-auth" yaml:"use-strict-auth"` // 使用树形角色分配模式
+	Env           string `mapstructure:"env" json:"env" yaml:"env"`                                     // Environment value
+	DbType        string `mapstructure:"db-type" json:"db-type" yaml:"db-type"`                         // Database type: mysql(default)|sqlite|sqlserver|postgresql
+	OssType       string `mapstructure:"oss-type" json:"oss-type" yaml:"oss-type"`                     // OSS type
+	RouterPrefix  string `mapstructure:"router-prefix" json:"router-prefix" yaml:"router-prefix"`       // Route prefix
+	Addr          int    `mapstructure:"addr" json:"addr" yaml:"addr"`                                 // Port value
+	LimitCountIP  int    `mapstructure:"iplimit-count" json:"iplimit-count" yaml:"iplimit-count"`       // Limit same IP access count
+	LimitTimeIP   int    `mapstructure:"iplimit-time" json:"iplimit-time" yaml:"iplimit-time"`          // Limit time
+	UseMultipoint bool   `mapstructure:"use-multipoint" json:"use-multipoint" yaml:"use-multipoint"`    // Multi-point login interception
+	UseRedis      bool   `mapstructure:"use-redis" json:"use-redis" yaml:"use-redis"`                   // Use redis
+	UseMongo      bool   `mapstructure:"use-mongo" json:"use-mongo" yaml:"use-mongo"`                   // Use mongo
+	UseStrictAuth bool   `mapstructure:"use-strict-auth" json:"use-strict-auth" yaml:"use-strict-auth"` // Use tree role assignment mode
 }
 ```
 
 ### description
 
-| 配置名           | 类型   | 说明                                                                                                                                   |
+| Configuration Name | Type   | Description                                                                                                                                   |
 | ---------------- | ------ |--------------------------------------------------------------------------------------------------------------------------------------|
-| env              | string | 环境模式，"develop"为开发模式（跳过身份验证），"public"为生产模式                                                                                      |
-| addr             | int    | 后端服务端口，默认8888                                                                                                                        |
-| db-type          | string | 数据库类型，支持：mysql、pgsql、sqlite、mssql、oracle                                                                                            |
-| oss-type         | string | 对象存储类型：local（本地存储）、qiniu（七牛云）、aliyun（阿里云）、minio<br />local：存储到 `local.path` 目录<br />其他类型需要配置对应的参数                                |
-| router-prefix    | string | 路由前缀，用于API路由统一前缀                                                                                                                     |
-| use-multipoint   | bool   | 是否启用多点登录拦截（单点登录），默认false                                                                                                            |
-| use-redis        | bool   | 是否使用Redis缓存，默认false                                                                                                                  |
-| iplimit-count    | int    | IP限流：指定时间段内同IP最大访问次数，默认15000                                                                                                        |
-| iplimit-time     | int    | IP限流：限制时间窗口（秒），默认3600                                                                                                               |
-| use-mongo        | bool   | 是否使用MongoDB数据库，默认false                                                                                                              |
-| use-strict-auth  | bool   | 是否开启严格角色模式（树形角色分配），默认false                                                                                                         |
+| env              | string | Environment mode, "develop" for development mode (skip authentication), "public" for production mode                                                                                      |
+| addr             | int    | Backend service port, default 8888                                                                                                                        |
+| db-type          | string | Database type, supports: mysql, pgsql, sqlite, mssql, oracle                                                                                            |
+| oss-type         | string | Object storage type: local (local storage), qiniu (Qiniu Cloud), aliyun (Alibaba Cloud), minio<br />local: store to `local.path` directory<br />Other types need to configure corresponding parameters                                |
+| router-prefix    | string | Route prefix, used for API route unified prefix                                                                                                                     |
+| use-multipoint   | bool   | Whether to enable multi-point login interception (single sign-on), default false                                                                                                            |
+| use-redis        | bool   | Whether to use Redis cache, default false                                                                                                                  |
+| iplimit-count    | int    | IP rate limiting: maximum access count for same IP within specified time period, default 15000                                                                                                        |
+| iplimit-time     | int    | IP rate limiting: limit time window (seconds), default 3600                                                                                                               |
+| use-mongo        | bool   | Whether to use MongoDB database, default false                                                                                                              |
+| use-strict-auth  | bool   | Whether to enable strict role mode (tree role assignment), default false                                                                                                         |
 
 ## captcha
 
@@ -271,23 +271,23 @@ captcha:
 
 ```go
 type Captcha struct {
-	KeyLong            int `mapstructure:"key-long" json:"key-long" yaml:"key-long"`                                     // 验证码长度
-	ImgWidth           int `mapstructure:"img-width" json:"img-width" yaml:"img-width"`                                  // 验证码宽度
-	ImgHeight          int `mapstructure:"img-height" json:"img-height" yaml:"img-height"`                               // 验证码高度
-	OpenCaptcha        int `mapstructure:"open-captcha" json:"open-captcha" yaml:"open-captcha"`                         // 防爆破验证码开启此数，0代表每次登录都需要验证码，其他数字代表错误密码次数，如3代表错误三次后出现验证码
-	OpenCaptchaTimeOut int `mapstructure:"open-captcha-timeout" json:"open-captcha-timeout" yaml:"open-captcha-timeout"` // 防爆破验证码超时时间，单位：s(秒)
+	KeyLong            int `mapstructure:"key-long" json:"key-long" yaml:"key-long"`                                     // Captcha length
+	ImgWidth           int `mapstructure:"img-width" json:"img-width" yaml:"img-width"`                                  // Captcha width
+	ImgHeight          int `mapstructure:"img-height" json:"img-height" yaml:"img-height"`                               // Captcha height
+	OpenCaptcha        int `mapstructure:"open-captcha" json:"open-captcha" yaml:"open-captcha"`                         // Anti-brute force captcha enable count, 0 means captcha required for every login, other numbers represent wrong password count, e.g. 3 means captcha appears after 3 wrong attempts
+	OpenCaptchaTimeOut int `mapstructure:"open-captcha-timeout" json:"open-captcha-timeout" yaml:"open-captcha-timeout"` // Anti-brute force captcha timeout, unit: s(seconds)
 }
 ```
 
 ### description
 
-| 配置名                | 类型 | 说明                                                         |
+| Configuration Name | Type | Description                                                         |
 | --------------------- | ---- | ------------------------------------------------------------ |
-| key-long              | int  | 验证码长度                                                   |
-| img-width             | int  | 验证码宽度                                                   |
-| img-height            | int  | 验证码高度                                                   |
-| open-captcha          | int  | 防爆破验证码开启此数，0代表每次登录都需要验证码，其他数字代表错误密码次数 |
-| open-captcha-timeout  | int  | 防爆破验证码超时时间，单位：s(秒)                            |
+| key-long              | int  | Captcha length                                                   |
+| img-width             | int  | Captcha width                                                   |
+| img-height            | int  | Captcha height                                                   |
+| open-captcha          | int  | Anti-brute force captcha enable count, 0 means captcha required for every login, other numbers represent wrong password count |
+| open-captcha-timeout  | int  | Anti-brute force captcha timeout, unit: s(seconds)                            |
 
 ## Mysql [pgsql,sqlite,mssql,oracle]
 
@@ -337,21 +337,21 @@ type GeneralDB struct {
 
 ### description
 
-| 配置名         | 类型   | 说明                         |
+| Configuration Name | Type   | Description                         |
 | -------------- | ------ | ---------------------------- |
-| path           | string | 数据库服务器地址             |
-| port           | string | 数据库端口                   |
-| username       | string | 数据库用户名                 |
-| password       | string | 数据库密码                   |
-| db-name        | string | 数据库名                     |
-| config         | string | 数据库连接高级配置           |
-| prefix         | string | 表名前缀                     |
-| singular       | bool   | 是否使用单数表名             |
-| engine         | string | 数据库引擎，默认InnoDB       |
-| max-idle-conns | int    | 设置空闲中的最大连接数       |
-| max-open-conns | int    | 设置打开到数据库的最大连接数 |
-| log-mode       | string | 开启Gorm全局日志等级："silent"、"error"、"warn"、"info"，默认info |
-| log-zap        | bool   | 是否通过zap写入日志文件      |
+| path           | string | Database server address             |
+| port           | string | Database port                   |
+| username       | string | Database username                 |
+| password       | string | Database password                   |
+| db-name        | string | Database name                     |
+| config         | string | Database connection advanced configuration           |
+| prefix         | string | Table name prefix                     |
+| singular       | bool   | Whether to use singular table names             |
+| engine         | string | Database engine, default InnoDB       |
+| max-idle-conns | int    | Set maximum number of idle connections       |
+| max-open-conns | int    | Set maximum number of open connections to database |
+| log-mode       | string | Enable Gorm global log level: "silent", "error", "warn", "info", default info |
+| log-zap        | bool   | Whether to write logs to file through zap      |
 
 ### struct
 
@@ -360,26 +360,26 @@ type Pgsql struct {
     GeneralDB `yaml:",inline" mapstructure:",squash"`
 }
 
-// GeneralDB 结构体定义见上方 Mysql 部分
+// GeneralDB struct definition see above Mysql section
 ```
 
 ### description
 
-| 配置名         | 类型   | 说明                         |
+| Configuration Name | Type   | Description                         |
 | -------------- | ------ | ---------------------------- |
-| path           | string | 数据库服务器地址             |
-| port           | string | 数据库端口                   |
-| username       | string | 数据库用户名                 |
-| password       | string | 数据库密码                   |
-| db-name        | string | 数据库名                     |
-| config         | string | 数据库连接高级配置           |
-| prefix         | string | 表名前缀                     |
-| singular       | bool   | 是否使用单数表名             |
-| engine         | string | 数据库引擎，默认InnoDB       |
-| max-idle-conns | int    | 设置空闲中的最大连接数       |
-| max-open-conns | int    | 设置打开到数据库的最大连接数 |
-| log-mode       | string | 开启Gorm全局日志等级："silent"、"error"、"warn"、"info"，默认info |
-| log-zap        | bool   | 是否通过zap写入日志文件      |
+| path           | string | Database server address             |
+| port           | string | Database port                   |
+| username       | string | Database username                 |
+| password       | string | Database password                   |
+| db-name        | string | Database name                     |
+| config         | string | Database connection advanced configuration           |
+| prefix         | string | Table name prefix                     |
+| singular       | bool   | Whether to use singular table names             |
+| engine         | string | Database engine, default InnoDB       |
+| max-idle-conns | int    | Set maximum number of idle connections       |
+| max-open-conns | int    | Set maximum number of open connections to database |
+| log-mode       | string | Enable Gorm global log level: "silent", "error", "warn", "info", default info |
+| log-zap        | bool   | Whether to write logs to file through zap      |
 
 ## Local
 
@@ -396,28 +396,28 @@ local:
 
 ```go
 type Local struct {
-	Path      string `mapstructure:"path" json:"path" yaml:"path"`                   // 本地文件访问路径
-	StorePath string `mapstructure:"store-path" json:"store-path" yaml:"store-path"` // 本地文件存储路径
+	Path      string `mapstructure:"path" json:"path" yaml:"path"`                   // Local file access path
+	StorePath string `mapstructure:"store-path" json:"store-path" yaml:"store-path"` // Local file storage path
 }
 ```
 
 ### description
 
-| 配置名     | 类型   | 说明             |
+| Configuration Name | Type   | Description             |
 | ---------- | ------ | ---------------- |
-| path       | string | 本地文件访问路径 |
-| store-path | string | 本地文件存储路径 |
+| path       | string | Local file access path |
+| store-path | string | Local file storage path |
 
 ## Qiniu
 
 ### yaml
 
 ```yaml
-# qiniu configuration (请自行七牛申请对应的 公钥 私钥 bucket 和 域名地址)
+# qiniu configuration (Please apply for corresponding public key, private key, bucket and domain address from Qiniu)
 qiniu:
-  zone: '你的空间区域'
-  bucket: '你的空间名'
-  img-path: '你的oss域名'
+  zone: 'Your space region'
+  bucket: 'Your space name'
+  img-path: 'Your OSS domain'
   use-https: false
   access-key: 'xxxxxxxxxxxxxxxxxxxxxxxxx'
   secret-key: 'xxxxxxxxxxxxxxxxxxxxxxxxx'
@@ -440,15 +440,15 @@ type Qiniu struct {
 
 ### description
 
-| 配置名          | 类型   | 说明                                                         |
+| Configuration Name | Type   | Description                                                         |
 | --------------- | ------ | ------------------------------------------------------------ |
-| zone            | string | 存储区域 [Zone](https://github.com/qiniu/api.v7/blob/master/storage/zone.go) ,可配置选项为 `ZoneHuadong` / `ZoneHuabei` / `ZoneHuanan` / `ZoneBeimei` / `ZoneXinjiapo` |
-| bucket          | string | 存储空间                                                     |
-| img-path        | string | CDN 加速域名                                                 |
-| use-https       | bool   | 是否使用https                                                |
-| access-key      | string | 秘钥AK                                                       |
-| secret-key      | string | 秘钥SK                                                       |
-| use-cdn-domains | bool   | 上传是否使用CDN上传加速                                      |
+| zone            | string | Storage region [Zone](https://github.com/qiniu/api.v7/blob/master/storage/zone.go), configurable options are `ZoneHuadong` / `ZoneHuabei` / `ZoneHuanan` / `ZoneBeimei` / `ZoneXinjiapo` |
+| bucket          | string | Storage space                                                     |
+| img-path        | string | CDN acceleration domain                                                 |
+| use-https       | bool   | Whether to use https                                                |
+| access-key      | string | Secret key AK                                                       |
+| secret-key      | string | Secret key SK                                                       |
+| use-cdn-domains | bool   | Whether to use CDN upload acceleration for uploads                                      |
 
 
 ## AutoCode
@@ -480,10 +480,10 @@ type Autocode struct {
 
 ### description
 
-| 配置名  | 类型   | 说明                                                         |
-| ------- | ------ | ------------------------------------------------------------ |
-| web     | string | 前端项目路径                                                 |
-| root    | string | 项目根目录，自动适配，请不要手动配置                         |
-| server  | string | 服务端项目路径                                               |
-| module  | string | Go模块名称                                                   |
-| ai-path | string | AI相关路径                                                   |
+| Configuration Name | Type   | Description                                                         |
+| ------- | -------- | ------------------------------------------------------------ |
+| web     | string | Frontend project path                                                 |
+| root    | string | Project root directory, auto-adapted, please do not configure manually                         |
+| server  | string | Server project path                                               |
+| module  | string | Go module name                                                   |
+| ai-path | string | AI related path                                                   |

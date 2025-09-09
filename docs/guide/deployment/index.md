@@ -1,86 +1,86 @@
-# 项目上线
+# Project Deployment
 
-## 前端
+## Frontend
 
-在web目录下执行 npm run build 得到 dist文件夹 将dist文件夹上传到服务器 建议使用nginx进行代理 并且设置 proxy 把请求代理到后端
+Execute `npm run build` in the web directory to get the dist folder, upload the dist folder to the server, recommend using nginx for proxy and set proxy to forward requests to the backend
 
-## 后端
+## Backend
 
-### 交叉编译
+### Cross Compilation
 
-在Windows 编译到 Linux 和Mac：
+Compile from Windows to Linux and Mac:
 ```
-# 交叉编译到Linux
+# Cross compile to Linux
 set GOOS=linux
 set GOARCH=amd64
 go build -o app-linux
 
-# 交叉编译到Mac
+# Cross compile to Mac
 set GOOS=darwin
 set GOARCH=amd64
 go build -o app-mac
 ```
 
-在Linux下交叉编译到Windows和Mac：
+Cross compile from Linux to Windows and Mac:
 
 ```
-# 交叉编译到Windows
+# Cross compile to Windows
 GOOS=windows GOARCH=amd64 go build -o app-windows.exe
 
-# 交叉编译到Mac
+# Cross compile to Mac
 GOOS=darwin GOARCH=amd64 go build -o app-mac
 ```
 
-在Mac下交叉编译到Windows和Linux：
+Cross compile from Mac to Windows and Linux:
 
 ```
-# 交叉编译到Windows
+# Cross compile to Windows
 GOOS=windows GOARCH=amd64 go build -o app-windows.exe
 
-# 交叉编译到Linux
+# Cross compile to Linux
 GOOS=linux GOARCH=amd64 go build -o app-linux
 ```
 
 
 
-在 server下 go build . 得到一个可执行文件然后将可执行文件和config.yaml 以及 resource 文件夹上传至服务器 三者最好放在同一路径下 最终服务器目录结构可能如下 
+In the server directory, `go build .` to get an executable file, then upload the executable file, config.yaml, and resource folder to the server. It's best to place all three in the same path. The final server directory structure might be as follows 
 
 ```
 
-    ├── breakpointDir  // 后续断点续传自动生成
-    ├── chunk   // 后续断点续传自动生成
-    ├── fileDir   // 后续断点续传自动生成
-    ├── finish   // 后续断点续传自动生成
+    ├── breakpointDir  // Auto-generated for subsequent resumable uploads
+    ├── chunk   // Auto-generated for subsequent resumable uploads
+    ├── fileDir   // Auto-generated for subsequent resumable uploads
+    ├── finish   // Auto-generated for subsequent resumable uploads
     ├── resource
-    │   └── 子目录文件					
+    │   └── Subdirectory files					
     ├── dist
-    │   └── 子目录文件
+    │   └── Subdirectory files
     ├── gin-vue-admin
     ├── config.yaml
     
 ```
 
-## [Tips.] Nginx的配置（以下内容节取自授权文档）
+## [Tips.] Nginx Configuration (The following content is excerpted from the authorization documentation)
 
-安装Nginx
+Install Nginx
 
 ```
 yum install -y nginx
-#安装所有模块
+# Install all modules
 yum -y install nginx-all-modules.noarch
 
-# 启动nginx
+# Start nginx
 systemctl start nginx && systemctl enable nginx 
 
 ```
 
-打开编辑配置文件
+Open and edit configuration file
 ```
 vim /etc/nginx/nginx.conf
 ```
 
 
-参考配置代码如下
+Reference configuration code is as follows
 
 ```nginx
 user root;
@@ -98,11 +98,11 @@ server {
     listen 80;
     index index.php index.html index.htm default.php default.htm default.html;
     server_name home.mychat.cloud;
-    root 你的dist所在位置;
+    root Your dist location;
     
     location  /api {
         rewrite ^/api/(.*)$ /$1 break;
-        proxy_pass http://127.0.0.1:8888; # 设置代理服务器的协议和地址  端口要和后端部署保持一致
+        proxy_pass http://127.0.0.1:8888; # Set proxy server protocol and address, port should match backend deployment
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -111,9 +111,9 @@ server {
 }
 ```
 
-重启生效
+Restart to take effect
 ```
 sudo systemctl restart nginx
 ```
 
-后端地址未作修改时默认为```http://127.0.0.1:8888```
+Backend address defaults to ```http://127.0.0.1:8888``` when not modified

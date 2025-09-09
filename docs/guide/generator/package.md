@@ -1,17 +1,17 @@
-# 自动化package使用指南
+# Automated Package Usage Guide
 
-## 创建package
-点击左侧菜单栏的自动化Package进入页面，点击新增打开抽屉
+## Create Package
+Click on the automated Package in the left menu bar to enter the page, click Add to open the drawer
 ![image-package](/generator/image-package.png)
 
-抽屉中关键属性为包名，此处填写小写字母开头的驼峰式命名单词，这是你自动化代码的基础包，所有在创建自动化代码时候选择本package的代码，都会创建在由本功能自动创建出的文件夹下。此处展示以showGva为例，自动生成的文件目录。
+The key attribute in the drawer is the package name. Fill in camelCase words starting with lowercase letters here. This is your automated code base package. All code created when selecting this package during automated code creation will be created in the folder automatically created by this function. Here shows the automatically generated file directory using showGva as an example.
 
 ![image-package](/generator/image-create.png)
-创建完成后，会在web和server下创建对应的package文件夹，如下所示
+After creation is complete, corresponding package folders will be created under web and server as shown below
 web/src/api/showGva
 web/src/view/showGva
-server/api/showGva 内含文件 `enter.go`
-server/router/showGva 内含文件 `enter.go`
-server/service/showGva 内含文件 `enter.go`
+server/api/showGva contains file `enter.go`
+server/router/showGva contains file `enter.go`
+server/service/showGva contains file `enter.go`
 
-后续使用自动化代码创建的内容会自动填充进入这些文件夹下
+Subsequent content created using automated code will automatically fill into these folders

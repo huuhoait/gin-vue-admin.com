@@ -55,40 +55,40 @@ e = some(where (p.eft == allow))
 m = g(r.sub, p.sub) && r.obj == p.obj && r.act == p.act
 ```
 
-### 配置参数说明
+### Configuration Parameter Description
 
-| 配置项 | 说明 |
-|--------|------|
-| `request_definition` | 请求定义：主体(sub)、对象(obj)、动作(act) |
-| `policy_definition` | 策略定义：权限规则格式 |
-| `role_definition` | 角色定义：角色继承关系 |
-| `policy_effect` | 策略效果：允许访问的条件 |
-| `matchers` | 匹配器：权限验证逻辑 |
+| Configuration Item | Description |
+|--------------------|-------------|
+| `request_definition` | Request definition: subject (sub), object (obj), action (act) |
+| `policy_definition` | Policy definition: permission rule format |
+| `role_definition` | Role definition: role inheritance relationships |
+| `policy_effect` | Policy effect: conditions for allowing access |
+| `matchers` | Matchers: permission verification logic |
 
-## 🛠️ 核心组件
+## 🛠️ Core Components
 
-### Casbin 中间件
+### Casbin Middleware
 
-位置：`server/middleware/casbin_rbac.go`
+Location: `server/middleware/casbin_rbac.go`
 
 ```go
-// CasbinHandler Casbin权限验证中间件
+// CasbinHandler Casbin permission verification middleware
 func CasbinHandler() gin.HandlerFunc {
     return func(c *gin.Context) {
         claims, _ := c.Get("claims")
         waitUse := claims.(*utils.CustomClaims)
         
-        // 获取请求信息
+        // Get request information
         obj := c.Request.URL.Path
         act := c.Request.Method
         sub := waitUse.AuthorityId
         
-        // Casbin权限验证
+        // Casbin permission verification
         e := casbinService.Casbin()
         success, _ := e.Enforce(sub, obj, act)
         
         if !success {
-            response.FailWithDetailed(gin.H{}, "权限不足", c)
+            response.FailWithDetailed(gin.H{}, "Insufficient permissions", c)
             c.Abort()
             return
         }
@@ -97,14 +97,14 @@ func CasbinHandler() gin.HandlerFunc {
 }
 ```
 
-### Casbin 服务
+### Casbin Service
 
-位置：`server/service/sys_casbin.go`
+Location: `server/service/sys_casbin.go`
 
 ```go
 type CasbinService struct{}
 
-// UpdateCasbin 更新Casbin权限
+// UpdateCasbin Updates Casbin permissions
 func (casbinService *CasbinService) UpdateCasbin(authorityId string, casbinInfos []request.CasbinInfo) error {
     casbinService.ClearCasbin(0, authorityId)
     rules := [][]string{}
@@ -114,12 +114,12 @@ func (casbinService *CasbinService) UpdateCasbin(authorityId string, casbinInfos
     e := casbinService.Casbin()
     success, _ := e.AddPolicies(rules)
     if !success {
-        return errors.New("存在相同api,添加失败,请联系管理员")
+        return errors.New("Duplicate API exists, addition failed, please contact the administrator")
     }
     return nil
 }
 
-// GetPolicyPathByAuthorityId 获取权限列表
+// GetPolicyPathByAuthorityId Retrieves permission list
 func (casbinService *CasbinService) GetPolicyPathByAuthorityId(authorityId string) (pathMaps []request.CasbinInfo) {
     e := casbinService.Casbin()
     list := e.GetFilteredPolicy(0, authorityId)
@@ -132,22 +132,22 @@ func (casbinService *CasbinService) GetPolicyPathByAuthorityId(authorityId strin
     return pathMaps
 }
 
-// ClearCasbin 清除权限
+// ClearCasbin Clears permissions
 func (casbinService *CasbinService) ClearCasbin(v int, p ...string) bool {
     e := casbinService.Casbin()
     success, _ := e.RemoveFilteredPolicy(v, p...)
     return success
 }
 
-// Casbin 获取Casbin实例
+// Casbin Retrieves Casbin instance
 func (casbinService *CasbinService) Casbin() *casbin.Enforcer {
     return global.GVA_CASBIN
 }
 ```
 
-## 🏗️ 权限数据结构
+## 🏗️ Permission Data Structure
 
-### 角色表 (sys_authorities)
+### Role Table (sys_authorities)
 
 ```go
 type SysAuthority struct {
@@ -165,7 +165,7 @@ type SysAuthority struct {
 }
 ```
 
-### 权限规则表 (casbin_rule)
+### Permission Rule Table (casbin_rule)
 
 ```go
 type CasbinRule struct {
@@ -180,7 +180,7 @@ type CasbinRule struct {
 }
 ```
 
-### API 权限表 (sys_apis)
+### API Permission Table (sys_apis)
 
 ```go
 type SysApi struct {
@@ -192,11 +192,11 @@ type SysApi struct {
 }
 ```
 
-## 🎛️ 权限管理功能
+## 🎛️ Permission Management Features
 
-### 1. 角色管理
+### 1. Role Management
 
-#### 创建角色
+#### Create Role
 
 ```go
 // CreateAuthority 创建角色
@@ -210,7 +210,7 @@ func (authorityService *AuthorityService) CreateAuthority(auth system.SysAuthori
 }
 ```
 
-#### 角色继承
+#### Role Inheritance
 
 ```go
 // 设置角色继承关系
@@ -219,9 +219,9 @@ e.AddRoleForUser("user1", "role1")  // 用户继承角色
 e.AddRoleForUser("role1", "role2")  // 角色继承角色
 ```
 
-### 2. API 权限管理
+### 2. API Permission Management
 
-#### 分配 API 权限
+#### Assign API Permissions
 
 ```go
 // UpdateCasbinApi 更新API权限
@@ -236,7 +236,7 @@ func (casbinService *CasbinService) UpdateCasbinApi(oldPath string, newPath stri
 }
 ```
 
-#### API 权限验证
+#### API Permission Verification
 
 ```go
 // 权限验证示例
@@ -256,9 +256,9 @@ func checkPermission(userId, path, method string) bool {
 }
 ```
 
-### 3. 菜单权限管理
+### 3. Menu Permission Management
 
-#### 菜单权限表 (sys_base_menus)
+#### Menu Permission Table (sys_base_menus)
 
 ```go
 type SysBaseMenu struct {
@@ -278,7 +278,7 @@ type SysBaseMenu struct {
 }
 ```
 
-#### 动态菜单生成
+#### Dynamic Menu Generation
 
 ```go
 // GetMenuTree 获取动态菜单树
@@ -292,9 +292,9 @@ func (menuService *MenuService) GetMenuTree(authorityId string) (menus []system.
 }
 ```
 
-### 4. 按钮权限管理
+### 4. Button Permission Management
 
-#### 按钮权限表 (sys_base_menu_btns)
+#### Button Permission Table (sys_base_menu_btns)
 
 ```go
 type SysBaseMenuBtn struct {
@@ -305,7 +305,7 @@ type SysBaseMenuBtn struct {
 }
 ```
 
-#### 前端按钮权限控制
+#### Frontend Button Permission Control
 
 ```vue
 <template>
@@ -334,9 +334,9 @@ app.directive('auth', {
 </script>
 ```
 
-## 🔄 权限同步机制
+## 🔄 Permission Synchronization Mechanism
 
-### 权限缓存更新
+### Permission Cache Update
 
 ```go
 // 权限变更时同步缓存
@@ -353,7 +353,7 @@ func (casbinService *CasbinService) ClearUserCache(userId string) {
 }
 ```
 
-### 实时权限验证
+### Real-time Permission Verification
 
 ```go
 // 实时权限检查
@@ -375,9 +375,9 @@ func (casbinService *CasbinService) CheckPermission(userId, resource, action str
 }
 ```
 
-## 🎨 前端权限集成
+## 🎨 Frontend Permission Integration
 
-### 路由权限控制
+### Route Permission Control
 
 ```javascript
 // router/permission.js
@@ -406,7 +406,7 @@ router.beforeEach(async (to, from, next) => {
 })
 ```
 
-### API 权限拦截
+### API Permission Interception
 
 ```javascript
 // utils/request.js
@@ -450,19 +450,19 @@ axios.interceptors.response.use(
 )
 ```
 
-## 🔒 安全最佳实践
+## 🔒 Security Best Practices
 
-### 1. 最小权限原则
-- 用户只获得完成工作所需的最小权限
-- 定期审查和清理不必要的权限
-- 实现权限的时效性控制
+### 1. Principle of Least Privilege
+- Users only receive the minimum permissions necessary to perform their work.
+- Regularly review and clean up unnecessary permissions.
+- Implement time-limited permissions.
 
-### 2. 权限分离
-- 管理权限与业务权限分离
-- 读权限与写权限分离
-- 敏感操作需要额外验证
+### 2. Permission Separation
+- Separate management permissions from business permissions.
+- Separate read permissions from write permissions.
+- Sensitive operations require additional verification.
 
-### 3. 审计日志
+### 3. Audit Logs
 ```go
 // 权限操作日志
 type PermissionLog struct {
@@ -492,23 +492,23 @@ func LogPermissionCheck(userID, action, resource string, result bool, c *gin.Con
 }
 ```
 
-## 🐛 常见问题
+## 🐛 Common Issues
 
-### Q: 权限修改后不生效？
-A: 需要调用 `e.LoadPolicy()` 重新加载权限策略，或重启应用。
+### Q: Permissions not taking effect after modification?
+A: You need to call `e.LoadPolicy()` to reload the permission policy, or restart the application.
 
-### Q: 如何实现数据权限控制？
-A: 可以在 Casbin 规则中添加数据范围字段，或使用自定义的数据过滤器。
+### Q: How to implement data permission control?
+A: You can add a data scope field in the Casbin rule, or use a custom data filter.
 
-### Q: 权限验证性能如何优化？
-A: 使用 Redis 缓存权限结果，设置合理的缓存过期时间。
+### Q: How to optimize permission verification performance?
+A: Use Redis to cache permission results, and set a reasonable cache expiration time.
 
-### Q: 如何实现临时权限？
-A: 可以在权限规则中添加时间字段，或使用定时任务清理过期权限。
+### Q: How to implement temporary permissions?
+A: You can add a time field in the permission rule, or use a scheduled task to clean up expired permissions.
 
-## 📚 相关文档
+## 📚 Related Documents
 
-- [认证系统](./authentication.md)
-- [常见问题](../manual/qa.md)
-- [服务端配置](./config.md)
-- [Casbin 官方文档](https://casbin.org/)
+- [Authentication System](./authentication.md)
+- [Common Issues](../manual/qa.md)
+- [Server Configuration](./config.md)
+- [Casbin Official Documentation](https://casbin.org/)

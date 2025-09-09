@@ -33,21 +33,21 @@ type Timer interface {
 }
 ```
 
-## 使用Demo
+## Usage Demo
 ```go
 type Job struct{}
 
 func (j *Job) Run() {
-	fmt.Println("testFunc") // 每天打印一遍
+	fmt.Println("testFunc") // Print once every day
 }
 
 func Demo() {
-	// 在gva中 global.GVA_Timer 已经是初始化Timer对象供使用
-	// 如果你想自己调用 utils.NewTimerTask() 即可拿到 Timer 接口
-	// demo 演示
+	// In gva, global.GVA_Timer is already an initialized Timer object for use
+	// If you want to call it yourself, use utils.NewTimerTask() to get the Timer interface
+	// Demo demonstration
 	t := utils.NewTimerTask()
-	// spec 定时任务详细配置参考 https://pkg.go.dev/github.com/robfig/cron?utm_source=godoc
-	// 同一个 taskName 中也可以设置多个任务
+	// For detailed configuration of spec scheduled tasks, refer to https://pkg.go.dev/github.com/robfig/cron?utm_source=godoc
+	// You can also set multiple tasks in the same taskName
 	id , err := t.AddTaskByFunc("testFunc", "@daily", func() {
 		fmt.Println("testFunc") // 每天打印一遍
 	})

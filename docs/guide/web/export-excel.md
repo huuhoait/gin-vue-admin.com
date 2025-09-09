@@ -50,40 +50,39 @@ Then use it in `<template>`
 
 ```html
 
-<!-- 导出组件-->
-<ExportExcel templateId="api" :condition="你的查询条件对象" :limit="10" :offset="10" order="id desc"/>
+<!-- Export Component -->
+<ExportExcel templateId="api" :condition="yourQueryConditionObject" :limit="10" :offset="10" order="id desc"/>
 
-<!-- 导入组件 handleSuccess为导入成功后的回调函数-->
+<!-- Import Component handleSuccess is the callback function after successful import -->
 <ImportExcel templateId="api" @on-success="handleSuccess"/>
 
-<!-- 导出模板-->
+<!-- Export Template -->
 <ExportTemplate templateId="api" />
 
 ```
 
-### 入参解释
+### Parameter Explanation
 ```javascript
-    condition: {  // 可以传入查询条件 根据模板中配置的查询条件映射关系进行有条件导出
+    condition: {  // You can pass in query conditions. Conditional export is based on the mapping relationship of query conditions configured in the template.
         type: Object,
         default: () => ({})
     }
-    limit: {   // 可以限制条目 根据模板中可以配置默认的条目限制 此处入参的优先级高于模板中的配置
+    limit: {   // You can limit the number of entries. The default entry limit can be configured in the template. The priority of this parameter is higher than the configuration in the template.
         type: Number,
         default: 0
     }
-    offset: {  // 可以限制偏移量 根据模板中可以配置默认的偏移量 此处入参的优先级高于模板中的配置
+    offset: {  // You can limit the offset. The default offset can be configured in the template. The priority of this parameter is higher than the configuration in the template.
         type: Number,
         default: 0
     }
-    order: {  // 可以限制排序 根据模板中可以配置默认的排序 此处入参的优先级高于模板中的配置 
+    order: {  // You can limit the sorting. The default sorting can be configured in the template. The priority of this parameter is higher than the configuration in the template. 
         type: String,
         default: ''
     }
-    onSuccess: { // 导入成功后的回调函数
+    onSuccess: { // Callback function after successful import
         type: Function,
         default: () => {}
     }
 ```
 
-
-此标签会产生一个按钮，点击即可导出对应表，后续会更新导出条件，敬请期待。
+This tag will generate a button. Clicking it will export the corresponding table. Export conditions will be updated in the future, so stay tuned.

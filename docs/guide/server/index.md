@@ -33,28 +33,28 @@
     └── upload
 ```
 
-| 文件夹       | 说明                    | 描述                        |
+| Folder       | Description                    | Details                        |
 | ------------ | ----------------------- | --------------------------- |
-| `api`        | api层                   | api层 |
-| `--v1`       | v1版本接口              | v1版本接口                  |
-| `config`     | 配置包                  | config.yaml对应的配置结构体 |
-| `core`       | 核心文件                | 核心组件(zap, viper, server)的初始化 |
-| `docs`       | swagger文档目录         | swagger文档目录 |
-| `global`     | 全局对象                | 全局对象 |
-| `initialize` | 初始化 | router,redis,gorm,validator, timer的初始化 |
-| `--internal` | 初始化内部函数 | gorm 的 longger 自定义,在此文件夹的函数只能由 `initialize` 层进行调用 |
-| `middleware` | 中间件层 | 用于存放 `gin` 中间件代码 |
-| `model`      | 模型层                  | 模型对应数据表              |
-| `--request`  | 入参结构体              | 接收前端发送到后端的数据。  |
-| `--response` | 出参结构体              | 返回给前端的数据结构体      |
-| `packfile`   | 静态文件打包            | 静态文件打包 |
-| `resource`   | 静态资源文件夹          | 负责存放静态文件                |
-| `--excel` | excel导入导出默认路径 | excel导入导出默认路径 |
-| `--page` | 表单生成器 | 表单生成器 打包后的dist |
-| `--template` | 模板 | 模板文件夹,存放的是代码生成器的模板 |
-| `router`     | 路由层                  | 路由层 |
-| `service`    | service层               | 存放业务逻辑问题 |
-| `source` | source层 | 存放初始化数据的函数 |
-| `utils`      | 工具包                  | 工具函数封装            |
-| `--timer` | timer | 定时器接口封装 |
-| `--upload`      | oss                  | oss接口封装        |
+| `api`        | API layer                   | API layer |
+| `--v1`       | v1 version interfaces              | v1 version interfaces                  |
+| `config`     | Configuration package                  | Configuration structs corresponding to config.yaml |
+| `core`       | Core files                | Initialization of core components (zap, viper, server) |
+| `docs`       | Swagger documentation directory         | Swagger documentation directory |
+| `global`     | Global objects                | Global objects |
+| `initialize` | Initialization | Initialization of router, redis, gorm, validator, timer |
+| `--internal` | Internal initialization functions | Custom gorm logger, functions in this folder can only be called by `initialize` layer |
+| `middleware` | Middleware layer | Used to store `gin` middleware code |
+| `model`      | Model layer                  | Models corresponding to data tables              |
+| `--request`  | Input parameter structs              | Receive data sent from frontend to backend.  |
+| `--response` | Output parameter structs              | Data structs returned to frontend      |
+| `packfile`   | Static file packaging            | Static file packaging |
+| `resource`   | Static resource folder          | Responsible for storing static files                |
+| `--excel` | Excel import/export default path | Excel import/export default path |
+| `--page` | Form generator | Form generator packaged dist |
+| `--template` | Template | Template folder, stores code generator templates |
+| `router`     | Route layer                  | Route layer |
+| `service`    | Service layer               | Stores business logic |
+| `source` | Source layer | Stores initialization data functions |
+| `utils`      | Utility package                  | Utility function encapsulation            |
+| `--timer` | Timer | Timer interface encapsulation |
+| `--upload`      | OSS                  | OSS interface encapsulation        |

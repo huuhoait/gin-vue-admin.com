@@ -2,60 +2,60 @@
 
 Swagger is a powerful API documentation generation tool, Gin-Vue-Admin integrates Swagger to automatically generate and maintain API documentation. This guide will introduce how to install, configure and use Swagger.
 
-## 📋 什么是 Swagger
+## 📋 What is Swagger
 
-Swagger 是一个用于设计、构建、记录和使用 RESTful Web 服务的开源软件框架。它提供了：
+Swagger is an open source software framework for designing, building, documenting and using RESTful Web services. It provides:
 
-- 🔍 **API 文档自动生成**: 从代码注释自动生成文档
-- 🧪 **在线测试**: 直接在浏览器中测试 API
-- 📊 **可视化界面**: 清晰的 API 结构展示
-- 🔄 **实时更新**: 代码变更时文档自动同步
+- 🔍 **Automatic API Documentation Generation**: Automatically generate documentation from code comments
+- 🧪 **Online Testing**: Test APIs directly in the browser
+- 📊 **Visual Interface**: Clear API structure display
+- 🔄 **Real-time Updates**: Documentation automatically syncs when code changes
 
-## 🛠️ 安装 Swagger
+## 🛠️ Install Swagger
 
-### 方式一：直接安装（推荐）
+### Method 1: Direct Installation (Recommended)
 
-如果您的网络环境良好，可以直接安装：
+If your network environment is good, you can install directly:
 
 ```bash
-# 安装最新版本的 swag 工具
+# Install the latest version of swag tool
 go install github.com/swaggo/swag/cmd/swag@latest
 ```
 
-### 方式二：使用代理安装
+### Method 2: Install with Proxy
 
-如果遇到网络问题，建议配置 Go 模块代理：
+If you encounter network issues, it's recommended to configure Go module proxy:
 
 ```bash
-# 启用 Go Modules
+# Enable Go Modules
 go env -w GO111MODULE=on
 
-# 配置国内代理（选择其一）
+# Configure domestic proxy (choose one)
 go env -w GOPROXY=https://goproxy.cn,direct
-# 或者使用
+# or use
 # go env -w GOPROXY=https://goproxy.io,direct
 
-# 安装 swag 工具
+# Install swag tool
 go install github.com/swaggo/swag/cmd/swag@latest
 ```
 
-### 验证安装
+### Verify Installation
 
-安装完成后，验证 swag 工具是否正确安装：
+After installation, verify that the swag tool is correctly installed:
 
 ```bash
-# 检查 swag 版本
+# Check swag version
 swag --version
 
-# 查看帮助信息
+# View help information
 swag --help
 ```
 
-## 📝 配置 Swagger 注释
+## 📝 Configure Swagger Comments
 
-### 1. 主程序注释
+### 1. Main Program Comments
 
-在 `main.go` 文件中添加 API 基本信息：
+Add basic API information in the `main.go` file:
 
 ```go
 // @title           Gin-Vue-Admin API
@@ -78,74 +78,74 @@ swag --help
 // @name x-token
 
 func main() {
-    // 应用程序代码
+    // Application code
 }
 ```
 
-### 2. API 接口注释
+### 2. API Interface Comments
 
-为每个 API 接口添加详细注释：
+Add detailed comments for each API interface:
 
 ```go
-// CreateUser 创建用户
-// @Tags      用户管理
-// @Summary   创建用户
-// @Description 创建新的用户账号
+// CreateUser Create user
+// @Tags      User Management
+// @Summary   Create user
+// @Description Create new user account
 // @Security  ApiKeyAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     data  body      request.CreateUserReq  true  "用户信息"
-// @Success   200   {object}  response.Response{data=response.UserResponse}  "创建成功"
-// @Failure   400   {object}  response.Response  "请求参数错误"
-// @Failure   500   {object}  response.Response  "内部服务器错误"
+// @Param     data  body      request.CreateUserReq  true  "User information"
+// @Success   200   {object}  response.Response{data=response.UserResponse}  "Created successfully"
+// @Failure   400   {object}  response.Response  "Request parameter error"
+// @Failure   500   {object}  response.Response  "Internal server error"
 // @Router    /user [post]
 func (u *UserApi) CreateUser(c *gin.Context) {
-    // 接口实现代码
+    // Interface implementation code
 }
 ```
 
-### 3. 数据模型注释
+### 3. Data Model Comments
 
-为数据结构添加注释：
+Add comments for data structures:
 
 ```go
-// User 用户信息
+// User User information
 type User struct {
-    ID       uint   `json:"id" example:"1"`                    // 用户ID
-    Username string `json:"username" example:"admin"`          // 用户名
-    Email    string `json:"email" example:"admin@example.com"` // 邮箱
-    Phone    string `json:"phone" example:"13800138000"`       // 手机号
-    Status   int    `json:"status" example:"1"`                // 状态：1-启用，0-禁用
+    ID       uint   `json:"id" example:"1"`                    // User ID
+    Username string `json:"username" example:"admin"`          // Username
+    Email    string `json:"email" example:"admin@example.com"` // Email
+    Phone    string `json:"phone" example:"13800138000"`       // Phone number
+    Status   int    `json:"status" example:"1"`                // Status: 1-enabled, 0-disabled
 }
 ```
 
-## 🔄 生成 API 文档
+## 🔄 Generate API Documentation
 
-### 1. 生成文档
+### 1. Generate Documentation
 
-在项目根目录（包含 `main.go` 的目录）下运行：
+Run in the project root directory (directory containing `main.go`):
 
 ```bash
-# 生成 Swagger 文档
+# Generate Swagger documentation
 swag init
 ```
 
-### 2. 生成成功
+### 2. Generation Success
 
-命令执行成功后，会在项目中生成以下文件：
+After the command executes successfully, the following files will be generated in the project:
 
 ```
 server/
 ├── docs/
-│   ├── docs.go      # 文档数据
-│   ├── swagger.json # JSON 格式文档
-│   └── swagger.yaml # YAML 格式文档
+│   ├── docs.go      # Documentation data
+│   ├── swagger.json # JSON format documentation
+│   └── swagger.yaml # YAML format documentation
 └── main.go
 ```
 
-### 3. 自动化生成
+### 3. Automated Generation
 
-您也可以在 `main.go` 中添加 `go:generate` 指令来自动化文档生成：
+You can also add `go:generate` directive in `main.go` to automate documentation generation:
 
 ```go
 //go:generate swag init
@@ -153,87 +153,87 @@ server/
 package main
 ```
 
-然后使用 `go generate` 命令：
+Then use the `go generate` command:
 
 ```bash
 go generate
 ```
 
-## 🌐 访问 Swagger 文档
+## 🌐 Access Swagger Documentation
 
-### 1. 启动服务
+### 1. Start Service
 
-确保后端服务正在运行：
+Ensure the backend service is running:
 
 ```bash
 go run main.go
 ```
 
-### 2. 访问文档
+### 2. Access Documentation
 
-在浏览器中访问 Swagger UI：
+Access Swagger UI in your browser:
 
-**本地访问**: `http://localhost:8888/swagger/index.html`
+**Local Access**: `http://localhost:8888/swagger/index.html`
 
-### 3. 文档功能
+### 3. Documentation Features
 
-Swagger UI 提供以下功能：
+Swagger UI provides the following features:
 
-- 📖 **API 列表**: 查看所有可用的 API 接口
-- 🔍 **接口详情**: 查看每个接口的参数、响应等详细信息
-- 🧪 **在线测试**: 直接在页面中测试 API 接口
-- 📥 **下载文档**: 下载 JSON 或 YAML 格式的 API 文档
+- 📖 **API List**: View all available API interfaces
+- 🔍 **Interface Details**: View detailed information such as parameters and responses for each interface
+- 🧪 **Online Testing**: Test API interfaces directly on the page
+- 📥 **Download Documentation**: Download API documentation in JSON or YAML format
 
-## 🎯 使用技巧
+## 🎯 Usage Tips
 
-### 1. 接口分组
+### 1. Interface Grouping
 
-使用 `@Tags` 注释对接口进行分组：
+Use `@Tags` comments to group interfaces:
 
 ```go
-// @Tags 用户管理
-// @Tags 权限管理
-// @Tags 系统设置
+// @Tags User Management
+// @Tags Permission Management
+// @Tags System Settings
 ```
 
-### 2. 参数验证
+### 2. Parameter Validation
 
-结合 `binding` 标签进行参数验证：
+Combine `binding` tags for parameter validation:
 
 ```go
 type CreateUserReq struct {
-    Username string `json:"username" binding:"required" example:"admin"`     // 用户名（必填）
-    Password string `json:"password" binding:"required,min=6" example:"123456"` // 密码（必填，最少6位）
-    Email    string `json:"email" binding:"email" example:"admin@example.com"` // 邮箱（邮箱格式）
+    Username string `json:"username" binding:"required" example:"admin"`     // Username (required)
+    Password string `json:"password" binding:"required,min=6" example:"123456"` // Password (required, minimum 6 characters)
+    Email    string `json:"email" binding:"email" example:"admin@example.com"` // Email (email format)
 }
 ```
 
-### 3. 响应示例
+### 3. Response Examples
 
-提供详细的响应示例：
-
-```go
-// @Success 200 {object} response.Response{data=[]model.User} "获取成功"
-// @Success 200 {object} response.PageResult{list=[]model.User} "分页获取成功"
-```
-
-### 4. 错误处理
-
-定义常见的错误响应：
+Provide detailed response examples:
 
 ```go
-// @Failure 400 {object} response.Response "请求参数错误"
-// @Failure 401 {object} response.Response "未授权"
-// @Failure 403 {object} response.Response "权限不足"
-// @Failure 404 {object} response.Response "资源不存在"
-// @Failure 500 {object} response.Response "内部服务器错误"
+// @Success 200 {object} response.Response{data=[]model.User} "Retrieved successfully"
+// @Success 200 {object} response.PageResult{list=[]model.User} "Paginated retrieval successful"
 ```
 
-## 🔧 高级配置
+### 4. Error Handling
 
-### 1. 自定义配置
+Define common error responses:
 
-创建 `.swaggo` 配置文件：
+```go
+// @Failure 400 {object} response.Response "Request parameter error"
+// @Failure 401 {object} response.Response "Unauthorized"
+// @Failure 403 {object} response.Response "Insufficient permissions"
+// @Failure 404 {object} response.Response "Resource not found"
+// @Failure 500 {object} response.Response "Internal server error"
+```
+
+## 🔧 Advanced Configuration
+
+### 1. Custom Configuration
+
+Create `.swaggo` configuration file:
 
 ```yaml
 # .swaggo
@@ -246,42 +246,42 @@ parse_internal: false
 generate_types: false
 ```
 
-### 2. 排除特定文件
+### 2. Exclude Specific Files
 
-使用 `--exclude` 参数排除不需要解析的文件：
+Use `--exclude` parameter to exclude files that don't need parsing:
 
 ```bash
 swag init --exclude ./vendor
 ```
 
-### 3. 指定输出目录
+### 3. Specify Output Directory
 
 ```bash
 swag init --output ./api-docs
 ```
 
-## 🔗 相关资源
+## 🔗 Related Resources
 
-### 官方文档
+### Official Documentation
 
-- [Swag GitHub 仓库](https://github.com/swaggo/swag)
-- [Swag 中文文档](https://github.com/swaggo/swag/blob/master/README_zh-CN.md)
-- [Swagger 官方网站](https://swagger.io/)
+- [Swag GitHub Repository](https://github.com/swaggo/swag)
+- [Swag Chinese Documentation](https://github.com/swaggo/swag/blob/master/README_zh-CN.md)
+- [Swagger Official Website](https://swagger.io/)
 
-### 注释规范
+### Comment Standards
 
-- [Swagger 注释语法](https://github.com/swaggo/swag#declarative-comments-format)
-- [OpenAPI 3.0 规范](https://swagger.io/specification/)
+- [Swagger Comment Syntax](https://github.com/swaggo/swag#declarative-comments-format)
+- [OpenAPI 3.0 Specification](https://swagger.io/specification/)
 
-### 示例项目
+### Example Projects
 
-- [Gin Swagger 示例](https://github.com/swaggo/gin-swagger)
-- [Gin-Vue-Admin API 文档](https://demo.gin-vue-admin.com/swagger/index.html)
+- [Gin Swagger Example](https://github.com/swaggo/gin-swagger)
+- [Gin-Vue-Admin API Documentation](https://demo.gin-vue-admin.com/swagger/index.html)
 
-## 🚀 最佳实践
+## 🚀 Best Practices
 
-1. **及时更新文档**: 每次修改 API 后都要重新生成文档
-2. **详细注释**: 为每个接口提供清晰的描述和示例
-3. **统一规范**: 团队内部统一注释格式和命名规范
-4. **版本管理**: 为不同版本的 API 维护对应的文档
-5. **测试验证**: 使用 Swagger UI 测试接口确保文档准确性
+1. **Update Documentation Timely**: Regenerate documentation after every API modification
+2. **Detailed Comments**: Provide clear descriptions and examples for each interface
+3. **Unified Standards**: Unify comment format and naming conventions within the team
+4. **Version Management**: Maintain corresponding documentation for different API versions
+5. **Test Validation**: Use Swagger UI to test interfaces to ensure documentation accuracy

@@ -48,42 +48,42 @@ This document collects common problems and solutions during the use of Gin-Vue-A
 2. **Adjust Backend Timeout Settings**
  Configure time in core/server.go
 
-3. **检查数据库性能**
-   - 确认数据库服务器性能
-   - 检查网络延迟
-   - 优化数据库配置
+3. **Check Database Performance**
+   - Confirm database server performance
+   - Check network latency
+   - Optimize database configuration
 
-### 数据库引擎错误
+### Database Engine Error
 
-**问题描述：** 初始化时出现 `Error 1071: Specified key was too long; max key length is 1000 bytes`
+**Problem Description:** `Error 1071: Specified key was too long; max key length is 1000 bytes` occurs during initialization
 
-**解决方案：**
-1. **修改数据库默认引擎**
+**Solution:**
+1. **Modify Database Default Engine**
    ```sql
-   -- 修改数据库默认引擎为 InnoDB
+   -- Modify database default engine to InnoDB
    ALTER DATABASE your_database_name DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
    ```
 
-2. **单独修改 casbin 表引擎**
+2. **Modify Casbin Table Engine Separately**
    ```sql
-   -- 修改 casbin_rule 表引擎
+   -- Modify casbin_rule table engine
    ALTER TABLE casbin_rule ENGINE=InnoDB;
    ```
 
-3. **创建数据库时指定引擎**
+3. **Specify Engine When Creating Database**
    ```sql
    CREATE DATABASE gin_vue_admin CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
    ```
 
-## 前端相关问题
+## Frontend Related Issues
 
-### 路由前缀问题
+### Route Prefix Issues
 
-**问题描述：** 前端访问路由时发现路由前缀与定义的不一致
+**Problem Description:** Frontend route prefix is inconsistent with definition when accessing routes
 
-**解决方案：**
-- **原因说明**：为防止浏览器跨域问题，GVA 在前端通过 Vite（老版本为 Webpack）进行了路由代理
-- **配置检查**：
+**Solution:**
+- **Reason**: To prevent browser CORS issues, GVA uses Vite (Webpack in older versions) for route proxying in the frontend
+- **Configuration Check**:
   ```javascript
   // vite.config.js
   export default {
@@ -99,16 +99,16 @@ This document collects common problems and solutions during the use of Gin-Vue-A
   }
   ```
 
-### Vite 版本兼容问题
+### Vite Version Compatibility Issues
 
-**问题描述：** 前端打包时出现 `vite.createFilter is not a function` 错误
+**Problem Description:** `vite.createFilter is not a function` error occurs during frontend packaging
 
-**问题原因：**
-- Vite 官方版本更新导致 `@vitejs/plugin-vue` 与 `vite` 版本不匹配
-- package.json 中使用 `latest` 版本导致版本冲突
+**Root Cause:**
+- Vite official version updates cause `@vitejs/plugin-vue` and `vite` version mismatch
+- Using `latest` version in package.json causes version conflicts
 
-**解决方案：**
-1. **修改 package.json**
+**Solution:**
+1. **Modify package.json**
    ```json
    {
      "devDependencies": {
@@ -118,169 +118,169 @@ This document collects common problems and solutions during the use of Gin-Vue-A
    }
    ```
 
-2. **重新安装依赖**
+2. **Reinstall Dependencies**
    ```bash
-   # 删除 node_modules 和 package-lock.json
+   # Delete node_modules and package-lock.json
    rm -rf node_modules package-lock.json
    
-   # 重新安装
+   # Reinstall
    npm install
    ```
 
-3. **使用固定版本**
-   - 避免使用 `latest` 标签
-   - 使用具体版本号或兼容版本范围
+3. **Use Fixed Versions**
+   - Avoid using `latest` tag
+   - Use specific version numbers or compatible version ranges
 
-### Node.js 版本问题
+### Node.js Version Issues
 
-**问题描述：** 前端运行时出现 `node:***` 等字段错误
+**Problem Description:** `node:***` field errors occur during frontend runtime
 
-**解决方案：**
-1. **检查 Node.js 版本**
+**Solution:**
+1. **Check Node.js Version**
    ```bash
    node --version
-   # 确保版本 >= 14.18 或 >= 16.0
+   # Ensure version >= 14.18 or >= 16.0
    ```
 
-2. **升级 Node.js**
+2. **Upgrade Node.js**
    ```bash
-   # 使用 nvm 管理 Node.js 版本
+   # Use nvm to manage Node.js versions
    nvm install 16
    nvm use 16
    ```
 
-3. **版本要求说明**
-   - Vite 3 要求 Node.js 版本 >= 14.18+ 或 16+
-   - 建议使用 LTS 版本以确保稳定性
+3. **Version Requirements**
+   - Vite 3 requires Node.js version >= 14.18+ or 16+
+   - Recommend using LTS version for stability
 
-### 前端白屏问题
+### Frontend White Screen Issues
 
-**问题描述：** 前端界面白屏，一直处于加载状态，无错误提示
+**Problem Description:** Frontend interface shows white screen, stuck in loading state with no error prompts
 
-**排查步骤：**
-1. **检查控制台错误**
-   - 打开浏览器开发者工具
-   - 查看 Console 和 Network 选项卡
-   - 检查是否有 JavaScript 错误
+**Troubleshooting Steps:**
+1. **Check Console Errors**
+   - Open browser developer tools
+   - Check Console and Network tabs
+   - Look for JavaScript errors
 
-2. **检查导入路径**
+2. **Check Import Paths**
    ```javascript
-   // 检查所有 import 语句的路径是否正确
-   import Component from '@/components/Component.vue' // 确保路径存在
+   // Check if all import statement paths are correct
+   import Component from '@/components/Component.vue' // Ensure path exists
    ```
 
-3. **检查第三方包**
+3. **Check Third-party Packages**
    ```bash
-   # 重新安装依赖
+   # Reinstall dependencies
    npm install
    
-   # 检查包版本兼容性
+   # Check package version compatibility
    npm ls
    ```
 
-4. **逐步排查**
-   - 注释掉可疑的导入语句
-   - 逐个恢复，定位问题代码
+4. **Step-by-step Troubleshooting**
+   - Comment out suspicious import statements
+   - Restore one by one to locate problematic code
 
-## 后端相关问题
+## Backend Related Issues
 
-### 自定义接口 404 错误
+### Custom API 404 Error
 
-**问题描述：** 自定义接口返回 404 错误
+**Problem Description:** Custom API returns 404 error
 
-**解决方案：**
-1. **重启后端服务**
+**Solution:**
+1. **Restart Backend Service**
    ```bash
-   # 停止服务
+   # Stop service
    Ctrl + C
    
-   # 重新启动
+   # Restart
    go run main.go
    ```
 
-2. **检查路由注册**
-   - 查看启动日志中的路由注册信息
-   - 确认自定义路由是否正确注册
-   - 参考 [服务端文档](../server/index.md)
+2. **Check Route Registration**
+   - Check route registration information in startup logs
+   - Confirm custom routes are registered correctly
+   - Reference [Server Documentation](../server/index.md)
 
-3. **验证路由配置**
+3. **Verify Route Configuration**
    ```go
-   // 确保路由正确注册
+   // Ensure routes are registered correctly
    func InitRouter() {
        Router.POST("/api/custom/endpoint", customHandler)
    }
    ```
 
-## 权限管理问题
+## Permission Management Issues
 
-### 权限不足错误
+### Insufficient Permission Error
 
-**问题描述：** 访问接口时提示权限不足
+**Problem Description:** Permission denied when accessing APIs
 
-**排查步骤：**
+**Troubleshooting Steps:**
 
-1. **检查 API 管理配置**
-   - 进入 `系统管理` → `API 管理`
-   - 检查目标接口的路径和请求方式
-   - **重要**：确保路径和请求方式中没有多余空格
-   - 保存修改后，重新分配角色权限
+1. **Check API Management Configuration**
+   - Go to `System Management` → `API Management`
+   - Check target API path and request method
+   - **Important**: Ensure no extra spaces in path and request method
+   - After saving changes, reassign role permissions
 
-2. **检查角色权限分配**
-   - 进入 `系统管理` → `角色管理`
-   - 为相应角色重新分配 API 权限
-   - 确认权限保存成功
+2. **Check Role Permission Assignment**
+   - Go to `System Management` → `Role Management`
+   - Reassign API permissions for corresponding roles
+   - Confirm permissions are saved successfully
 
-3. **数据库权限规则检查**
+3. **Database Permission Rule Check**
    ```sql
-   -- 查询权限规则是否存在
+   -- Query if permission rules exist
    SELECT * FROM casbin_rule 
-   WHERE v0='角色ID' AND v1='请求路由' AND v2='请求方式';
+   WHERE v0='RoleID' AND v1='RequestRoute' AND v2='RequestMethod';
    ```
 
-4. **手动添加权限规则**
+4. **Manually Add Permission Rules**
    ```sql
-   -- 如果规则不存在，手动添加
+   -- If rules don't exist, add manually
    INSERT INTO casbin_rule (p_type, v0, v1, v2, v3, v4, v5) 
-   VALUES ('p', '角色ID', '请求路由', '请求方式', null, null, null);
+   VALUES ('p', 'RoleID', 'RequestRoute', 'RequestMethod', null, null, null);
    ```
 
-### 菜单不显示问题
+### Menu Not Displaying Issue
 
-**问题描述：** 添加菜单后左侧导航栏没有显示
+**Problem Description:** Left navigation bar doesn't show after adding menu
 
-**解决方案：**
-1. **检查菜单权限**
-   - 进入 `系统管理` → `角色管理`
-   - 找到对应角色，编辑权限
-   - 在菜单权限中勾选新添加的菜单
-   - 保存权限设置
+**Solution:**
+1. **Check Menu Permissions**
+   - Go to `System Management` → `Role Management`
+   - Find corresponding role, edit permissions
+   - Check newly added menu in menu permissions
+   - Save permission settings
 
-2. **检查菜单配置**
-   - 确认菜单状态为启用
-   - 检查菜单层级关系
-   - 验证路由配置是否正确
+2. **Check Menu Configuration**
+   - Confirm menu status is enabled
+   - Check menu hierarchy relationships
+   - Verify route configuration is correct
 
-3. **刷新权限缓存**
-   - 重新登录系统
-   - 或清除浏览器缓存
+3. **Refresh Permission Cache**
+   - Re-login to system
+   - Or clear browser cache
 
-## 部署相关问题
+## Deployment Related Issues
 
-### 静态资源访问问题
+### Static Resource Access Issues
 
-**问题描述：** 宝塔部署后图片等静态资源无法访问
+**Problem Description:** Images and other static resources cannot be accessed after Baota deployment
 
-**解决方案：**
-1. **检查 Nginx 配置**
+**Solution:**
+1. **Check Nginx Configuration**
    ```nginx
-   # 删除对静态资源的拦截规则
-   # 注释或删除类似以下的配置
+   # Remove static resource blocking rules
+   # Comment or delete configurations like:
    # location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ {
    #     deny all;
    # }
    ```
 
-2. **配置静态资源服务**
+2. **Configure Static Resource Service**
    ```nginx
    location /uploads/ {
        alias /path/to/gin-vue-admin/uploads/;
@@ -288,54 +288,54 @@ This document collects common problems and solutions during the use of Gin-Vue-A
    }
    ```
 
-3. **后端资源配置**
-   - 确保后端静态资源放在 `public` 目录下
-   - 检查文件权限设置
+3. **Backend Resource Configuration**
+   - Ensure backend static resources are in `public` directory
+   - Check file permission settings
 
-## 数据库相关问题
+## Database Related Issues
 
-### 时区问题
+### Timezone Issues
 
-**问题描述：** 时间比真实时间少 8 小时
+**Problem Description:** Time is 8 hours behind real time
 
-**排查步骤：**
-1. **检查系统时区**
+**Troubleshooting Steps:**
+1. **Check System Timezone**
    ```bash
-   # 查看系统时区
+   # Check system timezone
    date
    timedatectl status
    ```
 
-2. **检查 Docker 时区**
+2. **Check Docker Timezone**
    ```dockerfile
-   # Dockerfile 中设置时区
+   # Set timezone in Dockerfile
    ENV TZ=Asia/Shanghai
    RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
    ```
 
-3. **数据库时区配置**
+3. **Database Timezone Configuration**
    
-   **MySQL：**
+   **MySQL:**
    ```sql
-   -- 查看时区
+   -- Check timezone
    SELECT @@global.time_zone, @@session.time_zone;
    
-   -- 设置时区
+   -- Set timezone
    SET GLOBAL time_zone = '+8:00';
    SET SESSION time_zone = '+8:00';
    ```
    
-   **PostgreSQL：**
+   **PostgreSQL:**
    ```sql
-   -- 设置时区
+   -- Set timezone
    ALTER SYSTEM SET timezone TO 'Asia/Shanghai';
    SELECT pg_reload_conf();
    SHOW TIMEZONE;
    ```
 
-4. **应用程序时区配置**
+4. **Application Timezone Configuration**
    ```go
-   // 在 main.go 中设置时区
+   // Set timezone in main.go
    import "time"
    
    func init() {
@@ -344,81 +344,81 @@ This document collects common problems and solutions during the use of Gin-Vue-A
    }
    ```
 
-### 重新初始化数据库
+### Reinitialize Database
 
-**问题描述：** 需要重新初始化数据库
+**Problem Description:** Need to reinitialize database
 
-**操作步骤：**
-1. **临时断开数据库连接**
+**Operation Steps:**
+1. **Temporarily Disconnect Database**
    ```yaml
-   # 修改 config.yaml，使后端无法连接数据库
+   # Modify config.yaml to prevent backend from connecting to database
    mysql:
-     path: "wrong_host:3306"  # 故意填写错误的主机
-     db-name: "wrong_db"      # 故意填写错误的数据库名
+     path: "wrong_host:3306"  # Intentionally fill wrong host
+     db-name: "wrong_db"      # Intentionally fill wrong database name
    ```
 
-2. **重启后端服务**
+2. **Restart Backend Service**
    ```bash
-   # 重启后端
+   # Restart backend
    go run main.go
    ```
 
-3. **执行重新初始化**
-   - 访问前端初始化页面
-   - 填写正确的数据库配置
-   - 点击初始化按钮
+3. **Execute Reinitialization**
+   - Access frontend initialization page
+   - Fill in correct database configuration
+   - Click initialization button
 
-4. **恢复正确配置**
-   - 初始化完成后，恢复 `config.yaml` 中的正确配置
-   - 重启服务
+4. **Restore Correct Configuration**
+   - After initialization, restore correct configuration in `config.yaml`
+   - Restart service
 
-## 调试技巧
+## Debugging Tips
 
-### 日志查看
+### Log Viewing
 
-1. **后端日志**
+1. **Backend Logs**
    ```bash
-   # 查看实时日志
+   # View real-time logs
    tail -f logs/server.log
    
-   # 查看错误日志
+   # View error logs
    grep "ERROR" logs/server.log
    ```
 
-2. **前端调试**
-   - 使用浏览器开发者工具
-   - 检查 Network 选项卡中的请求响应
-   - 查看 Console 中的错误信息
+2. **Frontend Debugging**
+   - Use browser developer tools
+   - Check request responses in Network tab
+   - View error information in Console
 
-### 常用调试命令
+### Common Debugging Commands
 
 ```bash
-# 检查端口占用
+# Check port usage
 netstat -tulpn | grep :8888
 
-# 检查进程状态
+# Check process status
 ps aux | grep gin-vue-admin
 
-# 检查磁盘空间
+# Check disk space
 df -h
 
-# 检查内存使用
+# Check memory usage
 free -h
 ```
 
-## 获取帮助
+## Getting Help
 
-如果以上解决方案无法解决您的问题，可以通过以下方式获取帮助：
+If the above solutions cannot resolve your issue, you can get help through the following ways:
 
-- **官方文档**：查阅详细的技术文档
-- **GitHub Issues**：[提交问题报告](https://github.com/flipped-aurora/gin-vue-admin/issues)
-- **社区论坛**：[参与讨论](https://github.com/flipped-aurora/gin-vue-admin/discussions)
-- **QQ 群**：加入官方 QQ 群交流
-- **微信群**：关注官方微信获取群二维码
+- **Official Documentation**: Check detailed technical documentation
+- **GitHub Issues**: [Submit issue reports](https://github.com/flipped-aurora/gin-vue-admin/issues)
+- **Community Forum**: [Participate in discussions](https://github.com/flipped-aurora/gin-vue-admin/discussions)
+- **QQ Group**: Join official QQ group for communication
+- **WeChat Group**: Follow official WeChat to get group QR code
 
-## 相关文档
+## Related Documentation
 
-- [快速开始](../start-quickly/initialization.md) - 项目快速启动指南
-- [部署指南](../deployment/index.md) - 生产环境部署
-- [故障排除](../troubleshooting/common-issues.md) - 详细故障排除指南
-- [最佳实践](../best-practices/development-standards.md) - 开发最佳实践
+- [Quick Start](../start-quickly/initialization.md) - Project quick start guide
+- [Deployment Guide](../deployment/index.md) - Production environment deployment
+- [Troubleshooting](../troubleshooting/common-issues.md) - Detailed troubleshooting guide
+- [Best Practices](../best-practices/development-standards.md) - Development best practices

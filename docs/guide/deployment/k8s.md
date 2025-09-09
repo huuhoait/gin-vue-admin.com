@@ -1,37 +1,37 @@
 ---
 id: k8s
-title: k8s资源配置
+title: k8s Resource Configuration
 ---
 
-# k8s资源配置
+# k8s Resource Configuration
 
-## 使用声明
-1. 上云需要手动初始化数据库,不支持在线初始化操作 (/deployment/server/gva-server-configmap.yaml)
+## Usage Statement
+1. Cloud deployment requires manual database initialization, online initialization operation is not supported (/deployment/server/gva-server-configmap.yaml)
 
    ```
-   自定义初始化数据库后，将配置写入/deployment/server/gva-server-configmap.yaml
+   After custom database initialization, write the configuration to /deployment/server/gva-server-configmap.yaml
    ```
 
 
 
-## 选择访问方式
+## Choose Access Method
 
 
 
-##### 1.域名访问
+##### 1. Domain Access
 
-​    如： http://demo.gin-vue-admin.com
-
-```
-修改代码第9行为自己的域名 deploy/kubernetes/web/gva-web-ingress.yaml
-```
-
-##### 2.service访问
-
-​    如： http://127.0.0.1:30180
+​    Such as: http://demo.gin-vue-admin.com
 
 ```
-修改代码第12行以后为如下配置即可 deploy/kubernetes/web/gva-web-service.yaml
+Modify line 9 to your own domain in deploy/kubernetes/web/gva-web-ingress.yaml
+```
+
+##### 2. Service Access
+
+​    Such as: http://127.0.0.1:30180
+
+```
+Modify line 12 and after to the following configuration in deploy/kubernetes/web/gva-web-service.yaml
 spec:
   type: NodePort
   ports:
@@ -46,50 +46,50 @@ spec:
 
 
 
-## 选择镜像
+## Choose Image
 
 
 
-##### 1.使用gin-vue-admin官方镜像
+##### 1. Use gin-vue-admin Official Images
 
-​    前端如：image: registry.cn-hangzhou.aliyuncs.com/gva/web:latest
-
-```
-修改代码第26行为需要部署的镜像 deploy/kubernetes/web/gva-web-deploymemt.yaml
-```
-
-​    后端如：image: registry.cn-hangzhou.aliyuncs.com/gva/server:latest
+​    Frontend example: image: registry.cn-hangzhou.aliyuncs.com/gva/web:latest
 
 ```
-修改代码第26行为需要部署的镜像 deploy/kubernetes/server/gva-server-deployment.yaml
+Modify line 26 to the image you need to deploy in deploy/kubernetes/web/gva-web-deploymemt.yaml
 ```
 
-
-
-##### 2.使用自定义镜像
+​    Backend example: image: registry.cn-hangzhou.aliyuncs.com/gva/server:latest
 
 ```
-可参考docker页面制作自定义镜像，上传至镜像仓库后，按照步骤一修改yaml文件即可。
+Modify line 26 to the image you need to deploy in deploy/kubernetes/server/gva-server-deployment.yaml
 ```
 
 
 
-## 开始部署
+##### 2. Use Custom Images
 
 ```
-# 使用默认namespace
+You can refer to the docker page to create custom images, upload them to the image repository, then modify the yaml files according to step 1.
+```
+
+
+
+## Start Deployment
+
+```
+# Use default namespace
 kubectl apply  -f deploy/kubernetes/server/ -f deploy/kubernetes/web/
 
-# 指定namespace
+# Specify namespace
 kubectl apply  -f deploy/kubernetes/server/ -f deploy/kubernetes/web/ -n namespace
 
-# 重启server服务
+# Restart server service
 kubectl -n namespace rollout restart deployment gva-server
 
-# 扩容server服务
+# Scale server service
 kubectl -n namespace scale deployment gva-server --replicas 2
 
-# 清除gva服务
+# Clean up gva services
 kubectl delete  -f deploy/kubernetes/server/ -f deploy/kubernetes/web/ -n namespace
 ```
 

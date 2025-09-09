@@ -28,7 +28,7 @@ sudo systemctl status postgresql
 brew services list | grep postgresql
 ```
 
-2. 检查配置文件 `config.yaml`
+2. Check configuration file `config.yaml`
 ```yaml
 mysql:
   path: 127.0.0.1
@@ -46,26 +46,26 @@ mysql:
   log-zap: false
 ```
 
-3. 测试数据库连接
+3. Test database connection
 ```bash
 mysql -h 127.0.0.1 -P 3306 -u root -p
 ```
 
-4. 创建数据库
+4. Create database
 ```sql
 CREATE DATABASE gin_vue_admin CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-#### 问题：Redis 连接失败
+#### Issue: Redis Connection Failed
 
-**错误信息：**
+**Error Message:**
 ```
 failed to ping redis, got error dial tcp 127.0.0.1:6379: connect: connection refused
 ```
 
-**解决方案：**
+**Solution:**
 
-1. 启动 Redis 服务
+1. Start Redis service
 ```bash
 # Linux
 sudo systemctl start redis
@@ -73,11 +73,11 @@ sudo systemctl start redis
 # macOS
 brew services start redis
 
-# 手动启动
+# Manual start
 redis-server
 ```
 
-2. 检查 Redis 配置
+2. Check Redis configuration
 ```yaml
 redis:
   db: 0
@@ -85,21 +85,21 @@ redis:
   password: ""
 ```
 
-3. 测试 Redis 连接
+3. Test Redis connection
 ```bash
 redis-cli ping
 ```
 
-#### 问题：端口被占用
+#### Issue: Port Already in Use
 
-**错误信息：**
+**Error Message:**
 ```
 listen tcp :8888: bind: address already in use
 ```
 
-**解决方案：**
+**Solution:**
 
-1. 查找占用端口的进程
+1. Find the process occupying the port
 ```bash
 # Linux/macOS
 lsof -i :8888
@@ -109,7 +109,7 @@ netstat -tulpn | grep 8888
 netstat -ano | findstr 8888
 ```
 
-2. 终止占用进程
+2. Terminate the process
 ```bash
 # Linux/macOS
 kill -9 <PID>
@@ -118,72 +118,72 @@ kill -9 <PID>
 taskkill /PID <PID> /F
 ```
 
-3. 或修改配置文件中的端口
+3. Or modify the port in the configuration file
 ```yaml
 system:
-  addr: 8889  # 修改为其他端口
+  addr: 8889  # Change to another port
 ```
 
-### 2. 前端启动问题
+### 2. Frontend Startup Issues
 
-#### 问题：依赖安装失败
+#### Issue: Dependency Installation Failed
 
-**错误信息：**
+**Error Message:**
 ```
 npm ERR! code ERESOLVECONFLICT
 npm ERR! ERESOLVECONFLICT unable to resolve dependency tree
 ```
 
-**解决方案：**
+**Solution:**
 
-1. 清理缓存和依赖
+1. Clear cache and dependencies
 ```bash
-# 删除 node_modules 和 package-lock.json
+# Delete node_modules and package-lock.json
 rm -rf node_modules package-lock.json
 
-# 清理 npm 缓存
+# Clear npm cache
 npm cache clean --force
 
-# 重新安装
+# Reinstall
 npm install
 ```
 
-2. 使用 yarn 替代 npm
+2. Use yarn instead of npm
 ```bash
-# 安装 yarn
+# Install yarn
 npm install -g yarn
 
-# 使用 yarn 安装依赖
+# Use yarn to install dependencies
 yarn install
 ```
 
-3. 使用 --legacy-peer-deps 参数
+3. Use the --legacy-peer-deps parameter
 ```bash
 npm install --legacy-peer-deps
 ```
 
-#### 问题：Node.js 版本不兼容
+#### Issue: Node.js Version Incompatibility
 
-**错误信息：**
+**Error Message:**
 ```
 engine "node" is incompatible with this module
 ```
 
-**解决方案：**
+**Solution:**
 
-1. 检查 Node.js 版本
+1. Check Node.js version
 ```bash
 node --version
 ```
 
-2. 安装推荐版本（Node.js 16+）
+2. Install the recommended version (Node.js 16+)
 ```bash
-# 使用 nvm 管理 Node.js 版本
+# Use nvm to manage Node.js versions
 nvm install 18
 nvm use 18
 ```
 
-3. 或修改 package.json 中的引擎要求
+3. Or modify the engine requirements in package.json
 ```json
 {
   "engines": {
@@ -192,21 +192,21 @@ nvm use 18
 }
 ```
 
-#### 问题：Vite 开发服务器启动失败
+#### Issue: Vite Development Server Failed to Start
 
-**错误信息：**
+**Error Message:**
 ```
 Error: Cannot find module '@vitejs/plugin-vue'
 ```
 
-**解决方案：**
+**Solution：**
 
-1. 重新安装 Vite 相关依赖
+1. Reinstall Vite related dependencies
 ```bash
 npm install @vitejs/plugin-vue @vitejs/plugin-vue-jsx --save-dev
 ```
 
-2. 检查 vite.config.js 配置
+2. Check vite.config.js configuration
 ```javascript
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -232,20 +232,20 @@ export default defineConfig({
 })
 ```
 
-## 🔧 开发问题
+## 🔧 Development Issues
 
-### 1. API 请求问题
+### 1. API Request Issues
 
-#### 问题：跨域请求被阻止
+#### Issue: Cross-Origin Request Blocked
 
-**错误信息：**
+**Error Message:**
 ```
 Access to XMLHttpRequest at 'http://localhost:8888/api/login' from origin 'http://localhost:8080' has been blocked by CORS policy
 ```
 
-**解决方案：**
+**Solution：**
 
-1. 后端配置 CORS 中间件
+1. Backend configure CORS middleware
 ```go
 // middleware/cors.go
 func Cors() gin.HandlerFunc {
@@ -266,7 +266,7 @@ func Cors() gin.HandlerFunc {
 }
 ```
 
-2. 前端配置代理
+2. Frontend configure proxy
 ```javascript
 // vite.config.js
 export default defineConfig({
@@ -282,20 +282,20 @@ export default defineConfig({
 })
 ```
 
-#### 问题：Token 验证失败
+#### Issue: Token Validation Failed
 
-**错误信息：**
+**Error Message:**
 ```
 {
   "code": 7,
   "data": {},
-  "msg": "token过期"
+  "msg": "token expired"
 }
 ```
 
-**解决方案：**
+**Solution:**
 
-1. 检查 Token 是否正确设置
+1. Check if the token is set correctly
 ```javascript
 // utils/request.js
 service.interceptors.request.use(
@@ -312,22 +312,22 @@ service.interceptors.request.use(
 )
 ```
 
-2. 实现 Token 自动刷新
+2. Implement token auto-refresh
 ```javascript
 // utils/request.js
 service.interceptors.response.use(
   response => {
     const res = response.data
     if (res.code === 7) {
-      // Token 过期，尝试刷新
+      // Token expired, try to refresh
       return store.dispatch('user/refreshToken').then(() => {
-        // 重新发送原请求
+        // Resend the original request
         return service(response.config)
       }).catch(() => {
-        // 刷新失败，跳转登录页
+        // Refresh failed, redirect to login page
         store.dispatch('user/logout')
         router.push('/login')
-        return Promise.reject(new Error('Token 过期'))
+        return Promise.reject(new Error('Token expired'))
       })
     }
     return response
@@ -338,24 +338,24 @@ service.interceptors.response.use(
 )
 ```
 
-### 2. 权限问题
+### 2. Permission Issues
 
-#### 问题：权限验证失败
+#### Issue: Permission Validation Failed
 
-**错误信息：**
+**Error Message:**
 ```
 {
   "code": 7,
   "data": {},
-  "msg": "权限不足"
+  "msg": "insufficient permissions"
 }
 ```
 
-**解决方案：**
+**Solution：**
 
-1. 检查用户角色权限配置
+1. Check user role permission configuration
 ```sql
--- 查看用户权限
+-- View user permissions
 SELECT u.username, a.authority_name, ar.authority_id, ar.path, ar.method
 FROM sys_users u
 JOIN sys_authorities a ON u.authority_id = a.authority_id
@@ -365,15 +365,15 @@ JOIN casbin_rule ar ON a.authority_id = ar.v0
 WHERE u.username = 'your_username';
 ```
 
-2. 添加权限规则
+2. Add permission rules
 ```go
-// 在系统管理 -> 角色管理 -> API权限中添加对应的权限
-// 或通过代码添加
+// In system management -> role management -> API permissions add corresponding permissions
+// Or add by code
 casbinService := service.ServiceGroupApp.SystemServiceGroup.CasbinService
 casbinService.UpdateCasbin(authorityId, casbinInfos)
 ```
 
-3. 检查 Casbin 配置
+3. Check Casbin configuration
 ```go
 // config/casbin.go
 func (c *Casbin) TableName() string {
@@ -381,110 +381,110 @@ func (c *Casbin) TableName() string {
 }
 ```
 
-### 3. 数据库问题
+### 3. Database Issues
 
-#### 问题：数据库迁移失败
+#### Issue: Database Migration Failed
 
-**错误信息：**
+**Error Message:**
 ```
 Error 1071: Specified key was too long; max key length is 767 bytes
 ```
 
-**解决方案：**
+**Solution：**
 
-1. 修改 MySQL 配置
+1. Modify MySQL configuration
 ```sql
--- 设置 innodb_large_prefix
+-- Set innodb_large_prefix
 SET GLOBAL innodb_large_prefix = 1;
 SET GLOBAL innodb_file_format = 'Barracuda';
 SET GLOBAL innodb_file_per_table = 1;
 ```
 
-2. 修改表结构
+2. Modify table structure
 ```go
-// 在模型中指定索引长度
+// Specify index length in the model
 type SysUser struct {
-    Username string `gorm:"index:idx_username,length:191;comment:用户登录名"`
-    Email    string `gorm:"index:idx_email,length:191;comment:用户邮箱"`
+    Username string `gorm:"index:idx_username,length:191;comment:User login name"`
+    Email    string `gorm:"index:idx_email,length:191;comment:User email"`
 }
 ```
 
-#### 问题：外键约束错误
+#### Issue: Foreign Key Constraint Error
 
-**错误信息：**
+**Error Message:**
 ```
 Error 1452: Cannot add or update a child row: a foreign key constraint fails
 ```
 
-**解决方案：**
+**Solution：**
 
-1. 检查外键关联的数据是否存在
+1. Check if the foreign key associated data exists
 ```sql
--- 检查关联数据
+-- Check associated data
 SELECT * FROM sys_authorities WHERE authority_id = 'your_authority_id';
 ```
 
-2. 临时禁用外键检查
+2. Temporarily disable foreign key checks
 ```sql
 SET FOREIGN_KEY_CHECKS = 0;
--- 执行你的操作
+-- Perform your operations
 SET FOREIGN_KEY_CHECKS = 1;
 ```
 
-3. 修改 GORM 配置
+3. Modify GORM configuration
 ```go
 // config/gorm.go
 func GormConfig() *gorm.Config {
     return &gorm.Config{
         DisableForeignKeyConstraintWhenMigrating: true,
-        // 其他配置...
+        // Other configurations...
     }
 }
 ```
 
-## 🎨 前端问题
+## 🎨 Frontend Issues
 
-### 1. 路由问题
+### 1. Routing Issues
 
-#### 问题：路由跳转失败
+#### Issue: Routing Jump Failed
 
-**错误信息：**
+**Error Message:**
 ```
 Uncaught (in promise) NavigationDuplicated: Avoided redundant navigation to current location
 ```
 
-**解决方案：**
+**Solution：**
 
-1. 检查路由跳转逻辑
+1. Check routing jump logic
 ```javascript
-// 避免重复跳转
+// Avoid duplicate jump
 if (this.$route.path !== '/target-path') {
   this.$router.push('/target-path')
 }
 ```
 
-2. 使用 replace 替代 push
+2. Use replace instead of push
 ```javascript
 this.$router.replace('/target-path')
 ```
 
-#### 问题：动态路由不生效
+#### Issue: Dynamic Routing Ineffective
 
-**解决方案：**
+**Solution：**
 
-1. 检查路由注册顺序
+1. Check routing registration order
 ```javascript
 // router/index.js
-// 确保动态路由在静态路由之后注册
+// Ensure dynamic routes are registered after static routes
 const routes = [
-  // 静态路由
+  // Static routes
   { path: '/login', component: Login },
-  // 动态路由
+  // Dynamic routes
   ...asyncRoutes
 ]
 ```
 
-2. 检查权限验证逻辑
+2. Check permission verification logic
 ```javascript
 // store/modules/router.js
 const actions = {
@@ -496,19 +496,19 @@ const actions = {
 }
 ```
 
-### 2. 组件问题
+### 2. Component Issues
 
-#### 问题：Element Plus 组件样式异常
+#### Issue: Element Plus Component Style Abnormal
 
-**解决方案：**
+**Solution：**
 
-1. 检查样式导入
+1. Check style import
 ```javascript
 // main.js
 import 'element-plus/dist/index.css'
 ```
 
-2. 检查主题配置
+2. Check theme configuration
 ```scss
 // styles/element-variables.scss
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
@@ -520,11 +520,11 @@ import 'element-plus/dist/index.css'
 );
 ```
 
-#### 问题：组件响应式失效
+#### Issue: Component Responsiveness Failure
 
-**解决方案：**
+**Solution：**
 
-1. 检查数据响应式声明
+1. Check data responsiveness declaration
 ```javascript
 // Vue 3 Composition API
 import { ref, reactive } from 'vue'
@@ -544,33 +544,33 @@ export default {
 }
 ```
 
-2. 检查数组/对象更新方式
+2. Check array/object update method
 ```javascript
-// 错误方式
+// Incorrect method
 this.list[0] = newItem
 
-// 正确方式
+// Correct method
 this.$set(this.list, 0, newItem)
-// 或
+// Or
 this.list.splice(0, 1, newItem)
 ```
 
-## 🚀 部署问题
+## 🚀 Deployment Issues
 
-### 1. Docker 部署问题
+### 1. Docker Deployment Issues
 
-#### 问题：Docker 镜像构建失败
+#### Issue: Docker Image Build Failed
 
-**错误信息：**
+**Error Message:**
 ```
 failed to solve with frontend dockerfile.v0: failed to read dockerfile
 ```
 
-**解决方案：**
+**Solution：**
 
-1. 检查 Dockerfile 语法
+1. Check Dockerfile syntax
 ```dockerfile
-# 确保 Dockerfile 格式正确
+# Ensure Dockerfile format is correct
 FROM golang:1.19-alpine AS builder
 
 WORKDIR /app
@@ -586,7 +586,7 @@ COPY --from=builder /app/config.yaml .
 CMD ["./main"]
 ```
 
-2. 检查 .dockerignore 文件
+2. Check .dockerignore file
 ```
 node_modules
 .git
@@ -596,33 +596,33 @@ Dockerfile
 .dockerignore
 ```
 
-#### 问题：容器启动失败
+#### Issue: Container Startup Failed
 
-**错误信息：**
+**Error Message:**
 ```
 standard_init_linux.go: exec user process caused: no such file or directory
 ```
 
-**解决方案：**
+**Solution：**
 
-1. 检查可执行文件权限
+1. Check executable file permissions
 ```dockerfile
 RUN chmod +x ./main
 ```
 
-2. 使用正确的基础镜像
+2. Use the correct base image
 ```dockerfile
-# 对于 Go 程序，使用 alpine 或 scratch
+# For Go programs, use alpine or scratch
 FROM alpine:latest
-# 或
+# Or
 FROM scratch
 ```
 
-### 2. Nginx 配置问题
+### 2. Nginx Configuration Issues
 
-#### 问题：前端路由 404
+#### Issue: Frontend Route 404
 
-**解决方案：**
+**Solution：**
 
 ```nginx
 server {
@@ -631,12 +631,12 @@ server {
     root /var/www/html;
     index index.html;
     
-    # 处理前端路由
+    # Handle frontend routes
     location / {
         try_files $uri $uri/ /index.html;
     }
     
-    # API 代理
+    # API proxy
     location /api {
         proxy_pass http://backend:8888;
         proxy_set_header Host $host;
@@ -647,20 +647,20 @@ server {
 }
 ```
 
-#### 问题：静态资源加载失败
+#### Issue: Static Resource Loading Failed
 
-**解决方案：**
+**Solution：**
 
 ```nginx
 server {
-    # 静态资源缓存
+    # Static resource caching
     location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
         expires 1y;
         add_header Cache-Control "public, immutable";
         try_files $uri =404;
     }
     
-    # 字体文件
+    # Font files
     location ~* \.(woff|woff2|ttf|eot)$ {
         expires 1y;
         add_header Cache-Control "public";
@@ -669,16 +669,16 @@ server {
 }
 ```
 
-## 🔍 调试技巧
+## 🔍 Debugging Tips
 
-### 1. 后端调试
+### 1. Backend Debugging
 
-#### 启用详细日志
+#### Enable Detailed Logs
 
 ```yaml
 # config.yaml
 zap:
-  level: 'debug'  # 设置为 debug 级别
+  level: 'debug'  # Set to debug level
   format: 'console'
   prefix: '[gin-vue-admin]'
   director: 'log'
@@ -688,26 +688,26 @@ zap:
   log-in-console: true
 ```
 
-#### 使用 Delve 调试器
+#### Use Delve Debugger
 
 ```bash
-# 安装 Delve
+# Install Delve
 go install github.com/go-delve/delve/cmd/dlv@latest
 
-# 启动调试
+# Start debugging
 dlv debug main.go
 
-# 在代码中设置断点
+# Set breakpoints in the code
 (dlv) break main.main
 (dlv) continue
 ```
 
-### 2. 前端调试
+### 2. Frontend Debugging
 
-#### 使用 Vue DevTools
+#### Use Vue DevTools
 
-1. 安装浏览器扩展
-2. 在开发环境中启用
+1. Install browser extension
+2. Enable in development environment
 ```javascript
 // main.js
 if (process.env.NODE_ENV === 'development') {
@@ -715,7 +715,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 ```
 
-#### 网络请求调试
+#### Network Request Debugging
 
 ```javascript
 // utils/request.js
@@ -738,30 +738,30 @@ service.interceptors.response.use(
 )
 ```
 
-## 📊 性能问题
+## 📊 Performance Issues
 
-### 1. 后端性能优化
+### 1. Backend Performance Optimization
 
-#### 数据库查询优化
+#### Database Query Optimization
 
 ```go
-// 使用索引
+// Use index
 db.Where("username = ?", username).First(&user)
 
-// 预加载关联数据
+// Preload associated data
 db.Preload("Authorities").Find(&users)
 
-// 分页查询
+// Paginate query
 db.Limit(pageSize).Offset(offset).Find(&users)
 
-// 只查询需要的字段
+// Only query required fields
 db.Select("id, username, email").Find(&users)
 ```
 
-#### 缓存优化
+#### Cache Optimization
 
 ```go
-// 使用 Redis 缓存
+// Use Redis cache
 func GetUserFromCache(userID uint) (*system.SysUser, error) {
     key := fmt.Sprintf("user:%d", userID)
     cached := global.GVA_REDIS.Get(context.Background(), key).Val()
@@ -772,7 +772,7 @@ func GetUserFromCache(userID uint) (*system.SysUser, error) {
         return &user, err
     }
     
-    // 从数据库查询并缓存
+    // Query from database and cache
     var user system.SysUser
     err := global.GVA_DB.First(&user, userID).Error
     if err != nil {
@@ -786,12 +786,12 @@ func GetUserFromCache(userID uint) (*system.SysUser, error) {
 }
 ```
 
-### 2. 前端性能优化
+### 2. Frontend Performance Optimization
 
-#### 组件懒加载
+#### Component Lazy Loading
 
 ```javascript
-// 路由懒加载
+// Route lazy loading
 const routes = [
   {
     path: '/dashboard',
@@ -799,7 +799,7 @@ const routes = [
   }
 ]
 
-// 组件懒加载
+// Component lazy loading
 export default {
   components: {
     HeavyComponent: () => import('@/components/HeavyComponent.vue')
@@ -807,7 +807,7 @@ export default {
 }
 ```
 
-#### 虚拟滚动
+#### Virtual Scrolling
 
 ```vue
 <template>
@@ -817,7 +817,7 @@ export default {
     height="400"
     @scroll="handleScroll"
   >
-    <!-- 表格列定义 -->
+    <!-- Table column definition -->
   </el-table>
 </template>
 
@@ -861,68 +861,62 @@ export default {
 </script>
 ```
 
-## 📞 获取帮助
+## 📞 Getting Help
 
-### 社区支持
+### Community Support
 
 - [GitHub Issues](https://github.com/flipped-aurora/gin-vue-admin/issues)
-- [官方文档](https://www.gin-vue-admin.com/)
-- [QQ群](https://qm.qq.com/cgi-bin/qm/qr?k=_GGNvjK6Ej8xJJhJhJhJhJhJhJhJhJhJ)
-- [微信群](https://www.gin-vue-admin.com/coffee/)
+- [Official Documentation](https://www.gin-vue-admin.com/)
+- [QQ Group](https://qm.qq.com/cgi-bin/qm/qr?k=_GGNvjK6Ej8xJJhJhJhJhJhJhJhJhJhJ)
+- [WeChat Group](https://www.gin-vue-admin.com/coffee/)
 
-### 提交 Bug 报告
+### Submitting Bug Reports
 
-提交 Bug 时请包含以下信息：
+When submitting a bug report, please include the following information:
 
-1. **环境信息**
-   - 操作系统版本
-   - Go 版本
-   - Node.js 版本
-   - 数据库版本
+1. **Environment Information**
+   - Operating system version
+   - Go version
+   - Node.js version
+   - Database version
 
-2. **错误描述**
-   - 详细的错误信息
-   - 复现步骤
-   - 期望行为
+2. **Error Description**
+   - Detailed error message
+   - Steps to reproduce
+   - Expected behavior
 
-3. **相关代码**
-   - 最小复现代码
-   - 配置文件
-   - 日志信息
+3. **Relevant Code**
+   - Minimal reproducible code
+   - Configuration files
+   - Log information
 
-### 常用调试命令
+### Common Debugging Commands
 
 ```bash
-# 查看 Go 版本
+# Check Go version
 go version
 
-# 查看 Node.js 版本
+# Check Node.js version
 node --version
 npm --version
 
-# 查看数据库版本
+# Check database version
 mysql --version
 redis-server --version
 
-# 查看端口占用
+# Check port occupation
 lsof -i :8888
 netstat -tulpn | grep 8888
 
-# 查看进程
+# Check process
 ps aux | grep gin-vue-admin
 
-# 查看日志
+# Check logs
 tail -f log/server.log
 journalctl -u gin-vue-admin -f
 
-# Docker 相关
+# Docker related
 docker ps
 docker logs container_name
 docker exec -it container_name /bin/sh
 ```
-
-## 📚 相关文档
-
-- [快速开始](/guide/start-quickly/initialization)
-- [项目配置](/guide/server/config)
-- [部署指南](/guide/deployment/)

@@ -1,4 +1,3 @@
-
 # Environment Setup
 
 This guide will help you set up the development environment for the Gin-Vue-Admin project from scratch. If you already have the relevant environment, you can skip the corresponding sections.
@@ -49,83 +48,83 @@ npm config set registry https://registry.npmmirror.com
 npm config get registry
 ```
 
-### 4. 推荐开发工具
+### 4. Recommended Development Tools
 
-- **VS Code**: [下载地址](https://code.visualstudio.com/)
-- **WebStorm**: [下载地址](https://www.jetbrains.com/webstorm/)
+- **VS Code**: [Download Link](https://code.visualstudio.com/)
+- **WebStorm**: [Download Link](https://www.jetbrains.com/webstorm/)
 
-## 🔧 Go 环境安装
+## 🔧 Go Environment Installation
 
-### 1. 下载安装 Go
+### 1. Download and Install Go
 
-根据您的网络环境选择下载地址：
+Choose the download link based on your network environment:
 
-- **国际用户**: [https://golang.org/dl/](https://golang.org/dl/)
-- **国内用户**: [https://golang.google.cn/dl/](https://golang.google.cn/dl/)
+- **International Users**: [https://golang.org/dl/](https://golang.org/dl/)
+- **Domestic Users**: [https://golang.google.cn/dl/](https://golang.google.cn/dl/)
 
-**推荐版本**: Go 1.22 或更高版本
+**Recommended version**: Go 1.22 or higher
 
-### 2. 验证安装
+### 2. Verify Installation
 
 ```bash
-# 检查 Go 版本
+# Check Go version
 go version
-# 输出示例: go version go1.22.0 darwin/amd64
+# Output example: go version go1.22.0 darwin/amd64
 
-# 查看 Go 环境信息
+# View Go environment information
 go env
 ```
 
-### 3. 配置 Go 模块代理（推荐）
+### 3. Configure Go Module Proxy (Recommended)
 
-为了提高模块下载速度，建议配置 Go 模块代理：
+To improve module download speed, it is recommended to configure the Go module proxy:
 
 ```bash
-# 启用 Go Modules
+# Enable Go Modules
 go env -w GO111MODULE=on
 
-# 配置模块代理
+# Configure module proxy
 go env -w GOPROXY=https://goproxy.cn,direct
 
-# 配置私有模块跳过代理
+# Configure private module exclusion from proxy
 go env -w GOPRIVATE=*.corp.example.com
 ```
 
-### 4. 推荐开发工具
+### 4. Recommended Development Tools
 
-- **GoLand**: [下载地址](https://www.jetbrains.com/go/) (推荐)
-- **VS Code + Go 插件**: 免费替代方案
+- **GoLand**: [Download Link](https://www.jetbrains.com/go/) (Recommended)
+- **VS Code + Go Plugin**: Free alternative
 
-## 🗄️ 数据库环境
+## 🗄️ Database Environment
 
-### MySQL 安装
+### MySQL Installation
 
 #### macOS
 ```bash
-# 使用 Homebrew 安装
+# Install using Homebrew
 brew install mysql
 
-# 启动 MySQL 服务
+# Start MySQL service
 brew services start mysql
 ```
 
 #### Ubuntu/Debian
 ```bash
-# 更新包列表
+# Update package list
 sudo apt update
 
-# 安装 MySQL
+# Install MySQL
 sudo apt install mysql-server
 
-# 启动 MySQL 服务
+# Start MySQL service
 sudo systemctl start mysql
 sudo systemctl enable mysql
 ```
 
 #### Windows
-访问 [MySQL 官网](https://dev.mysql.com/downloads/mysql/) 下载安装包。
+Visit [MySQL Official Website](https://dev.mysql.com/downloads/mysql/) to download the installer.
 
-### Redis 安装（可选）
+### Redis Installation (Optional)
 
 #### macOS
 ```bash
@@ -140,9 +139,9 @@ sudo systemctl start redis-server
 sudo systemctl enable redis-server
 ```
 
-## 🛠️ 开发工具配置
+## 🛠️ Development Tool Configuration
 
-### VS Code 推荐插件
+### Recommended VS Code Plugins
 
 ```json
 {
@@ -158,40 +157,40 @@ sudo systemctl enable redis-server
 }
 ```
 
-### GoLand 配置建议
+### GoLand Configuration Suggestions
 
-1. **Go Modules**: 确保启用 Go Modules 支持
-2. **代码格式化**: 配置 `gofmt` 和 `goimports`
-3. **代码检查**: 启用 `golint` 和 `go vet`
+1. **Go Modules**: Ensure Go Modules support is enabled
+2. **Code Formatting**: Configure `gofmt` and `goimports`
+3. **Code Inspection**: Enable `golint` and `go vet`
 
-## 📚 版本分支说明
+## 📚 Branch Version Description
 
-| 分支 | 状态 | 说明 | 推荐使用 |
+| Branch | Status | Description | Recommended |
 |------|------|------|----------|
-| [main](https://github.com/flipped-aurora/gin-vue-admin/tree/main) | 🟢 活跃维护 | 主分支，生产环境推荐 | ✅ 推荐 |
-| [i18n-dev-new](https://github.com/flipped-aurora/gin-vue-admin/tree/i18n-dev-new) | 🟡 更新中 | 组合式API多语言版本 | 🔄 开发中 |
-| [v2.4.x](https://github.com/flipped-aurora/gin-vue-admin/tree/v2.4.x) | 🔴 停止维护 | 声明式API版本 | ❌ 不推荐 |
-| [i18n-dev](https://github.com/flipped-aurora/gin-vue-admin/tree/i18n-dev) | 🔴 停止维护 | 声明式API多语言版本 | ❌ 不推荐 |
+| [main](https://github.com/flipped-aurora/gin-vue-admin/tree/main) | 🟢 Actively Maintained | Main branch, recommended for production environments | ✅ Recommended |
+| [i18n-dev-new](https://github.com/flipped-aurora/gin-vue-admin/tree/i18n-dev-new) | 🟡 Updating | Composition API multilingual version | 🔄 In Development |
+| [v2.4.x](https://github.com/flipped-aurora/gin-vue-admin/tree/v2.4.x) | 🔴 No Longer Maintained | Declarative API version | ❌ Not Recommended |
+| [i18n-dev](https://github.com/flipped-aurora/gin-vue-admin/tree/i18n-dev) | 🔴 No Longer Maintained | Declarative API multilingual version | ❌ Not Recommended |
 
-## ✅ 环境验证
+## ✅ Environment Verification
 
-完成环境安装后，请运行以下命令验证环境是否正确配置：
+After completing the environment installation, run the following commands to verify if the environment is correctly configured:
 
 ```bash
-# 检查 Git
+# Check Git
 git --version
 
-# 检查 Node.js 和 npm
+# Check Node.js and npm
 node -v && npm -v
 
-# 检查 Go
+# Check Go
 go version
 
-# 检查 MySQL（需要先启动服务）
+# Check MySQL (ensure the service is started)
 mysql --version
 
-# 检查 Redis（如果安装了）
+# Check Redis (if installed)
 redis-cli --version
 ```
 
-如果所有命令都能正常输出版本信息，说明环境配置成功！
+If all commands output version information correctly, the environment setup is successful!

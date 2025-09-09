@@ -1,81 +1,81 @@
-## 本地使用 Docker-compose
+## Local Docker-compose Usage
 
-### 安装 docker-compose, 参考[官方文档](https://docs.docker.com/compose/install/)
+### Install docker-compose, refer to [Official Documentation](https://docs.docker.com/compose/install/)
 
 <details>
-<summary>如何在 Linux、Mac、Windows 安装 docker-compose， 点击展开查看</summary>
+<summary>How to install docker-compose on Linux, Mac, Windows, click to expand and view</summary>
 
-#### 在Linux安装
+#### Install on Linux
 
 ```shell
-# 1.1 运行此命令以下载Docker Compose的当前稳定版本
+# 1.1 Run this command to download the current stable version of Docker Compose
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-# 1.2 将可执行权限应用于二进制文件
+# 1.2 Apply executable permissions to the binary file
 sudo chmod +x /usr/local/bin/docker-compose 
 ```
 
-#### 使用 Python 的 pip 安装
+#### Install using Python pip
 
 ```shell
 pip3 install docker-compose -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
-#### 使用 Docker Desktop
+#### Using Docker Desktop
 
 - Windows: https://hub.docker.com/editions/community/docker-ce-desktop-windows
 - Mac: https://hub.docker.com/editions/community/docker-ce-desktop-mac/
 
 </details>
 
-### 使用 Git 克隆并进入本项目
+### Clone and enter this project using Git
 
 ```shell
 git clone https://github.com/flipped-aurora/gin-vue-admin.git && cd gin-vue-admin
 ```
 
-### 使用 docker-compose up 一键启动项目
+### Use docker-compose up to start the project with one command
 
 ```shell
-# 使用docker-compose启动四个容器
+# Use docker-compose to start four containers
 docker-compose -f deploy/docker-compose/docker-compose.yaml up
-# 如果您修改了某些配置选项,可以使用此命令重新打包镜像
+# If you modified some configuration options, you can use this command to repackage images
 docker-compose -f deploy/docker-compose/docker-compose.yaml up --build
-# 使用docker-compose 后台启动
+# Use docker-compose to start in background
 docker-compose -f deploy/docker-compose/docker-compose.yaml up -d
-# 使用docker-compose 重新打包镜像并后台启动
+# Use docker-compose to repackage images and start in background
 docker-compose -f deploy/docker-compose/docker-compose.yaml up --build -d
-# 服务都启动成功后,使用此命令行可清除none镜像
+# After all services start successfully, use this command line to clear none images
 docker system prune
 ```
 
-- web项目预览 [http://127.0.0.1:8000](http://127.0.0.1:8000)
-- swagger文档 [http://127.0.0.1:8888/swagger/index.html](http://127.0.0.1:8888/swagger/index.html)
+- Web project preview [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- Swagger documentation [http://127.0.0.1:8888/swagger/index.html](http://127.0.0.1:8888/swagger/index.html)
 
-## 注意事项
+## Notes
 
-### 使用 docker-compose 体验时需注意的问题
+### Issues to note when using docker-compose for experience
 
-1. 在初始化数据页面中
-- ip 请填写 [docker-compose.yaml](https://github.com/flipped-aurora/gin-vue-admin/blob/master/docker-compose.yaml#L56) 的第 56 行的 ip，或直接使用  `mysql`，如下图
+1. In the initialization data page
+- IP please fill in the IP from line 56 of [docker-compose.yaml](https://github.com/flipped-aurora/gin-vue-admin/blob/master/docker-compose.yaml#L56), or directly use `mysql`, as shown below
 
-- 数据库为  `qmPlus`
+- Database is `qmPlus`
 
-- 端口为 `3306`
+- Port is `3306`
 
-- 用户名为 `gva`
+- Username is `gva`
 
-- 密码为 [docker-compose.yaml](https://github.com/flipped-aurora/gin-vue-admin/blob/master/docker-compose.yaml#L53) 的 52行定义的数据库密码
+- Password is the database password defined in line 52 of [docker-compose.yaml](https://github.com/flipped-aurora/gin-vue-admin/blob/master/docker-compose.yaml#L53)
 
 ![docker-playground](/experience/image-docker-compose.jpg)
 
-2. 如果 server 的 177.7.0.12 这个容器内部ip被占用了, 需要修改地方为
-- [docker-compose.yaml](https://github.com/flipped-aurora/gin-vue-admin/blob/master/docker-compose.yaml#L42) 的第 42 行的 177.7.0.12 更换为你想要的 ip
-- [web/.docker-compose/nginx/conf.d/my.conf](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/.docker-compose/nginx/conf.d/my.conf#L20) 的第 20 行的 177.7.0.12 更换为你想要的 ip
+2. If server's 177.7.0.12 container internal IP is occupied, the places to modify are
+- Line 42 of [docker-compose.yaml](https://github.com/flipped-aurora/gin-vue-admin/blob/master/docker-compose.yaml#L42) replace 177.7.0.12 with your desired IP
+- Line 20 of [web/.docker-compose/nginx/conf.d/my.conf](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/.docker-compose/nginx/conf.d/my.conf#L20) replace 177.7.0.12 with your desired IP
 
 
-### 使用 docker-compose 部署时需注意的问题
+### Issues to note when using docker-compose for deployment
 
-1. docker-compose 使用自定义的一个 docker 网络
+1. docker-compose uses a custom docker network
 
     - ```
 		networks:
@@ -86,14 +86,14 @@ docker system prune
 		        - subnet: '177.7.0.0/16' 
 		```
 
-    - 子网地址, 默认网关是 177.7.0.1 (docker-compose V2 需要写, V3 则不需要), 具体信息看[官方文档](https://docs.docker.com/compose/compose-file/#ipv4_address-ipv6_address)
+    - Subnet address, default gateway is 177.7.0.1 (docker-compose V2 needs to write, V3 doesn't), see [official documentation](https://docs.docker.com/compose/compose-file/#ipv4_address-ipv6_address) for details
 
-    - 默认的 network 名为 gin-vue-admin_network, 默认是 bridge 模式
+    - Default network name is gin-vue-admin_network, default is bridge mode
 
-    - 如果修改了子网,对应的每个 service 的 ipv4_address 都需要修改, 还有[web/.docker-compose/nginx/conf.d/my.conf](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/.docker-compose/nginx/conf.d/my.conf#L20) 的第 20 行的 server 的 ip 也需要修改
+    - If you modify the subnet, the ipv4_address of each service needs to be modified, and the server IP in line 20 of [web/.docker-compose/nginx/conf.d/my.conf](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/.docker-compose/nginx/conf.d/my.conf#L20) also needs to be modified
 
-2. [server/Dockerfile](https://github.com/flipped-aurora/gin-vue-admin/blob/master/server/Dockerfile) 使用了多阶段构建，这是 docker 17.05 后引入的，因此安装的docker版本需要高于 17.05
-3. mysql 数据库请使用装在服务器磁盘的本地数据库
-    - 避免使用 docker 容器内的 mysql, 可能会出现写入的问题, io 比宿主机低  docker 的持久化机制问题.
-4. 使用本项目的 docker-compose 进行部署时, 请修改[docker-compose.yaml](https://github.com/flipped-aurora/gin-vue-admin/blob/master/docker-compose.yaml) 对应的 [nginx配置](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/.docker-compose/nginx/conf.d/my.conf), mysql 配置, networks 配置,redis配置,按需自行更改.
+2. [server/Dockerfile](https://github.com/flipped-aurora/gin-vue-admin/blob/master/server/Dockerfile) uses multi-stage build, which was introduced after docker 17.05, so the installed docker version needs to be higher than 17.05
+3. Please use mysql database installed on server disk
+    - Avoid using mysql in docker containers, there may be write issues, IO is lower than host due to docker's persistence mechanism issues.
+4. When deploying using this project's docker-compose, please modify the corresponding [nginx configuration](https://github.com/flipped-aurora/gin-vue-admin/blob/master/web/.docker-compose/nginx/conf.d/my.conf), mysql configuration, networks configuration, redis configuration in [docker-compose.yaml](https://github.com/flipped-aurora/gin-vue-admin/blob/master/docker-compose.yaml) as needed.
 

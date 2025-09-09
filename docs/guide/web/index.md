@@ -2,148 +2,148 @@
 
 Gin-Vue-Admin frontend is built on Vue 3 + Vite 4 + Element Plus, using modern frontend development technology stack, providing efficient development experience and excellent user interface.
 
-## 🚀 技术栈
+## 🚀 Technology Stack
 
-### 核心框架
-- **Vue 3** - 渐进式 JavaScript 框架
-- **Vite 4** - 下一代前端构建工具
-- **Element Plus ** - 基于 Vue 3 的组件库
+### Core Frameworks
+- **Vue 3** - Progressive JavaScript framework
+- **Vite 4** - Next-generation frontend build tool
+- **Element Plus** - Component library based on Vue 3
 
-### 状态管理
-- **Pinia** - Vue 3 官方推荐的状态管理库
-- **Vue Router 4** - Vue.js 官方路由管理器
+### State Management
+- **Pinia** - Official Vue 3 recommended state management library
+- **Vue Router 4** - Official Vue.js router manager
 
-### 开发工具
-- **TypeScript** - JavaScript 的超集（可选）
-- **ESLint** - 代码质量检查工具
-- **Prettier** - 代码格式化工具
-- **Sass/SCSS** - CSS 预处理器
+### Development Tools
+- **TypeScript** - Superset of JavaScript (optional)
+- **ESLint** - Code quality checking tool
+- **Prettier** - Code formatting tool
+- **Sass/SCSS** - CSS preprocessor
 
-### 构建优化
-- **Vite Plugin** - 丰富的插件生态
-- **Tree Shaking** - 自动移除未使用代码
-- **Code Splitting** - 代码分割优化
-- **Hot Module Replacement** - 热模块替换
+### Build Optimization
+- **Vite Plugin** - Rich plugin ecosystem
+- **Tree Shaking** - Automatically remove unused code
+- **Code Splitting** - Code splitting optimization
+- **Hot Module Replacement** - Hot module replacement
 
-## 📁 前端目录结构
+## 📁 Frontend Directory Structure
 ```
 web
  ├── babel.config.js
  ├── Dockerfile
  ├── favicon.ico
- ├── index.html                  -- 主页面
- ├── limit.js                    -- 助手代码
- ├── package.json                -- 包管理器代码
- ├── src                         -- 源代码
- │   ├── api                    -- api 组
- │   ├── App.vue                -- 主页面
- │   ├── assets                 -- 静态资源
- │   ├── components             -- 全局组件
- │   ├── core                   -- gva 组件包
- │   │   ├── config.js         -- gva网站配置文件
- │   │   ├── gin-vue-admin.js  -- 注册欢迎文件
- │   │   └── global.js         -- 统一导入文件
- │   ├── directive              -- v-auth 注册文件
- │   ├── main.js                -- 主文件
- │   ├── permission.js          -- 路由中间件
- │   ├── pinia                  -- pinia 状态管理器，取代vuex
- │   │   ├── index.js          -- 入口文件
- │   │   └── modules           -- modules
+ ├── index.html                  -- Main page
+ ├── limit.js                    -- Assistant code
+ ├── package.json                -- Package manager code
+ ├── src                         -- Source code
+ │   ├── api                    -- API group
+ │   ├── App.vue                -- Main page
+ │   ├── assets                 -- Static resources
+ │   ├── components             -- Global components
+ │   ├── core                   -- GVA component package
+ │   │   ├── config.js         -- GVA website configuration file
+ │   │   ├── gin-vue-admin.js  -- Registration welcome file
+ │   │   └── global.js         -- Unified import file
+ │   ├── directive              -- v-auth registration file
+ │   ├── main.js                -- Main file
+ │   ├── permission.js          -- Route middleware
+ │   ├── pinia                  -- Pinia state manager, replacing vuex
+ │   │   ├── index.js          -- Entry file
+ │   │   └── modules           -- Modules
  │   │       ├── dictionary.js
  │   │       ├── router.js
  │   │       └── user.js
- │   ├── router                 -- 路由声明文件
+ │   ├── router                 -- Route declaration file
  │   │   └── index.js
- │   ├── style                  -- 全局样式
+ │   ├── style                  -- Global styles
  │   │   ├── base.scss
  │   │   ├── basics.scss
- │   │   ├── element_visiable.scss  -- 此处可以全局覆盖 element-plus 样式
- │   │   ├── iconfont.css           -- 顶部几个icon的样式文件
+ │   │   ├── element_visiable.scss  -- Can globally override element-plus styles here
+ │   │   ├── iconfont.css           -- Style file for top icons
  │   │   ├── main.scss
  │   │   ├── mobile.scss
  │   │   └── newLogin.scss
- │   ├── utils                  -- 方法包库
- │   │   ├── asyncRouter.js    -- 动态路由相关
- │   │   ├── btnAuth.js        -- 动态权限按钮相关
- │   │   ├── bus.js            -- 全局mitt声明文件
- │   │   ├── date.js           -- 日期相关
- │   │   ├── dictionary.js     -- 获取字典方法 
- │   │   ├── downloadImg.js    -- 下载图片方法
- │   │   ├── format.js         -- 格式整理相关
- │   │   ├── image.js          -- 图片相关方法
- │   │   ├── page.js           -- 设置页面标题
- │   │   ├── request.js        -- 统一请求文件
- │   │   └── stringFun.js      -- 字符串文件
- |   ├── view                   -- 主要view代码
- |   |   ├── about              -- 关于我们
- |   |   ├── dashboard          -- 面板
- |   |   ├── error              -- 错误
- |   |   ├── example            -- 上传案例
- |   |   ├── iconList           -- icon列表
- |   |   ├── init               -- 初始化数据  
- |   |   ├── layout             -- layout约束页面 
- |   |   |   ├── aside          -- 侧边栏
- |   |   |   ├── bottomInfo     -- bottomInfo
- |   |   |   ├── screenfull     -- 全屏设置
- |   |   |   ├── setting        -- 系统设置
- |   |   |   └── index.vue      -- base 约束
- |   |   ├── login              --登录 
- |   |   ├── person             --个人中心 
- |   |   ├── superAdmin         -- 超级管理员操作
- |   |   ├── system             -- 系统检测页面
- |   |   ├── systemTools        -- 系统配置相关页面
- |   |   └── routerHolder.vue   -- page 入口页面 
- ├── vite.config.js             -- vite 配置文件
+ │   ├── utils                  -- Method package library
+ │   │   ├── asyncRouter.js    -- Dynamic routing related
+ │   │   ├── btnAuth.js        -- Dynamic permission button related
+ │   │   ├── bus.js            -- Global mitt declaration file
+ │   │   ├── date.js           -- Date related
+ │   │   ├── dictionary.js     -- Dictionary retrieval method 
+ │   │   ├── downloadImg.js    -- Image download method
+ │   │   ├── format.js         -- Format organization related
+ │   │   ├── image.js          -- Image related methods
+ │   │   ├── page.js           -- Set page title
+ │   │   ├── request.js        -- Unified request file
+ │   │   └── stringFun.js      -- String file
+ |   ├── view                   -- Main view code
+ |   |   ├── about              -- About us
+ |   |   ├── dashboard          -- Dashboard
+ |   |   ├── error              -- Error
+ |   |   ├── example            -- Upload example
+ |   |   ├── iconList           -- Icon list
+ |   |   ├── init               -- Initialize data  
+ |   |   ├── layout             -- Layout constraint page 
+ |   |   |   ├── aside          -- Sidebar
+ |   |   |   ├── bottomInfo     -- Bottom info
+ |   |   |   ├── screenfull     -- Full screen settings
+ |   |   |   ├── setting        -- System settings
+ |   |   |   └── index.vue      -- Base constraint
+ |   |   ├── login              -- Login 
+ |   |   ├── person             -- Personal center 
+ |   |   ├── superAdmin         -- Super administrator operations
+ |   |   ├── system             -- System detection page
+ |   |   ├── systemTools        -- System configuration related pages
+ |   |   └── routerHolder.vue   -- Page entry page 
+ ├── vite.config.js             -- Vite configuration file
  └── yarn.lock
 ```
 
-## 🛠️ 开发环境配置
+## 🛠️ Development Environment Configuration
 
-### 环境要求
+### Environment Requirements
 - **Node.js** >= 16.0.0
-- **npm** >= 8.0.0 或 **yarn** >= 1.22.0
-- **Git** 版本控制工具
+- **npm** >= 8.0.0 or **yarn** >= 1.22.0
+- **Git** Version control tool
 
-### 安装依赖
+### Install Dependencies
 
 ```bash
-# 进入前端目录
+# Enter the frontend directory
 cd web
 
-# 使用 npm 安装
+# Install using npm
 npm install
 
-# 或使用 yarn 安装
+# Or install using yarn
 yarn install
 ```
 
-### 开发命令
+### Development Commands
 
 ```bash
-# 启动开发服务器
+# Start the development server
 npm run serve
-# 或
+# Or
 yarn serve
 
-# 构建生产版本
+# Build the production version
 npm run build
-# 或
+# Or
 yarn build
 
-# 代码检查
+# Code linting
 npm run lint
-# 或
+# Or
 yarn lint
 
-# 代码格式化
+# Code formatting
 npm run format
-# 或
+# Or
 yarn format
 ```
 
-## 🎯 核心配置文件
+## 🎯 Core Configuration Files
 
-### Vite 配置 (vite.config.js)
+### Vite Configuration (vite.config.js)
 
 ```javascript
 import { defineConfig } from 'vite'
@@ -188,10 +188,10 @@ export default defineConfig({
 })
 ```
 
-### 项目配置 (src/core/config.js)
+### Project Configuration (src/core/config.js)
 
 ```javascript
-// 系统全局配置
+// Global system configuration
 export const config = {
   appName: 'Gin-Vue-Admin',
   appLogo: 'logoIco.png',
@@ -199,7 +199,7 @@ export const config = {
   progressBarColor: '#409EFF',
   showInfoTip: true,
   
-  // 布局配置
+  // Layout configuration
   layout: {
     showTagsView: true,
     showSidebarLogo: true,
@@ -209,7 +209,7 @@ export const config = {
     showColorWeakness: false
   },
   
-  // 主题配置
+  // Theme configuration
   theme: {
     primaryColor: '#409EFF',
     successColor: '#67C23A',
@@ -220,11 +220,11 @@ export const config = {
 }
 ```
 
-## 🏗️ 核心架构
+## 🏗️ Core Architecture
 
-### 1. 路由系统
+### 1. Routing System
 
-#### 静态路由配置
+#### Static Route Configuration
 
 ```javascript
 // src/router/index.js
@@ -264,7 +264,7 @@ const router = createRouter({
 export default router
 ```
 
-#### 动态路由处理
+#### Dynamic Route Handling
 
 ```javascript
 // src/utils/asyncRouter.js
@@ -306,9 +306,9 @@ export function formatRouter(routes, routeMap) {
 }
 ```
 
-### 2. 状态管理 (Pinia)
+### 2. State Management (Pinia)
 
-#### 用户状态管理
+#### User State Management
 
 ```javascript
 // src/pinia/modules/user.js
@@ -406,7 +406,7 @@ export const useUserStore = defineStore('user', {
 })
 ```
 
-#### 路由状态管理
+#### Router State Management
 
 ```javascript
 // src/pinia/modules/router.js
@@ -447,7 +447,7 @@ export const useRouterStore = defineStore('router', {
 })
 ```
 
-### 3. HTTP 请求封装
+### 3. HTTP Request Encapsulation
 
 ```javascript
 // src/utils/request.js
@@ -549,9 +549,9 @@ service.interceptors.response.use(
 export default service
 ```
 
-## 🎨 组件开发
+## 🎨 Component Development
 
-### 全局组件注册
+### Global Component Registration
 
 ```javascript
 // src/core/global.js
@@ -576,7 +576,7 @@ export function setupGlobalComponents(app) {
 }
 ```
 
-### 自定义组件示例
+### Custom Component Example
 
 ```vue
 <!-- src/components/gva-table/index.vue -->
@@ -831,9 +831,9 @@ defineExpose({
 </style>
 ```
 
-## 🔐 权限控制
+## 🔐 Permission Control
 
-### 权限指令
+### Permission Directive
 
 ```javascript
 // src/directive/auth.js
@@ -870,7 +870,7 @@ export default {
 }
 ```
 
-### 按钮权限控制
+### Button Permission Control
 
 ```javascript
 // src/utils/btnAuth.js
@@ -898,9 +898,9 @@ export function useBtnAuth() {
 }
 ```
 
-## 🎨 主题定制
+## 🎨 Theme Customization
 
-### Element Plus 主题定制
+### Element Plus Theme Customization
 
 ```scss
 // src/style/element_variables.scss
@@ -952,7 +952,7 @@ export function useBtnAuth() {
 }
 ```
 
-### 暗色主题支持
+### Dark Mode Support
 
 ```scss
 // src/style/dark.scss
@@ -991,9 +991,9 @@ export function useBtnAuth() {
 }
 ```
 
-## 📱 响应式设计
+## 📱 Responsive Design
 
-### 移动端适配
+### Mobile Adaptation
 
 ```scss
 // src/style/mobile.scss
@@ -1071,9 +1071,9 @@ export function useBtnAuth() {
 }
 ```
 
-## 🚀 性能优化
+## 🚀 Performance Optimization
 
-### 路由懒加载
+### Route Lazy Loading
 
 ```javascript
 // 路由懒加载配置
@@ -1098,7 +1098,7 @@ const routes = [
 ]
 ```
 
-### 组件懒加载
+### Component Lazy Loading
 
 ```vue
 <template>
@@ -1129,7 +1129,7 @@ const AsyncComponent = defineAsyncComponent({
 </script>
 ```
 
-### 图片懒加载
+### Image Lazy Loading
 
 ```vue
 <template>
@@ -1196,9 +1196,9 @@ const handleImageError = () => {
 </style>
 ```
 
-## 🧪 测试
+## 🧪 Testing
 
-### 单元测试配置
+### Unit Test Configuration
 
 ```javascript
 // vitest.config.js
@@ -1221,7 +1221,7 @@ export default defineConfig({
 })
 ```
 
-### 组件测试示例
+### Component Test Example
 
 ```javascript
 // tests/components/GvaTable.test.js
@@ -1274,50 +1274,42 @@ describe('GvaTable', () => {
 })
 ```
 
-## 📚 最佳实践
+## 📚 Best Practices
 
-### 1. 代码规范
-- 使用 ESLint + Prettier 保证代码质量
-- 遵循 Vue 3 Composition API 最佳实践
-- 组件命名使用 PascalCase
-- 文件命名使用 kebab-case
+### 1. Code Specification
+- Use ESLint + Prettier to ensure code quality
+- Follow Vue 3 Composition API best practices
+- Component naming uses PascalCase
+- File naming uses kebab-case
 
-### 2. 性能优化
-- 合理使用 v-memo 和 v-once
-- 避免在模板中使用复杂计算
-- 使用 shallowRef 和 shallowReactive 优化响应式
-- 合理拆分组件，避免组件过大
+### 2. Performance Optimization
+- Reasonably use v-memo and v-once
+- Avoid complex calculations in templates
+- Use shallowRef and shallowReactive to optimize reactivity
+- Reasonably split components to avoid overly large components
 
-### 3. 安全防护
-- 对用户输入进行验证和过滤
-- 使用 v-html 时注意 XSS 防护
-- 敏感信息不要存储在前端
-- 使用 HTTPS 传输数据
+### 3. Security Protection
+- Validate and filter user input
+- Be cautious of XSS protection when using v-html
+- Do not store sensitive information on the front end
+- Use HTTPS to transmit data
 
-### 4. 用户体验
-- 提供加载状态提示
-- 合理的错误处理和提示
-- 响应式设计适配移动端
-- 无障碍访问支持
+### 4. User Experience
+- Provide loading status prompts
+- Reasonable error handling and prompts
+- Responsive design adapts to mobile devices
+- Accessibility support
 
-## 🐛 常见问题
+## 🐛 Common Issues
 
-### Q: 如何解决路由懒加载失败？
-A: 检查路径是否正确，确保组件文件存在，可以添加错误处理。
+### Q: How to solve route lazy loading failure?
+A: Check if the path is correct, ensure the component file exists, and add error handling.
 
-### Q: Element Plus 样式不生效？
-A: 确保正确导入样式文件，检查 CSS 优先级和作用域。
+### Q: Element Plus styles not taking effect?
+A: Ensure the style file is correctly imported, and check CSS specificity and scope.
 
-### Q: Pinia 状态丢失？
-A: 检查是否正确持久化状态，页面刷新时重新初始化状态。
+### Q: Pinia state loss?
+A: Check if the state is correctly persisted, and reinitialize the state on page refresh.
 
-### Q: 打包后静态资源路径错误？
-A: 检查 Vite 配置中的 base 路径和 publicPath 设置。
-
-## 📚 相关文档
-
-- [Vue 3 官方文档](https://vuejs.org/)
-- [Vite 官方文档](https://vitejs.dev/)
-- [Element Plus 文档](https://element-plus.org/)
-- [Pinia 文档](https://pinia.vuejs.org/)
-- [Vue Router 文档](https://router.vuejs.org/)
+### Q: Static resource path error after packaging?
+A: Check the base path and publicPath settings in the Vite configuration.
