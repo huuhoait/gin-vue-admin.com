@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.D0tJ55os.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"study/indexbak.md","filePath":"study/indexbak.md"}'),n={name:"study/indexbak.md"};function s(r,d,o,c,i,p){return a(),t("div")}const f=e(n,[["render",s]]);export{m as __pageData,f as default};
